@@ -1,0 +1,52 @@
+---
+import { SITE_TITLE, SOCIAL_LINKS } from "../consts";
+import SocialLinks from "./SocialLinks.astro";
+---
+
+<header>
+  <nav>
+    <h2><a href="/">{SITE_TITLE}</a></h2>
+    <SocialLinks />
+  </nav>
+</header>
+<style>
+  header {
+    margin: 0;
+    padding: 0 1em;
+    background: linear-gradient(var(--gray-gradient)) no-repeat;
+    color: rgb(var(--accent-bright));
+    text-align: center;
+    box-shadow: 0 2px 8px var(--accent-dark);
+    position: sticky;
+    top: 0;
+  }
+  h2 {
+    margin: 0;
+    font-size: 1em;
+  }
+
+  h2 a,
+  h2 a.active {
+    text-decoration: none;
+  }
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  nav a {
+    transition: all 0.25s;
+    padding: 1em 0.5em;
+    color: var(--black);
+    border-bottom: 4px solid transparent;
+    text-decoration: none;
+  }
+  nav a.active {
+    text-decoration: none;
+    border-bottom-color: var(--accent);
+  }
+  nav a:hover {
+    text-decoration: none;
+    border-bottom-color: var(--accent-light);
+  }
+</style>
