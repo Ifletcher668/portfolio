@@ -32,6 +32,10 @@
 }
 html {
   background: rgba(var(--black));
+
+  @media (prefers-reduced-motion: no-preference) {
+    scroll-behavior: smooth;
+  }
 }
 body {
   font-family: "CormorantGaramond", sans-serif;
