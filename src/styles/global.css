@@ -42,7 +42,7 @@ body {
   margin: 0;
   padding: 0;
   text-align: left;
-  background: linear-gradient(var(--gray-gradient)) no-repeat;
+  background: linear-gradient(rgb(var(--gray-gradient))) no-repeat;
   background-size: 100% 600px;
   word-wrap: break-word;
   overflow-wrap: break-word;
@@ -144,6 +144,15 @@ hr {
   main {
     padding: 1em;
   }
+}
+
+.row {
+  display: flex;
+  gap: var(--gap, 1rem);
+}
+
+.col {
+  flex: 1;
 }
 
 .sr-only {

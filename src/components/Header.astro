@@ -1,11 +1,35 @@
 ---
-import { SITE_TITLE, SOCIAL_LINKS } from "../consts";
+import { SITE_TITLE, NAV_LINKS } from "../consts";
 import SocialLinks from "./SocialLinks.astro";
+import HeaderLink from "./HeaderLink.astro";
 ---
 
 <header>
   <nav>
     <h2><a href="/">{SITE_TITLE}</a></h2>
+    <div class="internal-links">
+      {
+        NAV_LINKS.map((link) => {
+          if (link.subLinks && link.subLinks.length > 0) {
+            return (
+              <div class="dropdown">
+                <HeaderLink href={link.href}>{link.title}</HeaderLink>
+                <div class="dropdown-content">
+                  {link.subLinks.map((subLink) => {
+                    return (
+                      <HeaderLink href={subLink.href}>
+                        {subLink.title}
+                      </HeaderLink>
+                    );
+                  })}
+                </div>
+              </div>
+            );
+          }
+          return <HeaderLink href={link.href}>{link.title}</HeaderLink>;
+        })
+      }
+    </div>
     <SocialLinks />
   </nav>
 </header>
@@ -35,7 +59,9 @@ import SocialLinks from "./SocialLinks.astro";
     justify-content: space-between;
   }
   nav a {
-    transition: all 0.25s;
+    transition:
+      border 0.25s,
+      color 0.25s;
     padding: 1em 0.5em;
     color: var(--black);
     border-bottom: 4px solid transparent;
@@ -48,5 +74,22 @@ import SocialLinks from "./SocialLinks.astro";
   nav a:hover {
     text-decoration: none;
     border-bottom-color: var(--accent-light);
+  }
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  .dropdown-content {
+    position: absolute;
+
+    text-align: left;
+    visibility: hidden;
+    background-color: rgba(var(--gray-dark), 0.95);
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+  }
+  .dropdown:hover .dropdown-content {
+    visibility: visible;
   }
 </style>
