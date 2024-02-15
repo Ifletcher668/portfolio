@@ -1,5 +1,5 @@
 ---
-import { SOCIAL_LINKS, BAND_LINKS } from "../../consts";
+import { SOCIAL_LINKS, BAND_LINKS_ARRAY } from "../../consts";
 import Layout from "../../layouts/Page.astro";
 ---
 
@@ -85,7 +85,7 @@ import Layout from "../../layouts/Page.astro";
   </p>
   <div class="row">
     {
-      BAND_LINKS.map((band) => (
+      BAND_LINKS_ARRAY.map((band) => (
         <div class="col">
           <h5>
             <a href={band.href}>{band.title}</a>

@@ -1,5 +1,5 @@
 ---
-import { SOCIAL_LINKS } from "../consts";
+import { BAND_LINKS } from "../consts";
 import Layout from "../layouts/Page.astro";
 ---
 
@@ -10,10 +10,10 @@ import Layout from "../layouts/Page.astro";
 >
   <p>
     <span>A drummer.</span> A lyricist. The co-founder of <a
-      href="#atterima-heading">Aterrima</a
-    >. Timekeeper for <a href="#wealdandwoe-heading">Weald & Woe</a>. An amateur
-    audio engineer. A poet. A software developer. A gamer. A hiker. A bicyclist.
-    A reader. A learner. A graduate of the University of Idaho. A graduate of
-    the Coding Dojo. Somewhere-between-a-taoist-and-buddhist.
+      href={BAND_LINKS.aterrima.href}>Aterrima</a
+    >. Timekeeper for <a href={BAND_LINKS.wealdAndWoe.href}>Weald & Woe</a>. An
+    amateur audio engineer. A poet. <span>A software developer.</span> A gamer. A
+    hiker. A bicyclist. A reader. A learner. A graduate of the University of Idaho.
+    A graduate of the Coding Dojo. Somewhere-between-a-taoist-and-buddhist.
   </p>
 </Layout>

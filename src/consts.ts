@@ -9,16 +9,18 @@ export const SOCIAL_LINKS = {
   github: "https://github.com/Ifletcher668",
 };
 
-export const BAND_LINKS = [
-  { title: "Aterrima", href: "/music/aterrima" },
-  { title: "Weald and Woe", href: "/music/weald-and-woe" },
-];
+export const BAND_LINKS = {
+  aterrima: { title: "Aterrima", href: "/music/aterrima" },
+  wealdAndWoe: { title: "Weald and Woe", href: "/music/weald-and-woe" },
+};
+
+export const BAND_LINKS_ARRAY = Object.values(BAND_LINKS);
 
 export const NAV_LINKS = [
   {
     title: "Music",
     href: "/music",
-    subLinks: BAND_LINKS,
+    subLinks: BAND_LINKS_ARRAY,
   },
   {
     title: "Work",

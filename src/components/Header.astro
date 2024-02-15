@@ -36,13 +36,14 @@ import HeaderLink from "./HeaderLink.astro";
 <style>
   header {
     margin: 0;
-    padding: 0 1em;
-    background: linear-gradient(var(--gray-gradient)) no-repeat;
+    padding: 0 1rem;
+    background: linear-gradient(var(--gray-gradient-solid)) no-repeat;
     color: rgb(var(--accent-bright));
     text-align: center;
     box-shadow: 0 2px 8px var(--accent-dark);
     position: sticky;
     top: 0;
+    z-index: 10000;
   }
   h2 {
     margin: 0;
