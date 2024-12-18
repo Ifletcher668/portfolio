@@ -1,19 +1,66 @@
 ---
-import { BAND_LINKS } from "../consts";
+import Image from "../components/Image.astro";
+import { PAGE_LINKS } from "../consts";
 import Layout from "../layouts/Page.astro";
 ---
 
 <!doctype html>
 <Layout
   title="I'm Isiah Fletcher"
-  description="Isiah Fletcher is a musician and software engineer in Boise, Idaho."
+  description="Isiah Fletcher is a musician and software engineer in Salem, Oregon."
 >
-  <p>
-    <span>A drummer.</span> A lyricist. The co-founder of <a
-      href={BAND_LINKS.aterrima.href}>Aterrima</a
-    >. Timekeeper for <a href={BAND_LINKS.wealdAndWoe.href}>Weald & Woe</a>. An
-    amateur audio engineer. A poet. <span>A software developer.</span> A gamer. A
-    hiker. A bicyclist. A reader. A learner. A graduate of the University of Idaho.
-    A graduate of the Coding Dojo. Somewhere-between-a-taoist-and-buddhist.
-  </p>
+  <div class="container">
+    <div class="left">
+      <Image
+        className="front-page-image"
+        width={400}
+        height={300}
+        src="/drummer-bubs.jpeg"
+        alt=""
+        credit="This masterpiece was designed and drawn by Shelbz Citrine"
+      />
+    </div>
+
+    <div class="right">
+      <p>
+        <span>A drummer.</span> A Guitarist. An amateur audio engineer. A lyricist.
+        A poet. A Writer. A gamer. A hiker. A bicyclist. A reader. A learner.
+        <span>A software developer.</span> A graduate of the University of Idaho.
+        A graduate of the Coding Dojo. Somewhere-between-a-taoist-and-buddhist.
+      </p>
+      <hr />
+      <hr />
+      <ul class="simple-list">
+        <li>
+          <a href={PAGE_LINKS.work.href}> My work</a>
+        </li>
+        <li>
+          <a href={PAGE_LINKS.hobbies.href}> My Hobbies</a>
+        </li>
+      </ul>
+    </div>
+  </div>
 </Layout>
+
+<style>
+  .front-page-image {
+    min-width: 250px;
+  }
+
+  .container {
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+  }
+  .left {
+    flex: 2;
+  }
+
+  .left img {
+  }
+
+  .right {
+    flex: 3;
+    min-width: 250px;
+  }
+</style>

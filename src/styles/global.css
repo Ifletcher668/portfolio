@@ -105,9 +105,7 @@ a:hover {
 p {
   margin-bottom: 1em;
 }
-.prose p {
-  margin-bottom: 2em;
-}
+
 textarea {
   width: 100%;
   font-size: 16px;
@@ -154,6 +152,10 @@ hr {
   }
 }
 
+ul {
+  padding-left: 20px;
+}
+
 .row {
   display: flex;
   gap: var(--gap, 1rem);
@@ -179,4 +181,12 @@ hr {
   clip-path: inset(50%);
   /* added line to stop words getting smushed together (as they go onto seperate lines and some screen readers do not understand line feeds as a space */
   white-space: nowrap;
+}
+
+.simple-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }

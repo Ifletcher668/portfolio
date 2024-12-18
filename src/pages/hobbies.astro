@@ -1,0 +1,240 @@
+---
+import Layout from "../layouts/Page.astro";
+
+const GAMES_LIST = [
+  {
+    title: "Skyrim",
+    steam:
+      "https://store.steampowered.com/app/489830/The_Elder_Scrolls_V_Skyrim_Special_Edition/",
+    description:
+      "My all-time favorite game. I have Akatosh tattooed on my leg. What more can I say?",
+    rating: "10/10",
+  },
+  {
+    title: "Elden Ring",
+    steam: "https://store.steampowered.com/app/1245620/ELDEN_RING/",
+    description:
+      "I'm a sucker for all things Souls-related. I played Demon's Souls back in 2010 and every Dark Souls title in between.",
+    rating: "10/10",
+  },
+  {
+    title: "Sekiro",
+    steam:
+      "https://store.steampowered.com/app/814380/Sekiro_Shadows_Die_Twice__GOTY_Edition/",
+    description:
+      "Honestly, I don't know if I like Elden Ring or Sekiro more. And in many ways, it isn't even fair to compare the two, despite being made by the same people.",
+    rating: "10/10",
+  },
+  {
+    title: "Stardew Valley",
+    steam: "https://store.steampowered.com/app/413150/Stardew_Valley/",
+    description:
+      "I can't pass up a hat-tip to this one. Stardew Valley holds a special place in my heart, if not for me, then for all the wonderful people I know who are so enamored by the game.",
+    rating: "9/10",
+  },
+];
+
+const BOOKS_LIST = [
+  {
+    title: "The Name of the Wind",
+    goodReads:
+      "https://www.goodreads.com/book/show/186074.The_Name_of_the_Wind",
+    description:
+      "Inspiration is something I strive to find only through serendipity. Forcing such a delicate thing would push it away, like magnets of the same pole. When I read The Name of the Wind, I had heard about it, been told of its worth. But I gave it no expectations. And that is when inspiration flitted into existence like a fae phasing between worlds. I cannot recommend this book enough.",
+  },
+  {
+    title: "House of Leaves",
+    goodReads: "https://www.goodreads.com/book/show/24800.House_of_Leaves",
+    description:
+      "I'll be honest. I care about complexity. It thrills me when something wends, makes me question my understanding of the world, and House of Leaves did exactly that. The story—or, rather, stories—interleave philosophy, poetry, and text-book-esque prose in a way that made me strive to be a better person. Yes, it's fiction. But in the words of Tom Spanbaur: Fiction is the lie that tells the truth truer.",
+  },
+];
+---
+
+<Layout
+  title="Hobbies & Interests"
+  description="Isiah Fletcher is a musician and software engineer in Salem, Oregon."
+>
+  <div>
+    <p>
+      I love narrative. It <em>excites me</em> to sink my teeth into the flesh of
+      a different world. From Dungeons & Dragons to copious video games, anime to
+      books, it's how I've come to even perceive our own world: a story in which
+      I am one of trillions of characters.
+    </p>
+    <p>
+      Unashamedly, I love Medieval Fantasy over everything else. Whether that's
+      the narratives I consume, or Renaissance Fairs (yes, I cosplay a fantasy
+      character. Come at me), I yearn to live as if it were all real. Of course,
+      modernity has its perks. I am a software engineer. I know full well video
+      games wouldn't have existed if it weren't for progress. Yet that's the
+      beauty of the modern age! Our choices are near-limitless.
+    </p>
+
+    <p>
+      When I'm not writing or reading fantasy stories, coding or working out at
+      the gym, I'm writing poetry. I will publish more in the future, but here
+      is one poem to taste:
+    </p>
+
+    <h4>The Act of Giving</h4>
+
+    Blood cradles the shoreline <br />
+    where my visage skitters <br />
+    in the firelight behind <br />
+    like dawn moonbeams. I heave, <br />
+    reel my battered self <br />
+    upward, a hunter <br />
+    (a prey) no longer to this <br />
+    eventuality—ready now <br />
+    to nourish, disseminate <br />
+    the rhythm of nurtured words <br />
+    that drum my final heartbeats: <br />
+    <br />
+    peace, at last, is listening <br />
+    to the ash patter on <br />
+    scattered crests of waves. <br />
+
+    <hr />
+    <hr />
+
+    <h2>Video Games</h2>
+    <p>A quick list of the games I enjoy most</p>
+    <ul class="simple-list">
+      {
+        GAMES_LIST.map((game) => (
+          <li class="hobbies-list-item">
+            <h4>{game.title}</h4>
+            <p>{game.description}</p>
+            <div>
+              <span>{game.rating}</span>
+              <a href={game.steam} target="_blank">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  width="45"
+                  height="45"
+                  viewBox="0 0 65 65"
+                  fill="#fff"
+                >
+                  <use xlink:href="#B" x=".5" y=".5" />
+                  <defs>
+                    <linearGradient id="A" x2="50%" x1="50%" y2="100%" y1="0%">
+                      <stop stop-color="#111d2e" offset="0%" />
+                      <stop stop-color="#051839" offset="21.2%" />
+                      <stop stop-color="#0a1b48" offset="40.7%" />
+                      <stop stop-color="#132e62" offset="58.1%" />
+                      <stop stop-color="#144b7e" offset="73.8%" />
+                      <stop stop-color="#136497" offset="87.3%" />
+                      <stop stop-color="#1387b8" offset="100%" />
+                    </linearGradient>
+                  </defs>
+                  <symbol id="B">
+                    <g>
+                      <path
+                        d="M1.305 41.202C5.259 54.386 17.488 64 31.959 64c17.673 0 32-14.327 32-32s-14.327-32-32-32C15.001 0 1.124 13.193.028 29.874c2.074 3.477 2.879 5.628 1.275 11.328z"
+                        fill="url(#A)"
+                      />
+                      <path d="M30.31 23.985l.003.158-7.83 11.375c-1.268-.058-2.54.165-3.748.662a8.14 8.14 0 0 0-1.498.8L.042 29.893s-.398 6.546 1.26 11.424l12.156 5.016c.6 2.728 2.48 5.12 5.242 6.27a8.88 8.88 0 0 0 11.603-4.782 8.89 8.89 0 0 0 .684-3.656L42.18 36.16l.275.005c6.705 0 12.155-5.466 12.155-12.18s-5.44-12.16-12.155-12.174c-6.702 0-12.155 5.46-12.155 12.174zm-1.88 23.05c-1.454 3.5-5.466 5.147-8.953 3.694a6.84 6.84 0 0 1-3.524-3.362l3.957 1.64a5.04 5.04 0 0 0 6.591-2.719 5.05 5.05 0 0 0-2.715-6.601l-4.1-1.695c1.578-.6 3.372-.62 5.05.077 1.7.703 3 2.027 3.696 3.72s.692 3.56-.01 5.246M42.466 32.1a8.12 8.12 0 0 1-8.098-8.113 8.12 8.12 0 0 1 8.098-8.111 8.12 8.12 0 0 1 8.1 8.111 8.12 8.12 0 0 1-8.1 8.113m-6.068-8.126a6.09 6.09 0 0 1 6.08-6.095c3.355 0 6.084 2.73 6.084 6.095a6.09 6.09 0 0 1-6.084 6.093 6.09 6.09 0 0 1-6.081-6.093z" />
+                    </g>
+                  </symbol>
+                </svg>
+              </a>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+    <h2>Books</h2>
+    <p>A quick list of the books I enjoy most</p>
+    <ul class="simple-list">
+      {
+        BOOKS_LIST.map((book) => (
+          <li class="hobbies-list-item">
+            <h4>{book.title}</h4>
+            <p>{book.description}</p>
+            <div>
+              <a href={book.goodReads} target="_blank">
+                Goodreads
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 45 45"
+                  width="45"
+                  height="45"
+                >
+                  <rect
+                    x="3"
+                    y="3"
+                    width="39"
+                    height="30"
+                    fill="#D0B29B"
+                    stroke="#8B5E3C"
+                    stroke-width="1"
+                  />
+                  <rect x="3" y="3" width="3" height="30" fill="#8B5E3C" />
+                  <line
+                    x1="6"
+                    y1="7"
+                    x2="6"
+                    y2="33"
+                    stroke="#FFD700"
+                    stroke-width="0.5"
+                  />
+                  <line
+                    x1="6"
+                    y1="10"
+                    x2="6"
+                    y2="33"
+                    stroke="#FFD700"
+                    stroke-width="0.5"
+                  />
+                  <line
+                    x1="6"
+                    y1="13"
+                    x2="6"
+                    y2="33"
+                    stroke="#FFD700"
+                    stroke-width="0.5"
+                  />
+                  <line
+                    x1="6"
+                    y1="16"
+                    x2="6"
+                    y2="33"
+                    stroke="#FFD700"
+                    stroke-width="0.5"
+                  />
+                </svg>
+              </a>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</Layout>
+
+<style>
+  .hobbies-list-item {
+    display: flex;
+    gap: 25px;
+    padding: 32px 16px;
+    border-bottom: 1px solid rgb(var(--accent-bright));
+  }
+
+  .hobbies-list-item h4 {
+    flex: 1;
+  }
+
+  .hobbies-list-item p {
+    flex: 3;
+  }
+
+  .hobbies-list-item div {
+    flex: 0;
+  }
+
+  .hobbies-list-item > * {
+    margin: 0;
+  }
+</style>

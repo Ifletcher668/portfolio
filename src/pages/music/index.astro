@@ -1,26 +1,39 @@
 ---
-import { SOCIAL_LINKS, BAND_LINKS_ARRAY } from "../../consts";
+import { SOCIAL_LINKS, BAND_LINKS } from "../../consts";
 import Layout from "../../layouts/Page.astro";
 ---
 
 <Layout
   title="Music & Drum Lessons"
-  description="Isiah Fletcher is a musician and software engineer in Boise, Idaho."
-  heroImage="/isiah-drumming.jpg"
+  description="Isiah Fletcher is a musician and software engineer in Salem, Oregon."
 >
   <p>
     Since I was 12, I've dedicated my life to drumming, evolving from a
-    passionate beginner to a professional touring musician. I currently play in
-    two Extreme Metal bands, both of which are based in Boise, Idaho, and
-    regularly tour the Pacific Nortwest and Southwest. We're working on
-    expanding our reach.
+    passionate beginner to a professional touring musician. I played in two
+    Extreme Metal bands, both based in Boise, Idaho, and regularly toured the
+    Pacific Northwest and Southwest.
   </p>
+  <p>
+    I am on hiatus from playing in bands, working on my own music for the time
+    being.
+  </p>
+
+  <p>
+    However, I played in both
+    <a href={BAND_LINKS.wealdAndWoe.href}>{BAND_LINKS.wealdAndWoe.title}</a> and
+    <a href={BAND_LINKS.aterrima.href}>{BAND_LINKS.aterrima.title}</a>. Both
+    bands offered different challenges to me. One, from a composition and
+    technical complexity standpoint, and the other, an opportunity to strive for
+    perfection and power.
+  </p>
+
+  <h3>Lessons</h3>
   <p>
     In 2021, I began offering drum lessons to share my expertise and love for
     music. My focus is on technique, posture, and musical expression, aiming to
     build a solid foundation for students of all levels.
   </p>
-  <h4>Lesson Overview</h4>
+  <h4>Overview</h4>
   <ul>
     <li>
       <b>Technique Mastery:</b> I teach everything from fundamental grip and stroke
@@ -39,17 +52,16 @@ import Layout from "../../layouts/Page.astro";
   </ul>
 
   <p>
-    My studio, located in Boise, and is outfitted for lessons with a kit and
+    My studio, located in Salem, and is outfitted for lessons with a kit and
     practice pads. I offer flexible scheduling to fit your lifestyle.
   </p>
 
   <h4>Booking</h4>
   <p>
-    If you are interested in a lesson, please DM me on
-    <a href={SOCIAL_LINKS.instagram} target="_blank">Instagram</a>
-    or on
-    <a href={SOCIAL_LINKS.facebook} target="_blank">Facebook</a>. I'm currently
-    accepting students of all ages and skill levels.
+    If you are interested in a lesson, please DM me on<a
+      href={SOCIAL_LINKS.facebook}
+      target="_blank">Facebook</a
+    >. I'm currently accepting students of all ages and skill levels.
   </p>
   <h5>Here are my hours:</h5>
   <ul>
@@ -58,7 +70,7 @@ import Layout from "../../layouts/Page.astro";
     <li><b>Wednesday</b>: 12 pm - 5 pm</li>
     <li><b>Thursday</b>: 12 pm - 5 pm</li>
     <li><b>Friday</b>: 12 pm - 5 pm</li>
-    <li><b>Saturday</b>: 12 am - 5 pm</li>
+    <li><b>Saturday</b>: 12 pm - 5 pm</li>
     <li><b>Sunday</b>: <b>N/A</b></li>
   </ul>
 
@@ -75,23 +87,4 @@ import Layout from "../../layouts/Page.astro";
       next step in your musical development.
     </li>
   </ul>
-
-  <h4>My Bands</h4>
-  <p>
-    I play in two Extreme Metal bands, Weald and Woe, and Aterrima. Both bands
-    offer different challenges to me. One, from a composition and technical
-    complexity standpoint, and the other because I try to be as precise and
-    powerful as possible.
-  </p>
-  <div class="row">
-    {
-      BAND_LINKS_ARRAY.map((band) => (
-        <div class="col">
-          <h5>
-            <a href={band.href}>{band.title}</a>
-          </h5>
-        </div>
-      ))
-    }
-  </div>
 </Layout>

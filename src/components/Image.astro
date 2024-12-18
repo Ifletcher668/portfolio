@@ -6,14 +6,22 @@ interface Props {
   src: string;
   credit?: string;
   alt?: string;
+  className?: string;
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-const { width = 1020, height = 510, src, alt = "", credit } = Astro.props;
+const {
+  width = 1020,
+  height = 510,
+  src,
+  alt = "",
+  credit,
+  className,
+} = Astro.props;
 ---
 
-<div class="image-container">
+<div class={`${className} image-container`}>
   <img width={width} height={height} src={src} alt={alt} />
   <small
     >{
@@ -42,9 +50,8 @@ const { width = 1020, height = 510, src, alt = "", credit } = Astro.props;
   }
   .image-container > img {
     display: block;
-    width: 100%;
-    height: auto;
   }
+
   .image-container > small {
     transition: all 0.25s;
     position: absolute;
@@ -59,8 +66,16 @@ const { width = 1020, height = 510, src, alt = "", credit } = Astro.props;
     font-style: italic;
     opacity: 0;
   }
-
   .image-container:hover > small {
     opacity: 1;
+  }
+
+  @media (max-width: 720px) {
+    .image-container > small {
+      opacity: 1;
+      background: none;
+      padding: 0;
+      position: unset;
+    }
   }
 </style>

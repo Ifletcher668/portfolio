@@ -1,5 +1,5 @@
 ---
-import { SITE_TITLE, NAV_LINKS } from "../consts";
+import { SITE_TITLE, NAV_LINKS_ARRAY } from "../consts";
 import SocialLinks from "./SocialLinks.astro";
 import HeaderLink from "./HeaderLink.astro";
 ---
@@ -9,7 +9,7 @@ import HeaderLink from "./HeaderLink.astro";
     <h2><a href="/">{SITE_TITLE}</a></h2>
     <div class="internal-links">
       {
-        NAV_LINKS.map((link) => {
+        NAV_LINKS_ARRAY.map((link) => {
           if (link.subLinks && link.subLinks.length > 0) {
             return (
               <div class="dropdown">
@@ -33,6 +33,7 @@ import HeaderLink from "./HeaderLink.astro";
     <SocialLinks />
   </nav>
 </header>
+
 <style>
   header {
     margin: 0;
@@ -58,6 +59,7 @@ import HeaderLink from "./HeaderLink.astro";
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-flow: row wrap;
   }
   nav a {
     transition:
