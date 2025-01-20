@@ -1,4 +1,5 @@
 ---
+import { THREE_JS_JOURNEY_LINKS_ARRAY } from "../../../consts";
 import Layout from "../../../layouts/Page.astro";
 ---
 
@@ -13,8 +14,14 @@ import Layout from "../../../layouts/Page.astro";
     here's what I have so far:
   </p>
   <ul class="simple-list">
-    <li>
-      <a href="text-with-floating-words"> Text With Floating Words </a>
-    </li>
+    {
+      THREE_JS_JOURNEY_LINKS_ARRAY.map((project) => {
+        return (
+          <li>
+            <a href={project.href}>{project.title}</a>
+          </li>
+        );
+      })
+    }
   </ul>
 </Layout>

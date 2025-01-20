@@ -1,4 +1,5 @@
 ---
+import Poem from "../components/Poem.astro";
 import Layout from "../layouts/Page.astro";
 
 const GAMES_LIST = [
@@ -8,6 +9,13 @@ const GAMES_LIST = [
       "https://store.steampowered.com/app/489830/The_Elder_Scrolls_V_Skyrim_Special_Edition/",
     description:
       "My all-time favorite game. I have Akatosh tattooed on my leg. What more can I say?",
+    rating: "10/10",
+  },
+  {
+    title: "Hollow Knight",
+    steam: "https://store.steampowered.com/app/367520/Hollow_Knight/",
+    description:
+      "Hollow Knight is a treasure. It's an exercise in futility, yet also a meditation on what it means to be alive. The game challenges you fairly, and those challenges are always rewarded with stunning beauty.",
     rating: "10/10",
   },
   {
@@ -77,36 +85,39 @@ const BOOKS_LIST = [
       is one poem to taste:
     </p>
 
-    <h4>The Act of Giving</h4>
-
-    Blood cradles the shoreline <br />
-    where my visage skitters <br />
-    in the firelight behind <br />
-    like dawn moonbeams. I heave, <br />
-    reel my battered self <br />
-    upward, a hunter <br />
-    (a prey) no longer to this <br />
-    eventuality—ready now <br />
-    to nourish, disseminate <br />
-    the rhythm of nurtured words <br />
-    that drum my final heartbeats: <br />
-    <br />
-    peace, at last, is listening <br />
-    to the ash patter on <br />
-    scattered crests of waves. <br />
+    <Poem
+      title="The Act of Giving"
+      body={[
+        "Blood cradles the shoreline",
+        "where my visage skitters",
+        "in the firelight behind",
+        "like dawn moonbeams. I heave,",
+        "reel my battered self",
+        "upward, a hunter",
+        "(a prey) no longer to this",
+        "eventuality—ready now",
+        "to nourish, disseminate",
+        "the rhythm of nurtured words",
+        "that drum my final heartbeats:",
+        null,
+        "peace, at last, is listening",
+        "to the ash patter on",
+        "the crests of scattered waves.",
+      ]}
+    />
 
     <hr />
     <hr />
 
     <h2>Video Games</h2>
-    <p>A quick list of the games I enjoy most</p>
+    <p>The games I enjoy most</p>
     <ul class="simple-list">
       {
         GAMES_LIST.map((game) => (
           <li class="hobbies-list-item">
             <h4>{game.title}</h4>
             <p>{game.description}</p>
-            <div>
+            <div class="rating-and-link">
               <span>{game.rating}</span>
               <a href={game.steam} target="_blank">
                 <svg
@@ -146,14 +157,14 @@ const BOOKS_LIST = [
       }
     </ul>
     <h2>Books</h2>
-    <p>A quick list of the books I enjoy most</p>
+    <p>The books I enjoy most</p>
     <ul class="simple-list">
       {
         BOOKS_LIST.map((book) => (
           <li class="hobbies-list-item">
             <h4>{book.title}</h4>
             <p>{book.description}</p>
-            <div>
+            <div class="rating-and-link">
               <a href={book.goodReads} target="_blank">
                 Goodreads
                 <svg
@@ -217,6 +228,7 @@ const BOOKS_LIST = [
 <style>
   .hobbies-list-item {
     display: flex;
+    flex-wrap: wrap;
     gap: 25px;
     padding: 32px 16px;
     border-bottom: 1px solid rgb(var(--accent-bright));
@@ -227,10 +239,10 @@ const BOOKS_LIST = [
   }
 
   .hobbies-list-item p {
-    flex: 3;
+    flex: 3 0 75%;
   }
 
-  .hobbies-list-item div {
+  .hobbies-list-item .rating-and-link {
     flex: 0;
   }
 

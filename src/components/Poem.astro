@@ -1,0 +1,45 @@
+---
+interface Props {
+  title: string;
+  body: Array<string | null>;
+}
+
+const { title, body } = Astro.props;
+---
+
+<div class="poem">
+  <bold class="poem-title">{title}</bold>
+  <p>
+    {
+      body.map((line) => {
+        return typeof line !== "string" ? (
+          <br />
+        ) : (
+          <>
+            {line} <br />{" "}
+          </>
+        );
+      })
+    }
+  </p>
+</div>
+
+<style>
+  .poem {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+
+    background: rgba(var(--gray-dark), 100%);
+    padding: 2em;
+    width: fit-content;
+    border-radius: 2px;
+  }
+  .poem p {
+    margin: 0;
+    color: var(--accent);
+  }
+  .poem-title {
+    color: rgb(var(--accent-bright));
+  }
+</style>

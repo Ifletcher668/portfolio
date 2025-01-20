@@ -16,10 +16,11 @@ import HeaderLink from "./HeaderLink.astro";
                 <HeaderLink href={link.href}>{link.title}</HeaderLink>
                 <div class="dropdown-content">
                   {link.subLinks.map((subLink) => {
-                    const props = { href: subLink.href };
-                    if (subLink.href.startsWith("http")) {
-                      props.target = "__blank";
-                    }
+                    const isExternalLink = subLink.href.startsWith("http");
+                    const props = {
+                      href: subLink.href,
+                      target: isExternalLink ? "_blank" : "_self",
+                    };
 
                     return <HeaderLink {...props}>{subLink.title}</HeaderLink>;
                   })}
@@ -66,7 +67,7 @@ import HeaderLink from "./HeaderLink.astro";
     transition:
       border 0.25s,
       color 0.25s;
-    padding: 1em 0.5em;
+    padding: 0.5em;
     color: var(--black);
     border-bottom: 4px solid transparent;
     text-decoration: none;

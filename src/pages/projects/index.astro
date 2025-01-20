@@ -1,7 +1,7 @@
 ---
 import Image from "../../components/Image.astro";
 import Layout from "../../layouts/Page.astro";
-import { PROJECT_LINKS } from "../../consts";
+import { PROJECT_LINKS_ARRAY } from "../../consts";
 ---
 
 <!doctype html>
@@ -10,25 +10,37 @@ import { PROJECT_LINKS } from "../../consts";
   description="A compilation of various projects I've worked on to keep my skills sharp"
 >
   <ul class="simple-list">
-    <li>
-      <h5>
-        <a target="_blank" href={PROJECT_LINKS.shelbzWebsite.href}>
-          1. {PROJECT_LINKS.shelbzWebsite.title}
-        </a>
-      </h5>
-      <Image
-        width={1020}
-        height={510}
-        src={"/shelbz-website-project.png"}
-        alt=""
-      />
-    </li>
-    <li>
-      <h5>
-        <a href={PROJECT_LINKS.threeJsJourney.href}>
-          {PROJECT_LINKS.threeJsJourney.title}
-        </a>
-      </h5>
-    </li>
+    {
+      PROJECT_LINKS_ARRAY.map((project, index) => {
+        return (
+          <li class="project-link">
+            <h5>
+              <a target="_blank" href={project.href}>
+                <span class="letter">{index + 1}.</span>
+                {project.title}
+              </a>
+            </h5>
+            <Image
+              width={666}
+              height={510}
+              src={project.imgSrc}
+              alt=""
+              credit="Photo by Isiah Fletcher"
+            />
+          </li>
+        );
+      })
+    }
   </ul>
 </Layout>
+<style>
+  .project-link {
+  }
+  .project-link a {
+    text-decoration: none;
+  }
+
+  .project-link .letter {
+    font-size: 2em;
+  }
+</style>

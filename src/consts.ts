@@ -17,21 +17,40 @@ export const BAND_LINKS = {
   wealdAndWoe: { title: "Weald & Woe", href: "/music/weald-and-woe" },
 };
 
+type PageLink = {
+  title: string;
+  href: string;
+  subLinks?: PageLink[];
+};
+
+export const THREE_JS_JOURNEY_LINKS = {
+  floatingTextWithDonuts: {
+    title: "Floating Text with Donuts",
+    href: "/projects/three-js-journey/floating-text-with-donuts",
+  },
+};
+export const THREE_JS_JOURNEY_LINKS_ARRAY = Object.values(
+  THREE_JS_JOURNEY_LINKS
+);
+
 export const PROJECT_LINKS = {
   threeJsJourney: {
     title: "Three.js Journey",
     href: "/projects/three-js-journey",
+    imgSrc: "/floating-text-with-donuts.webp",
+    subLinks: THREE_JS_JOURNEY_LINKS_ARRAY,
   },
   shelbzWebsite: {
     title: "Portfolio for Shelbz Citrine",
     href: EXTERNAL_LINKS.shelbzWebsite,
+    imgSrc: "/shelbz-website-project.png",
   },
 };
 
 export const PROJECT_LINKS_ARRAY = Object.values(PROJECT_LINKS);
 export const BAND_LINKS_ARRAY = Object.values(BAND_LINKS);
 
-export const PAGE_LINKS = {
+export const PAGE_LINKS: Record<string, PageLink> = {
   music: {
     title: "Music",
     href: "/music",
