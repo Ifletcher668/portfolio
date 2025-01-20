@@ -6,7 +6,7 @@ import HeaderLink from "./HeaderLink.astro";
 
 <header>
   <nav>
-    <h2><a href="/">{SITE_TITLE}</a></h2>
+    <h2 class="site-title"><a href="/">{SITE_TITLE}</a></h2>
     <div class="internal-links">
       {
         NAV_LINKS_ARRAY.map((link) => {
@@ -16,11 +16,12 @@ import HeaderLink from "./HeaderLink.astro";
                 <HeaderLink href={link.href}>{link.title}</HeaderLink>
                 <div class="dropdown-content">
                   {link.subLinks.map((subLink) => {
-                    return (
-                      <HeaderLink href={subLink.href}>
-                        {subLink.title}
-                      </HeaderLink>
-                    );
+                    const props = { href: subLink.href };
+                    if (subLink.href.startsWith("http")) {
+                      props.target = "__blank";
+                    }
+
+                    return <HeaderLink {...props}>{subLink.title}</HeaderLink>;
                   })}
                 </div>
               </div>
@@ -48,7 +49,7 @@ import HeaderLink from "./HeaderLink.astro";
   }
   h2 {
     margin: 0;
-    font-size: 1em;
+    font-size: 1.5em;
   }
 
   h2 a,

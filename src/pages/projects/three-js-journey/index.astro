@@ -1,31 +1,22 @@
+---
+import Layout from "../../../layouts/Page.astro";
+---
+
 <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>3D Text Demo Project</title>
-  </head>
-  <body>
-    <canvas class="webgl"></canvas>
-    <script src="../../../scripts/floating-text-with-donuts.js"></script>
-  </body>
-</html>
-
-<style>
-  * {
-    margin: 0;
-    padding: 0;
-  }
-
-  html,
-  body {
-    overflow: hidden;
-  }
-
-  .webgl {
-    position: fixed;
-    top: 0;
-    left: 0;
-    outline: none;
-  }
-</style>
+<Layout
+  title="ThreeJS Journey"
+  description="I'm learning ThreeJS, and with it, webgl. This is an index of little projects I've done to learn"
+>
+  <p>
+    I'm learning ThreeJS, and with it, webgl. This is an index of little
+    projects I've done to learn. I'll keep adding to this as I go along, but
+    here's what I have so far:
+  </p>
+  <ul class="simple-list">
+    <li>
+      <a href="three-js-journey/text-with-floating-words">
+        Text With Floating Words
+      </a>
+    </li>
+  </ul>
+</Layout>
