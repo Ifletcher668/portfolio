@@ -12,10 +12,14 @@ import { PROJECT_LINKS_ARRAY } from "../../consts";
   <ul class="simple-list">
     {
       PROJECT_LINKS_ARRAY.map((project, index) => {
+        const isExternalLink = project.href.startsWith("http");
         return (
           <li class="project-link">
             <h5>
-              <a target="_blank" href={project.href}>
+              <a
+                target={isExternalLink ? "_blank" : "_self"}
+                href={project.href}
+              >
                 <span class="letter">{index + 1}.</span>
                 {project.title}
               </a>
