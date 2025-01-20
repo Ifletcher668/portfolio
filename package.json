@@ -10,11 +10,13 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/check": "^0.5.2",
     "@astrojs/mdx": "^2.1.1",
     "@astrojs/rss": "^4.0.5",
     "@astrojs/sitemap": "^3.0.5",
     "astro": "^4.3.5",
-    "@astrojs/check": "^0.5.2",
+    "lil-gui": "^0.19.2",
+    "three": "^0.172.0",
     "typescript": "^5.3.3"
   }
 }
