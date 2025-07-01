@@ -26,7 +26,7 @@ const GAMES_LIST = [
     rating: "10/10",
   },
   {
-    title: "Sekiro",
+    title: "Sekiro: Shadows Die Twice",
     steam:
       "https://store.steampowered.com/app/814380/Sekiro_Shadows_Die_Twice__GOTY_Edition/",
     description:
@@ -82,29 +82,111 @@ const BOOKS_LIST = [
     <p>
       When I'm not writing or reading fantasy stories, coding or working out at
       the gym, I'm writing poetry. I will publish more in the future, but here
-      is one poem to taste:
+      are are few to taste:
     </p>
 
-    <Poem
-      title="The Act of Giving"
-      body={[
-        "Blood cradles the shoreline",
-        "where my visage skitters",
-        "in the firelight behind",
-        "like dawn moonbeams. I heave,",
-        "reel my battered self",
-        "upward, a hunter",
-        "(a prey) no longer to this",
-        "eventuality—ready now",
-        "to nourish, disseminate",
-        "the rhythm of nurtured words",
-        "that drum my final heartbeats:",
-        null,
-        "peace, at last, is listening",
-        "to the ash patter on",
-        "the crests of scattered waves.",
-      ]}
-    />
+    <div class="poetry-grid">
+      <Poem
+        title="The Act of Giving"
+        body={[
+          "Blood cradles the shoreline",
+          "where my visage skitters",
+          "in the firelight behind",
+          "like dawn moonbeams. I heave,",
+          "reel my battered self",
+          "upward, a hunter",
+          "(a prey) no longer to this",
+          "eventuality—ready now",
+          "to nourish, disseminate",
+          "the rhythm of nurtured words",
+          "that drum my final heartbeats:",
+          null,
+          "peace, at last, is listening",
+          "to the ash patter on",
+          "the crests of scattered waves.",
+        ]}
+      />
+      <Poem
+        title="On Letting"
+        body={[
+          "A dream of honey sweetness",
+          "is a dream I know",
+          "in which I love,",
+          "the venesection",
+          "purifies the mind-murmurs",
+          "and grave memories.",
+          null,
+          "The boy who is no longer",
+          "afraid of troll's",
+          "blood mourns his own",
+          "passing, funeral",
+          "blessed by rain, laughter:",
+          "let him be slowly",
+          "consumed by lichen,",
+          "moss, blood-forged love",
+          "in the hardship of friendship,",
+          "and let his dreams be grounded,",
+          "sorrow answered in the echoes",
+          "between mountains, and apologies",
+          "held softly as a crying child",
+          null,
+          "then released like wistful",
+          "wind. He, to the moment,",
+          "here only",
+          "as breath bargains",
+          "with the interstice. Here,",
+          null,
+          "fear and sorrow",
+          "safeguard temples,",
+          "bow deep in deference",
+          "to antediluvian deities:",
+          "Let them serve a reminder",
+          "of the magic that heals",
+          "all laid barren the past.",
+        ]}
+      />
+
+      <Poem
+        title="In Recurse"
+        body={[
+          "Memory is a meteor shower",
+          "and galaxy black is an empty",
+          "oblivion if in-betweens",
+          "are seen as something",
+          "discarded, distant from all,",
+          "but is emptiness anything",
+          "besides anticipation,",
+          "a seed that flowers into",
+          null,
+          "joy? A small streak ignites",
+          "the thought of a flurry",
+          "of fur unfurling",
+          "when you stretch your loving",
+          "body across my lap,",
+          "and the impact...",
+          "well, that's the easy part:",
+          "when the last thing I saw",
+          "was your love limp",
+          "and cold as a starless sky,",
+          "and the emptiness it created",
+          "when I knew I did not fill",
+          "each moment with precious",
+          null,
+          "joy. But to you, it wasn't",
+          "a thing to fill or discard,",
+          "but who you were. Joy becoming",
+          "itself. You were the sky",
+          "across galaxies, and you,",
+          "too, became a prediction",
+          "in the art of loving,",
+          "until all that was",
+          "and all that is",
+          "is a unanimous pulse",
+          "in anticipation",
+          "of dawn.",
+        ]}
+      />
+    </div>
 
     <hr />
     <hr />
@@ -226,6 +308,16 @@ const BOOKS_LIST = [
 </Layout>
 
 <style>
+  .poetry-grid {
+    display: flex;
+    width: 100%;
+  }
+
+  @media (max-width: 720px) {
+    .poetry-grid {
+      flex-wrap: wrap;
+    }
+  }
   .hobbies-list-item {
     display: flex;
     flex-wrap: wrap;
@@ -235,11 +327,11 @@ const BOOKS_LIST = [
   }
 
   .hobbies-list-item h4 {
-    flex: 1;
+    flex: 1 15%;
   }
 
   .hobbies-list-item p {
-    flex: 3 0 75%;
+    flex: 3 0 60%;
   }
 
   .hobbies-list-item .rating-and-link {

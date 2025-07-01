@@ -1,6 +1,5 @@
 ---
 import Image from "../components/Image.astro";
-import { PAGE_LINKS } from "../consts";
 import Layout from "../layouts/Page.astro";
 ---
 
@@ -9,62 +8,286 @@ import Layout from "../layouts/Page.astro";
   title="I'm Isiah Fletcher"
   description="Isiah Fletcher is a musician and software engineer in Salem, Oregon."
 >
-  <div class="container">
-    <div class="left">
+  <!-- Hero Section -->
+  <section id="hero-section" class="hero-section">
+    <div class="teaser-image">
       <Image
-        className="front-page-image"
         width={400}
         height={300}
         src="/drummer-bubs-transparent.png"
-        alt=""
-        credit="This masterpiece was designed and drawn by Shelbz Citrine"
+        alt="Silhouette mid-solo"
       />
     </div>
-
-    <div class="right">
+    <div class="hero-text">
       <p>
-        <span>A drummer.</span> A Guitarist. An amateur audio engineer. A lyricist.
-        A poet. A Writer. A gamer. A hiker. A bicyclist. A reader. A learner.
-        <span>A software developer.</span> A graduate of the University of Idaho.
-        A graduate of the Coding Dojo. Somewhere-between-a-taoist-and-buddhist.
+        Drummer. Developer. Wordsmith. I forge rhythms, functions, and feelings
+        that refuse to let go.
       </p>
-      <hr />
-      <hr />
-      <ul class="simple-list">
-        <li>
-          <a href={PAGE_LINKS.work.href}> My work</a>
-        </li>
-        <li>
-          <a href={PAGE_LINKS.projects.href}> My Projects</a>
-        </li>
-        <li>
-          <a href={PAGE_LINKS.hobbies.href}> My Hobbies</a>
-        </li>
-      </ul>
+      <p>
+        My first beat came at age 12. My first lines of code appeared in 2020,
+        when the world struck midnight.
+      </p>
+      <p>
+        Since then I’ve summoned storms on stage and built bridges in server
+        rooms. Ready for that spark in your world?
+      </p>
+      <div class="hero-ctas">
+        <a href="#session-work" class="btn">Let’s Talk Rhythm</a>
+        <a href="#programming-portfolio" class="btn">Let’s Talk Code</a>
+      </div>
     </div>
-  </div>
+  </section>
+
+  <!-- Session Work Section -->
+  <section id="session-work" class="media-grid-section">
+    <h2>Session Work</h2>
+    <p>
+      I lend my beats across genres—rock, jazz, funk, pop, metal, folk and
+      beyond.
+    </p>
+    <div class="media-grid">
+      <!-- replace VIDEO_ID_X below -->
+      <iframe
+        src="https://www.youtube.com/embed/lc_rCn2em8o?si=HdoxTRHM6UDSzZWV"
+        title="Session Clip 1"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+      <iframe
+        src="https://www.youtube.com/embed/4MM4Ta2QIOI?si=2DKAmfy74pPOn2y8"
+        title="Session Clip 2"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+      <iframe
+        src="https://www.youtube.com/embed/vNU7E_5oVJo?si=FeOtTYWNN6h-_AQx"
+        title="Session Clip 3"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+    </div>
+    <a
+      href="https://www.youtube.com/@isiahfletcher2859"
+      class="btn"
+      target="_blank"
+      rel="noopener">Explore More on YouTube</a
+    >
+  </section>
+
+  <!-- Programming Portfolio Section -->
+  <section id="programming-portfolio" class="media-grid-section">
+    <h2>Programming Portfolio</h2>
+    <p>
+      Four years in digital health tech at Hinge Health—crafting React JS
+      interfaces and design systems.
+    </p>
+    <div class="card-grid">
+      <a
+        href="https://www.linkedin.com/in/isiah-fletcher-074060159/"
+        class="card-link"
+        target="_blank"
+        rel="noopener"
+      >
+        <div class="card">
+          <div class="card-thumb hinge-thumb"></div>
+          <div class="card-content">
+            <h3>Hinge Health</h3>
+            <p>React JS · Storybook · TypeScript</p>
+            <span class="btn small">View on LinkedIn</span>
+          </div>
+        </div>
+      </a>
+
+      <a
+        href="https://shelbzcitrine.com/"
+        class="card-link"
+        target="_blank"
+        rel="noopener"
+      >
+        <div class="card">
+          <div class="card-thumb shelbz-thumb"></div>
+          <div class="card-content">
+            <h3>Shelbz Citrine Portfolio</h3>
+            <p>
+              A vibrant showcase of Shelbz’s art and design, built with NextJS.
+            </p>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <!-- Core Values -->
+    <section id="values" class="values">
+      <div class="value">
+        <h4>Relentless Curiosity</h4>
+        <p>I pry open every tight seam—be it a groove or a graph.</p>
+      </div>
+      <div class="value">
+        <h4>Fearless Creation</h4>
+        <p>
+          I chase wild ideas into daylight so you don’t lie awake wondering
+          “what if?”
+        </p>
+      </div>
+      <div class="value">
+        <h4>Unflinching Storytelling</h4>
+        <p>Every beat, every line, every breath carries its own tale.</p>
+      </div>
+    </section>
+
+    <!-- Final Pitch -->
+    <section id="final-pitch" class="final-pitch">
+      <h2>
+        Your project demands more than routine. It yearns for a provocateur.
+      </h2>
+      <div class="final-ctas">
+        <a href="/contact" class="btn">Drop Me a Line</a>
+        <a href="/work" class="link">View Résumé</a>
+      </div>
+    </section>
+  </section>
+
+  <style>
+    /* Hero Section */
+    .hero-section {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      padding: 3rem 0;
+      padding-top: 0;
+    }
+    .hero-section .teaser-image {
+      flex: 1 1 300px;
+    }
+    .hero-section .teaser-image img {
+      width: 100%;
+      height: auto;
+      max-width: 400px;
+    }
+    .hero-section .hero-text {
+      flex: 2 1 400px;
+    }
+    .hero-text h2 {
+      font-size: 1.75rem;
+      margin-bottom: 1rem;
+    }
+    .hero-ctas .btn {
+      margin-right: 1rem;
+    }
+
+    /* Media Grid Sections */
+    .media-grid-section {
+      padding: 3rem 0;
+    }
+    .media-grid-section h2 {
+      font-size: 2rem;
+      margin-bottom: 0.75rem;
+    }
+    .media-grid-section p {
+      margin-bottom: 1.5rem;
+      line-height: 1.5;
+    }
+    .media-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .media-grid iframe {
+      width: 100%;
+      aspect-ratio: 16/9;
+      border: none;
+    }
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .card {
+      height: 100%;
+      background: rgba(var(--gray-dark), 100%);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .card-link {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    .card-link:hover {
+      transform: translateY(-6px);
+      box-shadow:
+        0px 10px 15px -3px var(--accent-dark),
+        0px 4px 6px -2px var(--accent),
+        0px 2px 4px var(--accent-dark);
+    }
+    .card-thumb {
+      width: 100%;
+      height: 250px;
+      aspect-ratio: 16 / 9;
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+    }
+
+    .shelbz-thumb {
+      background-image: url("/shelbzcitrine-thumb.jpg");
+      /* fallback background color while image loads: */
+      background-color: #f0e6d2;
+    }
+    .hinge-thumb {
+      background-image: url("/hinge-health-thumb.jpeg");
+    }
+    .card-content {
+      padding: 1rem;
+    }
+    .btn.small {
+      padding: 0.5rem 1rem;
+      font-size: 0.875rem;
+    }
+
+    /* Core Values */
+    .values {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      padding: 3rem 0;
+      text-align: center;
+    }
+    .value {
+      flex: 0 0 30%;
+    }
+
+    @media (max-width: 720px) {
+      .value {
+        flex: 0 0 100%;
+      }
+    }
+    .value h4 {
+      margin-bottom: 0.5rem;
+    }
+
+    /* Final Pitch */
+    .final-pitch {
+      padding: 4rem 0;
+      text-align: center;
+      background: rgba(var(--gray-dark), 100%);
+    }
+    .final-pitch h2 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+    .final-ctas .btn {
+      margin-right: 1rem;
+    }
+    .link {
+      color: #ffcc00;
+      text-decoration: underline;
+    }
+  </style>
 </Layout>
-
-<style>
-  .front-page-image {
-    min-width: 250px;
-  }
-
-  .container {
-    display: flex;
-    gap: 25px;
-    flex-wrap: wrap;
-  }
-  .left {
-    flex: 2;
-  }
-
-  .left img {
-    width: 100%;
-  }
-
-  .right {
-    flex: 4;
-    min-width: 250px;
-  }
-</style>

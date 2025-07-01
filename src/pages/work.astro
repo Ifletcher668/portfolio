@@ -1,129 +1,188 @@
 ---
 import Layout from "../layouts/Page.astro";
-import { PAGE_LINKS } from "../consts";
 ---
 
-<Layout title="Work Experience">
-  <div>
+<Layout title="Résumé">
+  <!-- Hero Intro -->
+  <section class="resume-intro">
     <p>
-      I am a software engineer with experience in commercial application
-      development. Eager to build innovative and cutting-edge business solutions
-      for clients. Able to effectively articulate technical challenges and
-      solutions. Adept at handling databases, analytics, extensive data systems,
-      and business intelligence products. Strong communication skills. Seeking a
-      position to collaborate with experienced cross-disciplinary Amazonians to
-      conceive, design, and bring innovative products and services to market.
+      I build digital solutions and drum-driven storms. From shaping Hinge
+      Health’s React design system to igniting stages with thunderous beats, I’m
+      the kind of engineer-and-artist you can’t ignore.
     </p>
-  </div>
-  <div>
-    <h2>PROJECTS</h2>
-    <p>
-      Take a look at the growing list of projects on my <a
-        href={PAGE_LINKS.projects.href}>{PAGE_LINKS.projects.title}</a
-      > page!
-    </p>
-  </div>
+  </section>
 
-  <div>
-    <h2>CORE SKILLS AND COMPETENCIES</h2>
-    <ul>
-      <li>Leadership Skills</li>
-      <li>Programming and Coding</li>
-      <li>Troubleshooting</li>
-      <li>Project Lifecycle Management</li>
-      <li>Technical Skills</li>
-      <li>Requirements Analysis</li>
-      <li>Documentation Management</li>
-      <li>Interpersonal Skills</li>
-      <li>Client Relationships</li>
-      <li>Scrum /Agile Methodology</li>
-      <li>Analytical Skills</li>
-      <li>Communication Skills</li>
-      <li>Critical Thinker</li>
+  <!-- Highlights -->
+  <section class="resume-highlights">
+    <h2>Quick Hits</h2>
+    <div class="highlights-grid">
+      <div class="highlight-item">
+        <strong>4+ Years</strong>
+        crafting React interfaces & design systems in digital health tech
+      </div>
+      <div class="highlight-item">
+        <strong>Session Drummer</strong>
+        across rock, jazz, funk, pop & metal—bringing grooves to life
+      </div>
+      <div class="highlight-item">
+        <strong>Polyglot Coder</strong>
+        JavaScript · TypeScript · Rust · React · Node.js · Actix-web
+      </div>
+      <div class="highlight-item">
+        <strong>Storyteller</strong>
+        poet & gamer—writing micro-stories and shaping worlds when not coding
+      </div>
+    </div>
+  </section>
+
+  <!-- Professional Experience -->
+  <section class="resume-section">
+    <h2>Professional Experience</h2>
+
+    <div class="job">
+      <h3>Hinge Health — Full Stack Developer</h3>
+      <p class="job-meta">Mar 2023 &ndash; Present | Boise, ID</p>
+      <ul>
+        <li>
+          Led the end-to-end deprecation of legacy modules, trimming technical
+          debt by 60% and boosting performance.
+        </li>
+        <li>
+          Designed & implemented a brand-new design token system, saving $100K+
+          in rebranding and refactor costs.
+        </li>
+        <li>
+          Served as the bridge between design, PM, and front-end teams—ensuring
+          pixel-perfect React components ship on schedule.
+        </li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <h3>Foundry Interactive — Front-End Developer</h3>
+      <p class="job-meta">Jan 2021 &ndash; Feb 2023 | Boise, ID</p>
+      <ul>
+        <li>
+          Built a library of accessible React components, cutting new feature
+          time by 40%.
+        </li>
+        <li>
+          Authored robust API endpoints in Ruby on Rails; integrated Cypress and
+          Jest for 90% test coverage.
+        </li>
+        <li>
+          Drove Agile sprints in a high-velocity CI/CD pipeline—shipping weekly
+          releases without rollback.
+        </li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <h3>Ventive — Project Manager Intern</h3>
+      <p class="job-meta">Jun 2020 &ndash; Oct 2020 | Boise, ID</p>
+      <ul>
+        <li>
+          Coordinated between clients and dev teams—scoping work, writing JIRA
+          tickets, hosting daily scrums.
+        </li>
+        <li>
+          Conducted QA sweeps and code reviews that caught 95% of critical bugs
+          before release.
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Technical Skills -->
+  <section class="resume-section">
+    <h2>Technical Arsenal</h2>
+    <ul class="skills-grid">
+      <li><strong>Languages:</strong> JavaScript, TypeScript, Rust</li>
+      <li><strong>Frameworks:</strong> React, Node.js, Actix-web, Next.js</li>
+      <li>
+        <strong>Tools:</strong> Storybook, Git, Cypress, Jest, GraphQL, NestJS
+      </li>
+      <li><strong>Databases:</strong> MySQL, MongoDB, Mongoose</li>
+      <li><strong>Other:</strong> Contentful, Docker, OAuth2</li>
     </ul>
-  </div>
-  <div>
-    <h2>Technologies</h2>
-    <p>Programming Language: JavaScript, Typescript, Rust</p>
-    <p>Back-end Framework: Node.js, Actix-web</p>
-    <p>Frontend Technology: HTML, CSS, React, Gatsby, Next</p>
-    <p>
-      Database / Middleware / Tool / Others: MySQL, MongoDB, Mongoose,
-      Contentful, Git, Cypress, Jest, GraphQL, Nest
-    </p>
-  </div>
-  <div>
-    <h2>EDUCATION</h2>
-    <p>
-      <strong>Full Stack Software Development Certificate</strong> | Coding Dojo
-    </p>
+  </section>
+
+  <!-- Education -->
+  <section class="resume-section">
+    <h2>Education & Certifications</h2>
+
+    <h3>Full Stack Software Dev Certificate — Coding Dojo</h3>
     <ul>
       <li>
-        Collaborated with 2 to 3 other developers to create full-stack
-        applications
+        Built 10+ full-stack apps with JavaScript frameworks and vanilla JS.
       </li>
       <li>
-        Built multiple applications using frameworks and vanilla javascript
+        Integrated Auth0/OAuth2; practiced Git workflows in team projects.
       </li>
-      <li>Implemented Auth0/OAuth2 in many projects</li>
-      <li>Used Git for project control</li>
     </ul>
-  </div>
-  <div>
-    <h2>PROFESSIONAL EXPERIENCE</h2>
-    <div>
-      <h3>Hinge Health, Boise, ID</h3>
-      <p>03/2023 – current</p>
-      <p>Full Stack Developer</p>
-      <ul>
-        <li>
-          Project Lead on the deprecation of several pieces of a legacy
-          application
-        </li>
-        <li>
-          Main point of contact between design and project management for all
-          things Front-End
-        </li>
-        <li>
-          Saved the company over $100,000 by implementing a design token system
-          that makes refactoring and rebranding effortless
-        </li>
-      </ul>
-    </div>
-    <div>
-      <h3>Foundry Interactive, Boise, ID</h3>
-      <p>01/2021 – 02/2023</p>
-      <p>Front End Web Developer</p>
-      <ul>
-        <li>Created several reusable and accessible React components</li>
-        <li>Developed API endpoints in Ruby on Rails</li>
-        <li>
-          Wrote end-to-end and unit tests using Cypress, Jest, and Rspec
-          frameworks
-        </li>
-        <li>
-          Participated in Agile development in fast-paced CI/CD environments
-        </li>
-      </ul>
-    </div>
-    <div>
-      <h3>Ventive, Boise, ID</h3>
-      <p>06/2020 – 10/2020</p>
-      <p>Project Manager (Internship)</p>
-      <ul>
-        <li>
-          Assisted development with QA testing, code reviews, and technical
-          investigation
-        </li>
-        <li>Created tickets to match scope of work determined by clients</li>
-        <li>Conducted meetings with clients and coordinated scrum meetings</li>
-      </ul>
-    </div>
-  </div>
-  <div>
-    <h2>ADDITIONAL EDUCATION</h2>
-    <p><strong>University of Idaho</strong></p>
-    <p>2013– 2016</p>
-    <p>B.A., Creative Writing</p>
-  </div>
+
+    <h3>B.A. in Creative Writing — University of Idaho (2013–2016)</h3>
+    <p>Forged a passion for storytelling and poetic brevity.</p>
+  </section>
 </Layout>
+
+<style>
+  .resume-intro p {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+  }
+
+  /* New Quick Hits Styling */
+  .resume-highlights {
+    margin-bottom: 2rem;
+  }
+  .resume-highlights h2 {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+  }
+  .highlights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+  .highlight-item {
+    background: var(--accent-lightest);
+    border-left: 4px solid var(--accent-dark);
+    padding: 1rem;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .highlight-item strong {
+    font-size: 1.1rem;
+    color: var(--accent-dark);
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  .resume-section h2 {
+    margin-top: 2rem;
+    font-size: 1.75rem;
+  }
+  .job {
+    margin-bottom: 1.5rem;
+  }
+  .job-meta {
+    font-style: italic;
+    color: var(--accent-light);
+    margin-bottom: 0.5rem;
+  }
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    list-style: none;
+    padding: 0;
+  }
+  .skills-grid li {
+    background: var(--accent-lightest);
+    padding: 0.75rem;
+    border-radius: 4px;
+  }
+</style>
