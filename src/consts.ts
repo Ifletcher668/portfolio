@@ -8,6 +8,8 @@ export const EXTERNAL_LINKS = {
 
 export const SOCIAL_LINKS = {
   facebook: "https://www.facebook.com/fletchmydrumsticks/",
+  instagram: "https://www.instagram.com/fletchmydrumsticks/",
+  substack: "https://isiahfletcher7.substack.com/",
   youtube: "https://www.youtube.com/channel/UCeV7RrWm2WOt6gMXxXGdkUw",
   github: "https://github.com/Ifletcher668",
 };
