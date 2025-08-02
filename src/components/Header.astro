@@ -10,10 +10,16 @@ import HeaderLink from "./HeaderLink.astro";
     <div class="internal-links">
       {
         NAV_LINKS_ARRAY.map((link) => {
+          const isExternalLink = link.href.startsWith("http");
           if (link.subLinks && link.subLinks.length > 0) {
             return (
               <div class="dropdown">
-                <HeaderLink href={link.href}>{link.title}</HeaderLink>
+                <HeaderLink
+                  href={link.href}
+                  target={isExternalLink ? "_blank" : "_self"}
+                >
+                  {link.title}
+                </HeaderLink>
                 <div class="dropdown-content">
                   {link.subLinks.map((subLink) => {
                     const isExternalLink = subLink.href.startsWith("http");
@@ -28,7 +34,14 @@ import HeaderLink from "./HeaderLink.astro";
               </div>
             );
           }
-          return <HeaderLink href={link.href}>{link.title}</HeaderLink>;
+          return (
+            <HeaderLink
+              href={link.href}
+              target={isExternalLink ? "_blank" : "_self"}
+            >
+              {link.title}
+            </HeaderLink>
+          );
         })
       }
     </div>

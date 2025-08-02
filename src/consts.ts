@@ -53,10 +53,9 @@ export const PROJECT_LINKS_ARRAY = Object.values(PROJECT_LINKS);
 export const BAND_LINKS_ARRAY = Object.values(BAND_LINKS);
 
 export const PAGE_LINKS: Record<string, PageLink> = {
-  music: {
-    title: "Music",
-    href: "/music",
-    subLinks: BAND_LINKS_ARRAY,
+  blog: {
+    title: "Blog",
+    href: "https://isiahfletcher7.substack.com/",
   },
   work: {
     title: "Work",
@@ -65,6 +64,11 @@ export const PAGE_LINKS: Record<string, PageLink> = {
   hobbies: {
     title: "Interests",
     href: "/hobbies",
+  },
+  music: {
+    title: "Music",
+    href: "/music",
+    subLinks: BAND_LINKS_ARRAY,
   },
   projects: {
     title: "Projects",
