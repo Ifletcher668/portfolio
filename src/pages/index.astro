@@ -5,7 +5,7 @@ import Layout from "../layouts/Page.astro";
 
 <!doctype html>
 <Layout
-  title="I'm Isiah Fletcher"
+  title={null}
   description="Isiah Fletcher is a musician and software engineer in Salem, Oregon."
 >
   <!-- Hero Section -->
@@ -16,23 +16,44 @@ import Layout from "../layouts/Page.astro";
         height={300}
         src="/drummer-bubs-transparent.png"
         alt="Silhouette mid-solo"
+        credit="Designed by the lovely Shelbz Citrine"
       />
     </div>
     <div class="hero-text">
+      <h1>I'm Isiah</h1>
+      <h2>And here's what I offer:</h2>
+      <hr />
+
+      <h3>Heavy Before Light</h3>
       <p>
-        Drummer. Developer. Wordsmith. I forge rhythms, functions, and feelings
-        that see through the illusion.
+        The root must be felt before the flower blooms. I dig into what's
+        difficult—the shadow work of your brand, the technical debt, the story
+        you're afraid to tell—because that's where transformation lives.
+      </p>
+      <h3>Primal Over Perfect</h3>
+      <p>
+        Your website doesn't need more polish. Your copy doesn't need more
+        synonyms for "innovative." What you need is someone who can strip away
+        the performance and find what's actually true.
+      </p>
+      <h3>Communion, Not Transaction</h3>
+      <p>
+        Code is relationship. Writing is ritual. Every project is an invitation
+        to see what emerges when we stop optimizing and start being with the
+        work.
       </p>
       <p>
-        My first beat came at age 12. My first lines of code appeared in 2020,
-        when the world struck midnight.
+        I've spent five years building React interfaces for digital health. I've
+        spent longer learning that every creative act—every beat, every
+        function, every sentence—is a petition to be more fully human in a world
+        that would prefer we weren't.
       </p>
       <p>
-        Since then I've conducted rituals on stage and transmuted chaos into
-        creation. Ready to kindle that fire within your vision?
+        Your project doesn't need polish. It needs someone who remembers what it
+        feels like to almost not be here, and chose to stay anyway.
       </p>
       <div class="hero-ctas">
-        <a href="#session-work" class="btn">Let’s Talk Rhythm</a>
+        <a href="#session-work" class="btn">Let’s Talk Drums</a>
         <a href="#programming-portfolio" class="btn">Let’s Talk Code</a>
       </div>
     </div>
@@ -148,9 +169,8 @@ import Layout from "../layouts/Page.astro";
     /* Hero Section */
     .hero-section {
       display: flex;
-      align-items: center;
       gap: 2rem;
-      flex-wrap: wrap;
+      flex-wrap: wrap-reverse;
       padding: 3rem 0;
       padding-top: 0;
     }
@@ -164,10 +184,6 @@ import Layout from "../layouts/Page.astro";
     }
     .hero-section .hero-text {
       flex: 2 1 400px;
-    }
-    .hero-text h2 {
-      font-size: 1.75rem;
-      margin-bottom: 1rem;
     }
     .hero-ctas .btn {
       margin-right: 1rem;

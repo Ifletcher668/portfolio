@@ -2,21 +2,86 @@
   The CSS in this style tag is based off of Bear Blog's default CSS.
   https://github.com/HermanMartinus/bearblog/blob/297026a877bc2ab2b3bdfbd6b9f7961c350917dd/templates/styles/blog/default.css
   License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
- */
+*/
+
+/* ==========================================================================
+   DESIGN TOKENS
+   ========================================================================== */
 
 :root {
-  --accent: rgb(162, 123, 92);
-  --accent-dark: rgb(159, 105, 60);
-  --black: 44, 54, 57;
-  --white: 219, 187, 167;
-  --gray: 63, 78, 79;
-  --accent-bright: 22, 215, 201;
+  /* Color Palette */
+  --accent: rgb(205, 145, 100);
+  --accent-dark: rgb(180, 95, 50);
+  --accent-light: rgb(230, 180, 140);
+  --accent-lightest: rgba(205, 145, 100, 0.1);
+  --accent-purple: rgb(155, 90, 180);
+  --accent-coral: rgb(255, 120, 100);
+  --accent-bright: 25, 230, 210;
+
+  /* Neutrals */
+  --black: 28, 35, 42;
+  --white: 245, 225, 205;
+  --gray: 70, 85, 95;
   --gray-dark: 34, 41, 57;
+
+  /* Gradients */
   --gray-gradient: rgba(var(--gray-dark), 50%), rgba(var(--black));
   --gray-gradient-solid: rgba(var(--gray-dark), 100%), rgba(var(--black));
+
+  /* Shadows */
   --box-shadow: 0 2px 6px rgba(var(--gray), 25%),
     0 8px 24px rgba(var(--gray), 33%), 0 16px 32px rgba(var(--gray), 33%);
+  --box-shadow-sm: 2px 4px 10px rgba(var(--gray), 50%),
+    0 2px 6px rgba(var(--gray), 15%);
+  --box-shadow-lg: 0 2px 10px rgba(var(--accent-bright), 40%),
+    0 2px 6px rgba(var(--gray), 30%);
+
+  /* Spacing Scale */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+
+  /* Typography Scale */
+  --font-size-base: 22px;
+  --font-size-sm: 0.875rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.563rem;
+  --font-size-3xl: 1.953rem;
+  --font-size-4xl: 2.441rem;
+  --font-size-5xl: 3.052rem;
+
+  /* Line Heights */
+  --line-height-tight: 1.2;
+  --line-height-base: 1.7;
+  --line-height-relaxed: 1.8;
+
+  /* Border Radius */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-base: 0.25s ease;
+  --transition-slow: 0.3s ease;
+
+  /* Layout */
+  --content-width: 720px;
+  --content-width-wide: 1100px;
+  --breakpoint-mobile: 720px;
 }
+
+/* ==========================================================================
+   FONT FACES
+   ========================================================================== */
+
 @font-face {
   font-family: "CormorantGaramond";
   src: url("/fonts/CormorantGaramond-Regular.ttf") format("woff");
@@ -24,6 +89,7 @@
   font-style: normal;
   font-display: swap;
 }
+
 @font-face {
   font-family: "CormorantGaramond";
   src: url("/fonts/CormorantGaramond-Bold.ttf") format("woff");
@@ -31,6 +97,11 @@
   font-style: normal;
   font-display: swap;
 }
+
+/* ==========================================================================
+   BASE STYLES & RESETS
+   ========================================================================== */
+
 html {
   background: rgba(var(--black));
 
@@ -38,6 +109,7 @@ html {
     scroll-behavior: smooth;
   }
 }
+
 body {
   font-family: "CormorantGaramond", sans-serif;
   margin: 0;
@@ -48,140 +120,272 @@ body {
   word-wrap: break-word;
   overflow-wrap: break-word;
   color: rgb(var(--accent-bright));
-  font-size: 22px;
-  line-height: 1.7;
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
 }
-span {
-  background: linear-gradient(
-    90deg,
-    rgba(var(--accent-bright), 10%),
-    rgba(var(--accent-bright), 30%)
-  );
-  padding: 0 0.25em;
-  border-radius: 4px;
-  color: rgb(var(--white));
-}
-main {
-  width: 720px;
-  max-width: calc(100% - 2em);
-  margin: auto;
-  padding: 0em 1em;
-}
+
+/* ==========================================================================
+   TYPOGRAPHY
+   ========================================================================== */
+
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  margin: 0 0 0.5rem 0;
+  margin: 0 0 var(--space-sm) 0;
   color: var(--accent);
-  line-height: 1.2;
+  line-height: var(--line-height-tight);
+  font-weight: 700;
 }
+
 h1 {
-  font-size: 3.052em;
+  font-size: var(--font-size-5xl);
   color: var(--accent-dark);
 }
+
 h2 {
-  font-size: 2.441em;
+  font-size: var(--font-size-4xl);
 }
+
 h3 {
-  font-size: 1.953em;
+  font-size: var(--font-size-3xl);
 }
+
 h4 {
-  font-size: 1.563em;
+  font-size: var(--font-size-2xl);
 }
+
 h5 {
-  font-size: 1.25em;
+  font-size: var(--font-size-xl);
 }
+
+h6 {
+  font-size: var(--font-size-lg);
+}
+
+p {
+  margin-bottom: var(--space-md);
+}
+
 strong,
 b {
   font-weight: 700;
 }
+
 a {
   color: var(--accent);
-}
-a:hover {
-  color: var(--accent);
-}
-p {
-  margin-bottom: 1em;
+  transition: color var(--transition-base);
 }
 
-textarea {
-  width: 100%;
-  font-size: 16px;
+a:hover {
+  color: var(--accent-light);
 }
-input {
-  font-size: 16px;
-}
-table {
-  width: 100%;
-}
-img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
-}
-code {
-  padding: 2px 5px;
-  background-color: var(--accent-dark);
-  border-radius: 2px;
-}
-pre {
-  padding: 1.5em;
-  border-radius: 8px;
-}
-pre > code {
-  all: unset;
-}
+
 blockquote {
   border-left: 4px solid var(--accent);
   padding: 0 0 0 20px;
   margin: 0px;
   font-size: 1.333em;
 }
-hr {
-  border: none;
-  border-top: 1px solid var(--accent-dark);
-}
-@media (max-width: 720px) {
-  body {
-    font-size: 18px;
-  }
-  main {
-    padding: 1em;
-  }
+
+/* Inline elements */
+span {
+  background: linear-gradient(
+    90deg,
+    rgba(var(--accent-bright), 10%),
+    rgba(var(--accent-bright), 30%)
+  );
+  padding: 0 var(--space-xs);
+  border-radius: var(--radius-md);
+  color: rgb(var(--white));
 }
 
-ul {
-  padding-left: 20px;
+code {
+  padding: 2px 5px;
+  background-color: var(--accent-dark);
+  border-radius: var(--radius-sm);
+  font-size: 0.9em;
+}
+
+pre {
+  padding: var(--space-lg);
+  border-radius: var(--radius-lg);
+  overflow-x: auto;
+}
+
+pre > code {
+  all: unset;
+}
+
+/* ==========================================================================
+   LAYOUT
+   ========================================================================== */
+
+main {
+  width: var(--content-width);
+  max-width: calc(100% - 2em);
+  margin: auto;
+  padding: 0em var(--space-md);
 }
 
 .row {
   display: flex;
-  gap: var(--gap, 1rem);
+  gap: var(--gap, var(--space-md));
 }
 
 .col {
   flex: 1;
 }
 
-.sr-only {
-  border: 0;
-  padding: 0;
-  margin: 0;
-  position: absolute !important;
-  height: 1px;
-  width: 1px;
+/* ==========================================================================
+   FORM ELEMENTS
+   ========================================================================== */
+
+textarea,
+input {
+  font-size: 16px;
+  font-family: inherit;
+}
+
+textarea {
+  width: 100%;
+}
+
+/* ==========================================================================
+   MEDIA ELEMENTS
+   ========================================================================== */
+
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-lg);
+}
+
+/* ==========================================================================
+   TABLES
+   ========================================================================== */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* ==========================================================================
+   DIVIDERS
+   ========================================================================== */
+
+hr {
+  border: none;
+  border-top: 1px solid var(--accent-dark);
+  margin: var(--space-xl) 0;
+}
+
+/* ==========================================================================
+   COMPONENT CLASSES
+   ========================================================================== */
+
+/* Button Component */
+.btn {
+  display: inline-block;
+  padding: var(--space-md) var(--space-xl);
+  font-size: var(--font-size-lg);
+  font-weight: bold;
+  color: rgba(var(--white), 1);
+  background: linear-gradient(
+    135deg,
+    rgb(var(--accent-dark)),
+    rgb(var(--accent))
+  );
+  border: 2px solid var(--accent);
+  border-radius: var(--radius-xl);
+  text-decoration: none;
+  text-align: center;
+  transition: all var(--transition-base);
+  cursor: pointer;
+  position: relative;
   overflow: hidden;
-  /* IE6, IE7 - a 0 height clip, off to the bottom right of the visible 1px box */
-  clip: rect(1px 1px 1px 1px);
-  /* maybe deprecated but we need to support legacy browsers */
-  clip: rect(1px, 1px, 1px, 1px);
-  /* modern browsers, clip-path works inwards from each corner */
-  clip-path: inset(50%);
-  /* added line to stop words getting smushed together (as they go onto seperate lines and some screen readers do not understand line feeds as a space */
-  white-space: nowrap;
+}
+
+.btn:hover {
+  color: rgb(var(--accent-bright));
+  background: linear-gradient(
+    135deg,
+    rgba(var(--accent-dark), 0.9),
+    rgba(var(--accent), 0.9)
+  );
+  box-shadow: var(--box-shadow-lg);
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: scale(0.97);
+  box-shadow: 0 0 10px rgba(var(--accent-bright), 0.7), var(--box-shadow);
+}
+
+.btn.small {
+  padding: var(--space-sm) var(--space-md);
+  font-size: var(--font-size-sm);
+}
+
+/* Card Component */
+.card {
+  height: 100%;
+  background: rgba(var(--gray-dark), 100%);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: transform var(--transition-base),
+    box-shadow var(--transition-base);
+}
+
+.card-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  transition: transform var(--transition-base),
+    box-shadow var(--transition-base);
+}
+
+.card-link:hover {
+  transform: translateY(-6px);
+  box-shadow: 0px 10px 15px -3px var(--accent-dark),
+    0px 4px 6px -2px var(--accent), 0px 2px 4px var(--accent-dark);
+}
+
+.card-thumb {
+  width: 100%;
+  height: 250px;
+  aspect-ratio: 16 / 9;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-top-left-radius: var(--radius-lg);
+  border-top-right-radius: var(--radius-lg);
+}
+
+.card-content {
+  padding: var(--space-md);
+}
+
+/* Link Component */
+.link {
+  color: #ffcc00;
+  text-decoration: underline;
+  transition: color var(--transition-base);
+}
+
+.link:hover {
+  color: #ffd633;
+}
+
+/* ==========================================================================
+   UTILITY CLASSES
+   ========================================================================== */
+
+/* List Utilities */
+ul {
+  padding-left: 20px;
 }
 
 .simple-list {
@@ -190,4 +394,41 @@ ul {
   display: flex;
   flex-direction: column;
   gap: 20px;
+}
+
+/* Accessibility Utility */
+.sr-only {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN
+   ========================================================================== */
+
+@media (max-width: 720px) {
+  body {
+    font-size: 18px;
+  }
+
+  main {
+    padding: var(--space-md);
+  }
+
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
 }
