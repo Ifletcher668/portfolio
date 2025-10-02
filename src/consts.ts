@@ -1,6 +1,6 @@
 export const SITE_TITLE = "Isiah Fletcher";
 export const SITE_DESCRIPTION =
-  "Isiah is a musician, writer, and software engineer based in Salem, Oregon.";
+  "Isiah is a musician, writer, and software engineer based in Olympia, Washington.";
 
 export const EXTERNAL_LINKS = {
   shelbzWebsite: "https://shelbzcitrine.com",
