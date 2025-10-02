@@ -7,17 +7,30 @@ interface Props {
   title: string;
   description: string;
   image?: string;
+  type?: string;
+  publishedTime?: string;
+  modifiedTime?: string;
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-const { title, description, image = "" } = Astro.props;
+const {
+  title,
+  description,
+  image = "/drummer-bubs-transparent.png",
+  type = "website",
+  publishedTime,
+  modifiedTime,
+} = Astro.props;
+
+const ogImage = new URL(image, Astro.url);
+const siteName = "Isiah Fletcher";
 ---
 
 <!-- Global Metadata -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<link rel="icon" type="image/svg+xml" href="/favicon.png" />
+<link rel="icon" type="image/png" href="/favicon.png" />
 <meta name="generator" content={Astro.generator} />
 
 <!-- Font preloads -->
@@ -43,17 +56,112 @@ const { title, description, image = "" } = Astro.props;
 <title>{title}</title>
 <meta name="title" content={title} />
 <meta name="description" content={description} />
+<meta name="author" content="Isiah Fletcher" />
+<meta
+  name="keywords"
+  content="Isiah Fletcher, session drummer, software engineer, React developer, TypeScript, web developer, Olympia Washington, musician, drummer, digital health, Hinge Health, full-stack developer, frontend developer"
+/>
+<meta name="robots" content="index, follow" />
+<meta name="language" content="English" />
+<meta name="revisit-after" content="7 days" />
 
 <!-- Open Graph / Facebook -->
-<meta property="og:type" content="website" />
+<meta property="og:type" content={type} />
+<meta property="og:site_name" content={siteName} />
 <meta property="og:url" content={Astro.url} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:image" content={new URL(image, Astro.url)} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:image:alt" content={`${title} - ${siteName}`} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="en_US" />
+{
+  publishedTime && (
+    <meta property="article:published_time" content={publishedTime} />
+  )
+}
+{
+  modifiedTime && (
+    <meta property="article:modified_time" content={modifiedTime} />
+  )
+}
 
 <!-- Twitter -->
-<meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:url" content={Astro.url} />
-<meta property="twitter:title" content={title} />
-<meta property="twitter:description" content={description} />
-<meta property="twitter:image" content={new URL(image, Astro.url)} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@fletchmydrumsticks" />
+<meta name="twitter:creator" content="@fletchmydrumsticks" />
+<meta name="twitter:url" content={Astro.url} />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />
+<meta name="twitter:image:alt" content={`${title} - ${siteName}`} />
+
+<!-- Additional SEO -->
+<meta name="theme-color" content="#000000" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  title={siteName}
+  href="/rss.xml"
+/>
+
+<!-- Structured Data / JSON-LD -->
+<script
+  type="application/ld+json"
+  set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Isiah Fletcher",
+    url: "https://isiah-fletcher.netlify.app/",
+    image: "https://isiah-fletcher.netlify.app/drummer-bubs-transparent.png",
+    description:
+      "Musician, session drummer, and software engineer specializing in React, TypeScript, and frontend development. Based in Olympia, Washington.",
+    jobTitle: "Software Engineer & Session Drummer",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Olympia",
+      addressRegion: "WA",
+      addressCountry: "US",
+    },
+    sameAs: [
+      "https://www.facebook.com/fletchmydrumsticks/",
+      "https://www.instagram.com/fletchmydrumsticks/",
+      "https://www.youtube.com/channel/UCeV7RrWm2WOt6gMXxXGdkUw",
+      "https://github.com/Ifletcher668",
+      "https://isiahfletcher7.substack.com/",
+      "https://www.linkedin.com/in/isiah-fletcher-074060159/",
+    ],
+    knowsAbout: [
+      "Software Engineering",
+      "React",
+      "TypeScript",
+      "Frontend Development",
+      "Music Production",
+      "Session Drumming",
+      "Jazz",
+      "Rock",
+      "Metal",
+    ],
+    alumni: {
+      "@type": "Organization",
+      name: "Hinge Health",
+    },
+  })}
+/>
+
+<!-- WebSite Schema for Search -->
+<script
+  type="application/ld+json"
+  set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Isiah Fletcher",
+    url: "https://isiahfletcher.com",
+    description: description,
+    author: {
+      "@type": "Person",
+      name: "Isiah Fletcher",
+    },
+  })}
+/>

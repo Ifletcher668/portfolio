@@ -1,0 +1,9 @@
+# Allow all bots to crawl everything
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://isiahfletcher.com/sitemap-index.xml
+
+# Crawl-delay for good practice (optional)
+Crawl-delay: 1
