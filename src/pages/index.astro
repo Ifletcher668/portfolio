@@ -1,6 +1,10 @@
 ---
 import Image from "../components/Image.astro";
 import Layout from "../layouts/Page.astro";
+import { getSubstackPosts } from "../lib/substack";
+
+const posts = await getSubstackPosts();
+const featuredPost = posts[0]; // Latest post
 ---
 
 <!doctype html>
@@ -10,19 +14,16 @@ import Layout from "../layouts/Page.astro";
 >
   <!-- Hero Section -->
   <section id="hero-section" class="hero-section">
-    <div class="teaser-image">
-      <Image
-        width={400}
-        height={300}
+    <div class="hero-text">
+      <img
         src="/drummer-bubs-transparent.png"
         alt="Silhouette mid-solo"
-        credit="Designed by the lovely Shelbz Citrine"
+        width="400"
+        height="300"
+        class="float-image"
       />
-    </div>
-    <div class="hero-text">
       <h1>I'm Isiah</h1>
       <h2>And here's what I offer:</h2>
-      <hr />
 
       <h3>Heavy Before Light</h3>
       <p>
@@ -59,10 +60,29 @@ import Layout from "../layouts/Page.astro";
       </p>
       <p>If that's what you're after, let's talk.</p>
       <div class="hero-ctas">
-        <a href="#session-work" class="btn">Let’s Talk Drums</a>
-        <a href="#programming-portfolio" class="btn">Let’s Talk Code</a>
+        <a href="#session-work" class="btn">Let's Talk Drums</a>
+        <a href="#programming-portfolio" class="btn">Let's Talk Code</a>
       </div>
     </div>
+  </section>
+
+  <!-- Featured Post Section -->
+  <section class="featured-post">
+    <span class="featured-label">Latest from the blog</span>
+    <time class="date"
+      >{
+        featuredPost.date.toLocaleDateString("en-US", {
+          month: "numeric",
+          day: "numeric",
+          year: "numeric",
+        })
+      }</time
+    >
+    <h2 class="title">{featuredPost.title}</h2>
+    <p class="excerpt">{featuredPost.excerpt}</p>
+    <a href={featuredPost.link} target="__blank" class="read-link"
+      >Read on Substack →</a
+    >
   </section>
 
   <!-- Session Work Section -->
@@ -168,31 +188,113 @@ import Layout from "../layouts/Page.astro";
         <a href="/contact" class="btn">Drop Me a Line</a>
         <a href="/work" class="link">View Résumé</a>
       </div>
+
+      <iframe
+        src="https://isiahfletcher7.substack.com/embed"
+        width="480"
+        height="320"
+        style="border:1px solid #EEE; background:white;"
+        frameborder="0"
+        scrolling="no"></iframe>
     </section>
   </section>
 
   <style>
     /* Hero Section */
     .hero-section {
-      display: flex;
-      gap: 2rem;
-      flex-wrap: wrap-reverse;
-      padding: 3rem 0;
+      padding: var(--space-3xl) 0;
       padding-top: 0;
     }
-    .hero-section .teaser-image {
-      flex: 1 1 300px;
+
+    .hero-text {
+      margin: 0 auto;
     }
-    .hero-section .teaser-image img {
+
+    .float-image {
+      float: left;
+      max-width: 666px;
       width: 100%;
       height: auto;
-      max-width: 400px;
+      shape-outside: url("/drummer-bubs-transparent.png");
+      shape-margin: var(--space-lg);
     }
-    .hero-section .hero-text {
-      flex: 2 1 400px;
+
+    @media (max-width: 768px) {
+      .float-image {
+        float: none;
+        margin: 0 auto var(--space-xl);
+        display: block;
+      }
     }
+
+    .hero-ctas {
+      margin-top: var(--space-2xl);
+      clear: both;
+    }
+
     .hero-ctas .btn {
-      margin-right: 1rem;
+      margin-right: var(--space-md);
+    }
+
+    /* Featured Post Section */
+
+    .featured-post {
+      width: var(--content-width-wide);
+      padding: var(--space-2xl);
+      margin: 0 56px;
+      background: rgba(var(--gray-dark), 0.5);
+      border: 1px solid rgba(var(--accent), 0.3);
+      border-radius: var(--radius-xl);
+      transition: all var(--transition-base);
+    }
+
+    .featured-post:hover {
+      transform: translateY(-6px);
+      box-shadow:
+        0px 10px 15px -3px var(--accent-dark),
+        0px 4px 6px -2px var(--accent),
+        0px 2px 4px var(--accent-dark);
+    }
+
+    .featured-label {
+      display: block;
+      font-size: var(--font-size-sm);
+      color: var(--accent-light);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: var(--space-sm);
+    }
+
+    .date {
+      display: block;
+      font-size: var(--font-size-sm);
+      color: rgba(var(--white), 0.6);
+      margin-bottom: var(--space-md);
+    }
+
+    .title {
+      font-size: var(--font-size-3xl);
+      color: var(--accent);
+      margin: 0 0 var(--space-lg);
+      line-height: var(--line-height-tight);
+    }
+
+    .excerpt {
+      color: rgba(var(--white), 0.8);
+      line-height: var(--line-height-base);
+      margin-bottom: var(--space-xl);
+      font-size: var(--font-size-lg);
+    }
+
+    .read-link {
+      color: var(--accent-light);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color var(--transition-fast);
+    }
+
+    .read-link:hover {
+      color: var(--accent);
     }
 
     /* Media Grid Sections */
@@ -299,15 +401,23 @@ import Layout from "../layouts/Page.astro";
       padding: 4rem 0;
       text-align: center;
       background: rgba(var(--gray-dark), 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
     }
-    .final-pitch h2 {
-      font-size: 2rem;
-      margin-bottom: 1.5rem;
+
+    .final-ctas {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
     }
+
     .final-ctas .btn {
       margin-right: 1rem;
     }
-    .link {
+    .final-ctas .link {
       color: #ffcc00;
       text-decoration: underline;
     }

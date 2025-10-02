@@ -55,7 +55,7 @@ export const BAND_LINKS_ARRAY = Object.values(BAND_LINKS);
 export const PAGE_LINKS: Record<string, PageLink> = {
   blog: {
     title: "Blog",
-    href: "https://isiahfletcher7.substack.com/",
+    href: "/blog",
   },
   work: {
     title: "Work",

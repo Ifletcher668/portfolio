@@ -16,6 +16,7 @@
     "@astrojs/sitemap": "^3.0.5",
     "astro": "^4.3.5",
     "lil-gui": "^0.19.2",
+    "rss-parser": "^3.13.0",
     "three": "^0.172.0",
     "typescript": "^5.3.3"
   }
