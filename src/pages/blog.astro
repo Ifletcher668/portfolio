@@ -10,7 +10,27 @@ const posts = await getSubstackPosts();
   description="Excerpts from Isiah's Substack where he posts about philosophy, hobbies, and adventures."
 >
   <div class="blog-container">
+    <div class="blog-intro-and-subscribe">
+
+      <h2>What is Gimbles and Toads? </h2>
+      <p>For starters, “gimble” is an old English verb I’m trying to resurrect after reading it in Alan Watts’ Become What You Are. It means “to grin or smile,” “to move one’s lips in an unbecoming manner.” And it certainly made me smile the moment I read it.</p>
+      
+      <p>It’s also the name of a toad that I have tattooed below my right knee that is shown sitting, smoking “Lily pad”, and pondering his own pontifications on the meaning of life. Peculiar, yes, that I had named my tattoo months before I knew the word’s true meaning.</p>
+      
+      <p>I’ve always been drawn to toads, ever since I was a kid at summer camp, wallowing in the mud and reeds in search of the source of their strange songs. They make me smile. They’re an instant spell that puts me in flow. It’s a treasure to hear their croaking lullabies at night, or to watch them catch a fly in mid-air as I meditate beside a pond.</p>
+      
+      <p>And now I wander in search of gimbles and toads and the meaning of our marvelous existence. I’ve had the good fortune to grow up in a household that valued exploration. But I also gathered my fair share of scars along the way.</p>
+      
+      <p>Here, I’m collecting the moments that made me gimble and moments that broke me open. I’ve learned that the best stories come from both. The joy and the heaviness. The flow and the friction.</p>
+      
+      <p>This newsletter is where I share those stories. Memoir. Philosophy. The strange croaking songs of a life lived in search of what makes us smile, even when—especially when—things get heavy.</p>
+      
+      <p>If that sounds like something worth reading, stick around.</p>
+      
+      <iframe src="https://isiahfletcher7.substack.com/embed" width="480" height="150" style="border:1px solid #EEE; background:white;" frameborder="0" scrolling="no"></iframe>
+    </div>
     <div class="cards-grid">
+     
       {
         posts.map((post) => (
           <article class="card">
@@ -37,9 +57,22 @@ const posts = await getSubstackPosts();
 
 <style>
   .blog-container {
+    display: flex;
+    flex-direction: column;
+    gap: 56px;
     max-width: var(--content-width-wide);
     margin: 0 auto;
     padding: var(--space-3xl) var(--space-xl);
+  }
+
+  .blog-intro-and-subscribe {
+    display: flex;
+    flex-direction: column;
+    align-items:baseline;
+  }
+
+  .blog-intro-and-subscribe iframe {
+    align-self: center;
   }
 
   h1 {
