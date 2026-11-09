@@ -1,33 +1,5 @@
 <script>
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-  const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
-  const surfaces = ".feature, .writing .post, .interior .panel, .archive-page .card, .archive-page .poem, .archive-page .highlight-item, .hobbies-library .game-card, .hobbies-library .book-card, .hobbies-library .poem";
-  const reset = (element:HTMLElement) => {
-    element.style.removeProperty("--tilt-x");
-    element.style.removeProperty("--tilt-y");
-    element.style.removeProperty("--pointer-x");
-    element.style.removeProperty("--pointer-y");
-  };
-  document.addEventListener("pointermove",(event:PointerEvent)=>{
-    if(reducedMotion.matches || !finePointer.matches)return;
-    const target = event.target;
-    if(!(target instanceof Element))return;
-    const surface=target.closest<HTMLElement>(surfaces);
-    if(!surface)return;
-    const rect=surface.getBoundingClientRect();
-    const x=(event.clientX-rect.left)/rect.width-.5;
-    const y=(event.clientY-rect.top)/rect.height-.5;
-    surface.style.setProperty("--tilt-x",`${(-y*2.4).toFixed(2)}deg`);
-    surface.style.setProperty("--tilt-y",`${(x*2.4).toFixed(2)}deg`);
-    surface.style.setProperty("--pointer-x",`${((x+.5)*100).toFixed(1)}%`);
-    surface.style.setProperty("--pointer-y",`${((y+.5)*100).toFixed(1)}%`);
-  },{passive:true});
-  document.addEventListener("pointerout",(event:PointerEvent)=>{
-    const target=event.target;
-    if(!(target instanceof Element))return;
-    const surface=target.closest<HTMLElement>(surfaces);
-    if(surface && !(event.relatedTarget instanceof Node && surface.contains(event.relatedTarget)))reset(surface);
-  },{passive:true});
   document.addEventListener("pointerdown",(event:PointerEvent)=>{
     if(reducedMotion.matches)return;
     const target=event.target;
