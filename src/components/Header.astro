@@ -1,116 +1,25 @@
 ---
-import { SITE_TITLE, NAV_LINKS_ARRAY } from "../consts";
-import SocialLinks from "./SocialLinks.astro";
-import HeaderLink from "./HeaderLink.astro";
+import { SITE_TITLE } from "../consts";
+const links = [
+  { href: "/work", label: "Code" },
+  { href: "/music", label: "Music" },
+  { href: "/blog", label: "Writing" },
+  { href: "/hobbies", label: "About" },
+];
 ---
-
-<header>
-  <nav>
-    <h2 class="site-title"><a href="/">{SITE_TITLE}</a></h2>
-    <div class="internal-links">
-      {
-        NAV_LINKS_ARRAY.map((link) => {
-          const isExternalLink = link.href.startsWith("http");
-          if (link.subLinks && link.subLinks.length > 0) {
-            return (
-              <div class="dropdown">
-                <HeaderLink
-                  href={link.href}
-                  target={isExternalLink ? "_blank" : "_self"}
-                >
-                  {link.title}
-                </HeaderLink>
-                <div class="dropdown-content">
-                  {link.subLinks.map((subLink) => {
-                    const isExternalLink = subLink.href.startsWith("http");
-                    const props = {
-                      href: subLink.href,
-                      target: isExternalLink ? "_blank" : "_self",
-                    };
-
-                    return <HeaderLink {...props}>{subLink.title}</HeaderLink>;
-                  })}
-                </div>
-              </div>
-            );
-          }
-          return (
-            <HeaderLink
-              href={link.href}
-              target={isExternalLink ? "_blank" : "_self"}
-            >
-              {link.title}
-            </HeaderLink>
-          );
-        })
-      }
-    </div>
-    <SocialLinks />
+<header class="site-header">
+  <nav aria-label="Primary navigation">
+    <a class="brand" href="/">{SITE_TITLE}</a>
+    <div class="nav-links">{links.map(({href,label}) => <a href={href}>{label}</a>)}</div>
   </nav>
 </header>
-
 <style>
-  header {
-    margin: 0;
-    padding: 0 1rem;
-    background: linear-gradient(var(--gray-gradient-solid)) no-repeat;
-    color: rgb(var(--accent-bright));
-    text-align: center;
-    box-shadow: 0 2px 8px var(--accent-dark);
-    position: sticky;
-    top: 0;
-    z-index: 10000;
-  }
-  h2 {
-    margin: 0;
-    font-size: 1.5em;
-  }
-
-  h2 a,
-  h2 a.active {
-    text-decoration: none;
-  }
-
-  nav {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 56px;
-    flex-flow: row wrap;
-  }
-
-  nav a {
-    transition:
-      border 0.25s,
-      color 0.25s;
-    padding: 0.5em;
-    color: var(--black);
-    border-bottom: 4px solid transparent;
-    text-decoration: none;
-  }
-  nav a.active {
-    text-decoration: none;
-    border-bottom-color: var(--accent);
-  }
-  nav a:hover {
-    text-decoration: none;
-    border-bottom-color: var(--accent-light);
-  }
-  .dropdown {
-    position: relative;
-    display: inline-block;
-  }
-  .dropdown-content {
-    position: absolute;
-
-    text-align: left;
-    visibility: hidden;
-    background-color: rgba(var(--gray-dark), 0.95);
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-  }
-  .dropdown:hover .dropdown-content {
-    visibility: visible;
-  }
+  .site-header{position:relative;z-index:10;background:#252f2c;border-bottom:1px solid #48584d;color:#e2d7bb}
+  nav{max-width:1200px;margin:auto;padding:1.15rem clamp(1.2rem,5vw,4rem);display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+  .brand{font-family:Georgia,serif;font-size:1.4rem;letter-spacing:.01em}
+  .nav-links{display:flex;gap:clamp(.8rem,3vw,2rem);flex-wrap:wrap}
+  a{color:#e2d7bb;text-decoration:none;font-size:1rem}
+  a:hover{color:#a9c1a3}
+  a:focus-visible{outline:3px solid #bf8f68;outline-offset:4px}
+  @media(max-width:540px){nav{gap:.65rem}.nav-links{width:100%;justify-content:space-between}}
 </style>

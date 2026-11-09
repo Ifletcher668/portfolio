@@ -1,416 +1,69 @@
 ---
-import Image from "../components/Image.astro";
-import Layout from "../layouts/Page.astro";
+import Home from "../layouts/Home.astro";
 import { getSubstackPosts } from "../lib/substack";
-
-const posts = await getSubstackPosts();
-const featuredPost = posts[0]; // Latest post
+let featuredPost;
+try { featuredPost = (await getSubstackPosts())?.[0]; } catch (error) { console.warn("Substack unavailable", error); }
 ---
-
-<!doctype html>
-<Layout
-  title={"I'm Isiah"}
-  description="Isiah Fletcher: Professional session drummer and React/TypeScript software engineer. Specializing in web development, digital health solutions, and versatile music performance across rock, jazz, metal, and beyond. Based in Olympia, Washington."
->
-  <!-- Hero Section -->
-  <section id="hero-section" class="hero-section">
-    <div class="hero-text">
-      <img
-        src="/drummer-bubs-transparent.png"
-        alt="Silhouette mid-solo"
-        width="400"
-        height="300"
-        class="float-image"
-      />
-			<br/>
-			<br/>
-      <h3>Heavy Before Light</h3>
-      <p>
-        The root must be felt before the flower blooms. I dig into what's
-        difficult—the shadow work of your brand, the technical debt, the story
-        you're afraid to tell—because that's where transformation lives.
-      </p>
-      <h3>Primal Over Perfect</h3>
-      <p>
-        Your website doesn't need more polish. Your copy doesn't need more
-        synonyms for "innovative." What you need is someone who can strip away
-        the performance and find what's actually true.
-      </p>
-      <h3>Communion, Not Transaction</h3>
-      <p>
-        Code is relationship. Writing is ritual. Every project is an invitation
-        to see what emerges when we stop optimizing and start being with the
-        work.
-      </p>
-      <p>
-        I've spent five years building React interfaces for digital health. I've
-        spent longer learning that every creative act—every beat, every
-        function, every sentence—is a petition to be more fully human in a world
-        that would prefer we weren't.
-      </p>
-      <p>
-        Your project doesn't need polish. It needs someone who remembers what it
-        feels like to almost not be here, and chose to stay anyway.
-      </p>
-      <p>
-        I work with people and projects that remember: the goal isn't
-        perfection. It's presence. It's creating something that lands in the
-        body, not just the browser.
-      </p>
-      <p>If that's what you're after, let's talk.</p>
-      <div class="hero-ctas">
-        <a href="#session-work" class="btn">Let's Talk Drums</a>
-        <a href="#programming-portfolio" class="btn">Let's Talk Code</a>
+<Home>
+  <section class="hero shell">
+    <div class="intro">
+      <p class="eyebrow">Software engineer / Drummer / Writer</p>
+      <h1>Hi, I'm Isiah.</h1>
+      <p class="lead">I build software, play drums, and write.</p>
+      <p>I like making things, understanding how they work, and following ideas that interest me. This is a home for the projects, music, writing, and occasional curiosities that come out of that.</p>
+      <div class="actions"><a class="button" href="#explore">Explore the site ↘</a><a href="/hobbies">More about me</a></div>
+    </div>
+    <img class="hero-image" src="/drummer-bubs-transparent.png" alt="Isiah playing the drums" width="666" height="500" fetchpriority="high" />
+  </section>
+  <section class="shell" id="explore">
+    <div class="section-intro"><p class="eyebrow">A few things I do</p><h2>Different interests. One life.</h2></div>
+    <div class="features">
+      <article class="feature">
+        <p class="eyebrow">01 / Code</p><h2>Things I've built.</h2>
+        <img src="/shelbz-website-project.png" alt="Shelbz Citrine portfolio project" width="1000" height="560" loading="lazy" />
+        <p>I work in software engineering, where I enjoy solving problems, untangling complexity, and turning ideas into something people can use.</p>
+        <a href="/work">Explore code and projects ↗</a>
+      </article>
+      <article class="feature">
+        <p class="eyebrow">02 / Music</p><h2>Behind the kit.</h2>
+        <div class="video"><iframe src="https://www.youtube-nocookie.com/embed/lc_rCn2em8o" title="Isiah Fletcher drumming performance" loading="lazy" allow="encrypted-media; picture-in-picture" allowfullscreen></iframe></div>
+        <p>Drumming has taken me through bands, recordings, rehearsals, and tours. It's still one of the ways I most enjoy learning, creating, and challenging myself.</p>
+        <a href="/music">Explore music ↗</a>
+      </article>
+    </div>
+  </section>
+  <section class="writing">
+    <div class="shell writing-grid">
+      <div><p class="eyebrow">03 / Writing</p><h2>Notes from a wandering mind.</h2><p>I write essays and reflections on Substack, often following questions about philosophy, creativity, and the experience of being human. I also keep poetry and selected essays here.</p><a href="/blog">Explore writing ↗</a></div>
+      <div class="post"><p class="eyebrow">From Substack</p>
+        {featuredPost ? <><h3>{featuredPost.title}</h3><p>{featuredPost.excerpt}</p><a href={featuredPost.link} target="_blank" rel="noopener noreferrer">Read on Substack ↗</a></> : <><h3>Essays and reflections</h3><p>My latest writing lives on Substack.</p><a href="https://isiahfletcher7.substack.com/" target="_blank" rel="noopener noreferrer">Visit Substack ↗</a></>}
       </div>
     </div>
   </section>
-
-  <!-- Featured Post Section -->
-  <section class="featured-post">
-    <span class="featured-label">Latest from the blog</span>
-    <time class="date"
-      >{
-        featuredPost.date.toLocaleDateString("en-US", {
-          month: "numeric",
-          day: "numeric",
-          year: "numeric",
-        })
-      }</time
-    >
-    <h2 class="title">{featuredPost.title}</h2>
-    <p class="excerpt">{featuredPost.excerpt}</p>
-    <a href={featuredPost.link} target="__blank" class="read-link"
-      >Read on Substack →</a
-    >
-  </section>
-
-  <!-- Session Work Section -->
-  <section id="session-work" class="media-grid-section">
-    <h2>Session Work</h2>
-    <p>
-      I lend my beats across genres—rock, jazz, funk, pop, metal, folk and
-      beyond.
-    </p>
-    <div class="media-grid">
-      <!-- replace VIDEO_ID_X below -->
-      <iframe
-        src="https://www.youtube.com/embed/lc_rCn2em8o?si=HdoxTRHM6UDSzZWV"
-        title="Session Clip 1"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen></iframe>
-      <iframe
-        src="https://www.youtube.com/embed/4MM4Ta2QIOI?si=2DKAmfy74pPOn2y8"
-        title="Session Clip 2"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen></iframe>
-      <iframe
-        src="https://www.youtube.com/embed/vNU7E_5oVJo?si=FeOtTYWNN6h-_AQx"
-        title="Session Clip 3"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen></iframe>
-    </div>
-    <a
-      href="https://www.youtube.com/@isiahfletcher2859"
-      class="btn"
-      target="_blank"
-      rel="noopener">Explore More on YouTube</a
-    >
-  </section>
-
-  <!-- Programming Portfolio Section -->
-  <section id="programming-portfolio" class="media-grid-section">
-    <h2>Programming Portfolio</h2>
-    <p>
-      Four years in digital health tech at Hinge Health—crafting React JS
-      interfaces and design systems.
-    </p>
-    <div class="card-grid">
-      <a
-        href="https://www.linkedin.com/in/isiah-fletcher-074060159/"
-        class="card-link"
-        target="_blank"
-        rel="noopener"
-      >
-        <div class="card">
-          <div class="card-thumb hinge-thumb"></div>
-          <div class="card-content">
-            <h3>Hinge Health</h3>
-            <p>React JS · Storybook · TypeScript</p>
-            <span class="btn small">View on LinkedIn</span>
-          </div>
-        </div>
-      </a>
-
-      <a
-        href="https://shelbzcitrine.com/"
-        class="card-link"
-        target="_blank"
-        rel="noopener"
-      >
-        <div class="card">
-          <div class="card-thumb shelbz-thumb"></div>
-          <div class="card-content">
-            <h3>Shelbz Citrine Portfolio</h3>
-            <p>
-              A vibrant showcase of Shelbz’s art and design, built with NextJS.
-            </p>
-          </div>
-        </div>
-      </a>
-    </div>
-
-    <!-- Core Values -->
-    <section id="values" class="values">
-      <div class="value">
-        <h4>Relentless Curiosity</h4>
-        <p>I pry open every tight seam—be it a groove or a graph.</p>
-      </div>
-      <div class="value">
-        <h4>Fearless Creation</h4>
-        <p>
-          I chase wild ideas into daylight so you don’t lie awake wondering
-          “what if?”
-        </p>
-      </div>
-      <div class="value">
-        <h4>Unflinching Storytelling</h4>
-        <p>Every beat, every line, every breath carries its own tale.</p>
-      </div>
-    </section>
-
-    <!-- Final Pitch -->
-    <section id="final-pitch" class="final-pitch">
-      <h2>
-        Your project demands more than routine. It yearns for a provocateur.
-      </h2>
-      <div class="final-ctas">
-        <a href="/contact" class="btn">Drop Me a Line</a>
-        <a href="/work" class="link">View Résumé</a>
-      </div>
-    </section>
-  </section>
-
-  <style>
-    /* Hero Section */
-    .hero-section {
-      padding: var(--space-3xl) 0;
-      padding-top: 0;
-    }
-
-    .hero-text {
-      margin: 0 auto;
-    }
-
-    .float-image {
-      float: left;
-      max-width: 666px;
-      width: 100%;
-      height: auto;
-      shape-outside: url("/drummer-bubs-transparent.png");
-      shape-margin: var(--space-lg);
-    }
-
-    @media (max-width: 768px) {
-      .float-image {
-        float: none;
-        margin: 0 auto var(--space-xl);
-        display: block;
-      }
-    }
-
-    .hero-ctas {
-      margin-top: var(--space-2xl);
-      clear: both;
-    }
-
-    .hero-ctas .btn {
-      margin-right: var(--space-md);
-    }
-
-    /* Featured Post Section */
-
-    .featured-post {
-      width: var(--content-width-wide);
-      padding: var(--space-2xl);
-      margin: 0 56px;
-      background: rgba(var(--gray-dark), 0.5);
-      border: 1px solid rgba(var(--accent), 0.3);
-      border-radius: var(--radius-xl);
-      transition: all var(--transition-base);
-    }
-
-    .featured-post:hover {
-      transform: translateY(-6px);
-      box-shadow:
-        0px 10px 15px -3px var(--accent-dark),
-        0px 4px 6px -2px var(--accent),
-        0px 2px 4px var(--accent-dark);
-    }
-
-    .featured-label {
-      display: block;
-      font-size: var(--font-size-sm);
-      color: var(--accent-light);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: var(--space-sm);
-    }
-
-    .date {
-      display: block;
-      font-size: var(--font-size-sm);
-      color: rgba(var(--white), 0.6);
-      margin-bottom: var(--space-md);
-    }
-
-    .title {
-      font-size: var(--font-size-3xl);
-      color: var(--accent);
-      margin: 0 0 var(--space-lg);
-      line-height: var(--line-height-tight);
-    }
-
-    .excerpt {
-      color: rgba(var(--white), 0.8);
-      line-height: var(--line-height-base);
-      margin-bottom: var(--space-xl);
-      font-size: var(--font-size-lg);
-    }
-
-    .read-link {
-      color: var(--accent-light);
-      text-decoration: none;
-      font-weight: 500;
-      transition: color var(--transition-fast);
-    }
-
-    .read-link:hover {
-      color: var(--accent);
-    }
-
-    /* Media Grid Sections */
-    .media-grid-section {
-      padding: 3rem 0;
-    }
-    .media-grid-section h2 {
-      font-size: 2rem;
-      margin-bottom: 0.75rem;
-    }
-    .media-grid-section p {
-      margin-bottom: 1.5rem;
-      line-height: 1.5;
-    }
-    .media-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-    }
-    .media-grid iframe {
-      width: 100%;
-      aspect-ratio: 16/9;
-      border: none;
-    }
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-      margin-bottom: 1.5rem;
-    }
-    .card {
-      height: 100%;
-      background: rgba(var(--gray-dark), 100%);
-      border-radius: 8px;
-      overflow: hidden;
-    }
-    .card-link {
-      display: block;
-      text-decoration: none;
-      color: inherit;
-      transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
-    }
-
-    .card-link:hover {
-      transform: translateY(-6px);
-      box-shadow:
-        0px 10px 15px -3px var(--accent-dark),
-        0px 4px 6px -2px var(--accent),
-        0px 2px 4px var(--accent-dark);
-    }
-    .card-thumb {
-      width: 100%;
-      height: 250px;
-      aspect-ratio: 16 / 9;
-      background-size: contain;
-      background-position: center;
-      background-repeat: no-repeat;
-      border-top-left-radius: 8px;
-      border-top-right-radius: 8px;
-    }
-
-    .shelbz-thumb {
-      background-image: url("/shelbzcitrine-thumb.jpg");
-      /* fallback background color while image loads: */
-      background-color: #f0e6d2;
-    }
-    .hinge-thumb {
-      background-image: url("/hinge-health-thumb.jpeg");
-    }
-    .card-content {
-      padding: 1rem;
-    }
-    .btn.small {
-      padding: 0.5rem 1rem;
-      font-size: 0.875rem;
-    }
-
-    /* Core Values */
-    .values {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      padding: 3rem 0;
-      text-align: center;
-    }
-    .value {
-      flex: 0 0 30%;
-    }
-
-    @media (max-width: 720px) {
-      .value {
-        flex: 0 0 100%;
-      }
-    }
-    .value h4 {
-      margin-bottom: 0.5rem;
-    }
-
-    /* Final Pitch */
-    .final-pitch {
-      padding: 4rem 0;
-      text-align: center;
-      background: rgba(var(--gray-dark), 100%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 2rem;
-    }
-
-    .final-ctas {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 1rem;
-    }
-
-    .final-ctas .btn {
-      margin-right: 1rem;
-    }
-    .final-ctas .link {
-      color: #ffcc00;
-      text-decoration: underline;
-    }
-  </style>
-</Layout>
+  <section class="about shell"><p class="eyebrow">04 / Beyond the work</p><h2>Beyond the categories.</h2><p>I'm interested in games, literature, philosophy, music theory, and plenty of things that don't need a dedicated section of a website.</p><a href="/hobbies">A little more about me ↗</a></section>
+</Home>
+<style>
+.shell{width:min(1160px,calc(100% - 3rem));margin-inline:auto}
+.eyebrow{font:600 .76rem/1.5 system-ui,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#a9c1a3;margin:0 0 1rem}
+.hero{min-height:720px;display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center;padding-block:5rem}
+.intro{max-width:590px}.intro>p:not(.eyebrow){max-width:51ch;color:#c3d0bf}
+h1{font-size:clamp(4rem,8vw,7.5rem);margin:0 0 1rem}
+.lead{font:normal clamp(1.5rem,2.8vw,2.1rem)/1.35 Georgia,serif!important;color:#e2d7bb!important}
+.hero-image{width:100%;max-height:650px;object-fit:contain;filter:drop-shadow(0 18px 40px #18231d);border-radius:0}
+.actions{display:flex;gap:1.5rem;align-items:center;flex-wrap:wrap;margin-top:2rem}
+.button{background:#a9c1a3;color:#252f2c;padding:.8rem 1.2rem;text-decoration:none;font-weight:650;border-radius:3px}.button:hover{background:#e2d7bb;color:#252f2c}
+.section-intro{padding:3.5rem 0 2rem;border-top:1px solid #536259}
+h2{font-size:clamp(2.7rem,5vw,4.2rem);margin:0 0 1.2rem}
+.features,.writing-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.features{padding-bottom:6rem}
+.feature{background:#34443c;padding:clamp(1.4rem,3vw,2.5rem);display:flex;flex-direction:column;align-items:flex-start}
+.feature img{width:100%;aspect-ratio:16/9;object-fit:cover}
+.video{width:100%;aspect-ratio:16/9}.video iframe{width:100%;height:100%;border:0}
+.feature p:not(.eyebrow){color:#d1d9cb;margin:1.5rem 0}.feature a{margin-top:auto}
+.writing{background:#e2d7bb;color:#283a31;padding:6rem 0}.writing h2,.writing h3{color:#283a31}.writing .eyebrow{color:#52634f}.writing a{color:#314e3c}
+.writing-grid{gap:clamp(2rem,7vw,7rem);align-items:center}.post{border-left:1px solid #8e9b80;padding-left:2rem}.post h3{font-size:2rem}
+.about{padding-block:6rem 7rem;max-width:850px}.about p:not(.eyebrow){max-width:58ch;color:#c3d0bf}
+a:focus-visible{outline:3px solid #bf8f68;outline-offset:4px}
+@media(max-width:800px){.hero{grid-template-columns:1fr;min-height:0;padding-block:3rem}.hero-image{max-width:550px;margin:auto}.features,.writing-grid{grid-template-columns:1fr}.features{padding-bottom:4rem}.writing{padding:4rem 0}}
+@media(max-width:480px){.shell{width:calc(100% - 2rem)}.hero-image{max-height:410px}}
+</style>
