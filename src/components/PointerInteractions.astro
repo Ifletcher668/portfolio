@@ -1,7 +1,7 @@
 <script>
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
-  const surfaces = ".feature, .writing .post, .interior .panel, .archive-page .card, .archive-page .poem, .archive-page .highlight-item";
+  const surfaces = ".feature, .writing .post, .interior .panel, .archive-page .card, .archive-page .poem, .archive-page .highlight-item, .hobbies-library .game-card, .hobbies-library .book-card, .hobbies-library .poem";
   const reset = (element:HTMLElement) => {
     element.style.removeProperty("--tilt-x");
     element.style.removeProperty("--tilt-y");
