@@ -216,17 +216,17 @@ const BOOKS_LIST = [
 </Layout>
 <style>
   .hobbies-library{--library-border:#566b5d;--library-sage:#a9c1a3;--library-paper:#e2d7bb}
-  .library-intro{padding:0 0 4rem}
+  .library-intro{padding:0 0 2.8rem}
   .section-label{font:600 .72rem/1.5 system-ui,sans-serif;letter-spacing:.17em;text-transform:uppercase;color:var(--library-sage)!important;margin:0 0 .9rem}
-  .library-intro h2{font-size:clamp(3rem,6vw,5.2rem);line-height:1.05;max-width:12ch;margin:0 0 2.5rem;color:var(--library-paper)}
-  .intro-columns{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.5rem,5vw,4rem);max-width:1050px}
-  .intro-columns p{line-height:1.8;margin:0;color:#c3d0bf}
-  .intro-columns p:first-child{font-size:1.15rem;color:var(--library-paper)}
-  .library-index{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;margin-top:3rem}
-  .library-index a{display:flex;gap:.7rem;align-items:center;justify-content:space-between;padding:1rem 1.2rem;border:1px solid var(--library-border);background:#34443c;color:var(--library-paper);text-decoration:none}
+  .library-intro h2{font-size:clamp(2.8rem,5vw,4.35rem);line-height:1.1;max-width:none;margin:0 0 1.6rem;color:var(--library-paper)}
+  .intro-columns{display:block;max-width:70ch}
+  .intro-columns p{line-height:1.75;margin:0 0 1.15rem;color:#c3d0bf}
+  .intro-columns p:first-child{font-size:1.1rem;color:var(--library-paper)}
+  .library-index{display:flex;flex-wrap:wrap;gap:clamp(1.3rem,3vw,3rem);margin-top:2rem;padding-top:1rem;border-top:1px solid var(--library-border)}
+  .library-index a{display:inline-flex;gap:.7rem;align-items:center;padding:.35rem 0;color:var(--library-paper);text-decoration:none;border-bottom:1px solid transparent}
   .library-index a span:first-child{color:var(--library-sage);font:600 .75rem system-ui,sans-serif}
   .library-index a span:last-child{color:var(--library-sage)}
-  .library-index a:hover{border-color:#a9c1a3;background:#3b5044}
+  .library-index a:hover,.library-index a:focus-visible{border-bottom-color:#a9c1a3;color:#a9c1a3}
   .library-section{padding:3.5rem 0 4.5rem;border-top:1px solid var(--library-border);scroll-margin-top:2rem}
   .section-heading{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:end;margin-bottom:2rem}
   .section-heading h2{font-size:clamp(2.7rem,5vw,4.2rem);margin:0}
@@ -252,6 +252,6 @@ const BOOKS_LIST = [
   .game-card,.book-card,.poetry-grid :global(.poem),.library-index a{transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease,background-color .3s ease}
   @media(hover:hover) and (pointer:fine){.game-card:hover,.book-card:hover,.poetry-grid :global(.poem):hover{border-color:#a9c1a3;box-shadow:0 18px 36px rgba(10,20,16,.25)}}
   @media(max-width:850px){.poetry-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-  @media(max-width:650px){.intro-columns,.section-heading,.game-grid{grid-template-columns:1fr}.library-index{grid-template-columns:1fr;gap:.5rem}.poetry-grid{grid-template-columns:1fr}.library-section{padding:2.7rem 0 3rem}.book-card{grid-template-columns:38px minmax(0,1fr)}.book-content{padding:1.3rem}.intro-columns{gap:1rem}}
+  @media(max-width:650px){.intro-columns,.section-heading,.game-grid{grid-template-columns:1fr}.library-index{gap:.8rem 1.6rem}.poetry-grid{grid-template-columns:1fr}.library-section{padding:2.7rem 0 3rem}.book-card{grid-template-columns:38px minmax(0,1fr)}.book-content{padding:1.3rem}.intro-columns{gap:1rem}}
   @media(prefers-reduced-motion:reduce){.game-card,.book-card,.poetry-grid :global(.poem),.library-index a{transition:none;transform:none!important}}
 </style>
