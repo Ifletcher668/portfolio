@@ -22,6 +22,7 @@
     <meta name="twitter:image" content="https://isiahfletcher.com/floating-text-with-donuts.webp" />
   </head>
   <body>
+    <nav class="demo-nav" aria-label="Project navigation"><a href="/projects/three-js-journey/">← Back to experiments</a><span>Three.js / Floating text</span></nav>
     <canvas class="webgl"></canvas>
     <script src="../../../scripts/floating-text-with-donuts.js"></script>
   </body>
@@ -38,6 +39,12 @@
     overflow: hidden;
   }
 
+  body { background: #252f2c; color: #e2d7bb; font-family: system-ui, sans-serif; }
+  .demo-nav { position: fixed; z-index: 10; top: 1rem; left: 1rem; right: 1rem; display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; align-items: center; padding: .85rem 1.1rem; background: rgba(37,47,44,.9); border: 1px solid #536259; border-radius: 4px; font-size: .9rem; }
+  .demo-nav a { color: #a9c1a3; text-decoration: none; }
+  .demo-nav a:hover { color: #e2d7bb; }
+  .demo-nav a:focus-visible { outline: 3px solid #bf8f68; outline-offset: 3px; }
+  .demo-nav span { color: #e2d7bb; }
   .webgl {
     position: fixed;
     top: 0;

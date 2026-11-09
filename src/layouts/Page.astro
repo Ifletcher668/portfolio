@@ -1,84 +1,52 @@
 ---
-import BaseHead from "../components/BaseHead.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
-import Image from "../components/Image.astro";
-import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
-import { ViewTransitions } from "astro:transitions";
-
-const { title, description, heroImage } = Astro.props;
+import Home from "./Home.astro";
+interface Props { title?: string; description?: string; heroImage?: string; }
+const { title = "Archive", description = "From the personal archive of Isiah Fletcher.", heroImage } = Astro.props;
 ---
-
-<html lang="en">
-  <head>
-    <BaseHead
-      title={title || SITE_TITLE}
-      description={description || SITE_DESCRIPTION}
-    />
-    <ViewTransitions />
-    <style>
-      main {
-        width: calc(100% - 2em);
-        max-width: 100%;
-        margin: 0;
-      }
-      .hero-image {
-        width: 100%;
-      }
-      .hero-image img {
-        display: block;
-        margin: 0 auto;
-        border-radius: 12px;
-        box-shadow: var(--box-shadow);
-      }
-      .prose {
-        width: 1100px;
-        max-width: calc(100% - 2em);
-        margin: auto;
-        padding: 1em;
-        color: rgb(var(--white));
-      }
-      .title {
-        padding: 1em 0;
-        text-align: center;
-        line-height: 1;
-      }
-
-      .date {
-        margin-bottom: 0.5em;
-        color: rgb(var(--white));
-      }
-      .last-updated-on {
-        font-style: italic;
-      }
-    </style>
-  </head>
-
-  <body>
-    <Header />
-    <main>
-      <article>
-        <div class="prose">
-          <div class="title">
-            {
-              title && (
-                <>
-                  <h1>{title}</h1>
-                </>
-              )
-            }
-          </div>
-          <div class="hero-image">
-            {
-              heroImage && (
-                <Image width={1020} height={510} src={heroImage} alt="" />
-              )
-            }
-          </div>
-          <slot />
-        </div>
-      </article>
-    </main>
-    <Footer />
-  </body>
-</html>
+<Home title={title === "Archive" ? "Archive — Isiah Fletcher" : `${title} — Isiah Fletcher`} description={description}>
+  <article class="archive-page">
+    <header class="archive-header">
+      <p class="archive-eyebrow"><a href="/">Home</a> / Archive</p>
+      <h1>{title}</h1>
+    </header>
+    {heroImage && <img class="archive-hero" src={heroImage} alt="" loading="lazy" />}
+    <div class="archive-content"><slot /></div>
+  </article>
+</Home>
+<style is:global>
+  .archive-page {
+    --accent: #a9c1a3;
+    --accent-dark: #bf8f68;
+    --accent-light: #c3d0bf;
+    --accent-lightest: #34443c;
+    --accent-bright: 169,193,163;
+    --black: 37,47,44;
+    --white: 226,215,187;
+    --gray: 83,98,89;
+    --gray-dark: 52,68,60;
+    width: min(1100px, calc(100% - 3rem));
+    margin: 0 auto;
+    padding: clamp(3rem,7vw,6rem) 0 7rem;
+    color: #c3d0bf;
+  }
+  .archive-page .archive-header { margin-bottom: 2.5rem; }
+  .archive-page .archive-eyebrow { font: 600 .76rem/1.5 system-ui,sans-serif; letter-spacing: .16em; text-transform: uppercase; color: #a9c1a3; margin: 0 0 1rem; }
+  .archive-page .archive-eyebrow a { color: inherit; }
+  .archive-page h1 { font: 400 clamp(3.4rem,7vw,6rem)/1.08 "CormorantGaramond",Georgia,serif; color: #e2d7bb; margin: 0; }
+  .archive-page h2, .archive-page h3, .archive-page h4, .archive-page h5 { font-family: "CormorantGaramond",Georgia,serif; font-weight: 400; color: #e2d7bb; }
+  .archive-page h2 { font-size: clamp(2rem,4vw,3.2rem); }
+  .archive-page h3 { font-size: clamp(1.5rem,3vw,2.2rem); }
+  .archive-page p, .archive-page li { color: #c3d0bf; }
+  .archive-page a { color: #a9c1a3; }
+  .archive-page a:hover { color: #e2d7bb; }
+  .archive-page .archive-hero { display:block; width:100%; max-height:520px; object-fit:cover; margin:0 0 2.5rem; border-radius:4px; }
+  .archive-page .archive-content { min-width:0; }
+  .archive-page .archive-content > p { max-width:78ch; }
+  .archive-page .archive-content > iframe { max-width:100%; }
+  .archive-page .archive-content > :not(:last-child) { margin-bottom:1.5rem; }
+  .archive-page .highlight-item, .archive-page .card, .archive-page .poem { background:#34443c; color:#e2d7bb; }
+  .archive-page .highlight-item strong { color:#e2d7bb; }
+  .archive-page .blog-container { padding:0; }
+  .archive-page .blog-intro-and-subscribe iframe { max-width:100%; }
+  @media(max-width:700px){.archive-page{width:calc(100% - 2rem);padding-bottom:4rem}.archive-page .archive-hero{max-height:320px}}
+</style>
