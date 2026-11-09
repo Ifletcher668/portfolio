@@ -12,7 +12,7 @@ try { featuredPost = (await getSubstackPosts())?.[0]; } catch (error) { console.
       <h1>Hi, I'm Isiah.</h1>
       <p class="lead">I build software, play drums, and write.</p>
       <p>I like making things, understanding how they work, and following ideas that interest me. This is a home for the projects, music, writing, and occasional curiosities that come out of that.</p>
-      <div class="actions"><a class="button" href="#explore">Explore the site ↘</a><a href="/hobbies">More about me</a></div>
+      <div class="actions"><a class="button" href="#explore">Explore the site ↘</a><a href="/about">More about me</a></div>
     </div>
   </section>
   <section class="shell" id="explore">
@@ -22,7 +22,7 @@ try { featuredPost = (await getSubstackPosts())?.[0]; } catch (error) { console.
         <p class="eyebrow">01 / Code</p><h2>Things I've built.</h2>
         <img src="/shelbz-website-project.png" alt="Shelbz Citrine portfolio project" width="1000" height="560" loading="lazy" />
         <p>I work in software engineering, where I enjoy solving problems, untangling complexity, and turning ideas into something people can use.</p>
-        <a href="/work">Explore code and projects ↗</a>
+        <a href="/code">Explore code and projects ↗</a>
       </article>
       <article class="feature">
         <p class="eyebrow">02 / Music</p><h2>Behind the kit.</h2>
@@ -34,13 +34,13 @@ try { featuredPost = (await getSubstackPosts())?.[0]; } catch (error) { console.
   </section>
   <section class="writing">
     <div class="shell writing-grid">
-      <div><p class="eyebrow">03 / Writing</p><h2>Notes from a wandering mind.</h2><p>I write essays and reflections on Substack, often following questions about philosophy, creativity, and the experience of being human. I also keep poetry and selected essays here.</p><a href="/blog">Explore writing ↗</a></div>
+      <div><p class="eyebrow">03 / Writing</p><h2>Notes from a wandering mind.</h2><p>I write essays and reflections on Substack, often following questions about philosophy, creativity, and the experience of being human. I also keep poetry and selected essays here.</p><a href="/writing">Explore writing ↗</a></div>
       <div class="post"><p class="eyebrow">From Substack</p>
         {featuredPost ? <><h3>{featuredPost.title}</h3><p>{featuredPost.excerpt}</p><a href={featuredPost.link} target="_blank" rel="noopener noreferrer">Read on Substack ↗</a></> : <><h3>Essays and reflections</h3><p>My latest writing lives on Substack.</p><a href="https://isiahfletcher7.substack.com/" target="_blank" rel="noopener noreferrer">Visit Substack ↗</a></>}
       </div>
     </div>
   </section>
-  <section class="about shell"><p class="eyebrow">04 / Beyond the work</p><h2>Beyond the categories.</h2><p>I'm interested in games, literature, philosophy, music theory, and plenty of things that don't need a dedicated section of a website.</p><a href="/hobbies">A little more about me ↗</a></section>
+  <section class="about shell"><p class="eyebrow">04 / Beyond the work</p><h2>Beyond the categories.</h2><p>I'm interested in games, literature, philosophy, music theory, and plenty of things that don't need a dedicated section of a website.</p><a href="/about">A little more about me ↗</a></section>
 </Home>
 <style>
 .shell{width:min(1160px,calc(100% - 3rem));margin-inline:auto}
