@@ -1,21 +1,22 @@
 ---
-const today = new Date();
-
 import SocialLinks from "../components/SocialLinks.astro";
+const year = new Date().getFullYear();
 ---
-
-<footer>
-  &copy; {today.getFullYear()} Isiah Fletcher. All rights reserved.
-  <SocialLinks />
-  <br/>
-  <iframe src="https://isiahfletcher7.substack.com/embed" width="480" height="320" style="border:1px solid #EEE; background:white;" frameborder="0" scrolling="no"></iframe>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div><p class="footer-title">Isiah Fletcher</p><p>Code, music, writing, and whatever comes next.</p></div>
+    <div class="footer-links"><a href="/code">Code</a><a href="/music">Music</a><a href="/writing">Writing</a><a href="/about">About</a></div>
+    <div class="footer-social"><SocialLinks /><a href="https://isiahfletcher7.substack.com/" target="_blank" rel="noopener noreferrer">Read on Substack ↗</a></div>
+  </div>
+  <p class="copyright">© {year} Isiah Fletcher.</p>
 </footer>
 <style>
-  footer {
-    padding: 2em 1em 6em 1em;
-    background: linear-gradient(var(--gray-gradient)) no-repeat;
-    color: rgb(var(--accent-bright));
-    text-align: center;
-    margin-top: auto;
-  }
+.site-footer{background:#1e2924;color:#c3d0bf;border-top:1px solid #48584d;padding:3rem clamp(1rem,5vw,4rem) 1.5rem;font:normal 1rem/1.6 system-ui,sans-serif}
+.footer-inner{max-width:1160px;margin:auto;display:grid;grid-template-columns:2fr 1fr 1.4fr;gap:2rem}
+.footer-title{font:normal 1.8rem Georgia,serif;color:#e2d7bb;margin-bottom:.5rem}
+.footer-links{display:flex;flex-direction:column;gap:.45rem}
+.footer-social{display:flex;flex-direction:column;align-items:flex-start;gap:1rem}
+.site-footer a{color:#a9c1a3;text-decoration:none}.site-footer a:hover{color:#e2d7bb}
+.copyright{max-width:1160px;margin:2rem auto 0;padding-top:1rem;border-top:1px solid #34443c;font-size:.85rem}
+@media(max-width:700px){.footer-inner{grid-template-columns:1fr 1fr}.footer-inner>div:first-child{grid-column:1/-1}}
 </style>
