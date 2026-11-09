@@ -1,13 +1,13 @@
 ---
 import Home from "../layouts/Home.astro";
-import IcosahedronBackground from "../components/IcosahedronBackground.astro";
+import SpiralMistBackground from "../components/SpiralMistBackground.astro";
 import { getSubstackPosts } from "../lib/substack";
 let featuredPost;
 try { featuredPost = (await getSubstackPosts())?.[0]; } catch (error) { console.warn("Substack unavailable", error); }
 ---
 <Home>
   <section class="hero shell">
-    <IcosahedronBackground />
+    <SpiralMistBackground />
     <img class="hero-image" src="/drummer-bubs-transparent.png" alt="Isiah playing the drums" width="666" height="500" fetchpriority="high" />
     <div class="intro">
       <p class="eyebrow">Software engineer / Drummer / Writer</p>
@@ -48,7 +48,7 @@ try { featuredPost = (await getSubstackPosts())?.[0]; } catch (error) { console.
 .shell{width:min(1160px,calc(100% - 3rem));margin-inline:auto}
 .eyebrow{font:600 .76rem/1.5 system-ui,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#a9c1a3;margin:0 0 1rem}
 .hero{position:relative;isolation:isolate;min-height:600px;display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(2rem,5vw,5rem);align-items:center;padding-block:clamp(3rem,6vw,5rem)}
-.hero > :not(.icosahedron-background){position:relative;z-index:1}
+.hero > :not(.spiral-mist-background){position:relative;z-index:1}
 .intro{max-width:590px}.intro>p:not(.eyebrow){max-width:51ch;color:#c3d0bf}
 h1{font-size:clamp(3.5rem,5.5vw,5.75rem);margin:0 0 1rem}
 .lead{font:normal clamp(1.5rem,2.8vw,2.1rem)/1.35 Georgia,serif!important;color:#e2d7bb!important}
