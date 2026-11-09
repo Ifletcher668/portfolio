@@ -16,6 +16,8 @@ import Footer from "../components/Footer.astro";
       a:hover { color:var(--paper); }
       a:focus-visible { outline:3px solid var(--copper); outline-offset:4px; }
       ::selection { background:var(--sage); color:var(--forest); }
+      /* The shared stylesheet constrains main to 720px for articles. The homepage needs a full-width canvas. */
+      main#main-content { width:100%; max-width:none; margin:0; padding:0; }
       @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
     </style>
   </head>
