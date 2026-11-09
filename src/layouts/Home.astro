@@ -2,6 +2,7 @@
 import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import PointerInteractions from "../components/PointerInteractions.astro";
 interface Props { title?: string; description?: string; }
 const { title = "Isiah Fletcher — Code, Music & Writing", description = "The personal home of Isiah Fletcher: software engineer, drummer, and writer." } = Astro.props;
 ---
@@ -34,6 +35,37 @@ const { title = "Isiah Fletcher — Code, Music & Writing", description = "The p
         }
         .button:hover { transform:translateY(-2px); box-shadow:0 9px 24px rgba(10,20,16,.22); }
       }
+      /* Underlines draw in without changing the line box or shifting text. */
+      main a:not(.button),.site-header .nav-links a,.site-header .brand {
+        text-decoration:none;
+        background-image:linear-gradient(currentColor,currentColor);
+        background-position:0 100%;
+        background-repeat:no-repeat;
+        background-size:0 1px;
+        transition:background-size .26s ease,color .2s ease;
+      }
+      main a:not(.button):hover,main a:not(.button):focus-visible,
+      .site-header .nav-links a:hover,.site-header .nav-links a:focus-visible,
+      .site-header .brand:hover,.site-header .brand:focus-visible {background-size:100% 1px;}
+      .feature,.interior .panel,.archive-page .card,.archive-page .poem,.archive-page .highlight-item {
+        transform:perspective(900px) rotateX(var(--tilt-x,0deg)) rotateY(var(--tilt-y,0deg));
+        transform-style:preserve-3d;
+      }
+      @media(hover:hover) and (pointer:fine) {
+        .feature:hover,.interior .panel:hover,.archive-page .card:hover,.archive-page .poem:hover,.archive-page .highlight-item:hover {
+          transform:perspective(900px) rotateX(var(--tilt-x,0deg)) rotateY(var(--tilt-y,0deg));
+          box-shadow:0 15px 35px rgba(10,20,16,.22);
+        }
+      }
+      a.button,button,[role="button"] {position:relative;overflow:hidden;isolation:isolate;}
+      .interaction-ripple {position:absolute;pointer-events:none;border-radius:50%;background:rgba(226,215,187,.28);transform:scale(0);animation:interaction-ripple .5s ease-out forwards;z-index:0;}
+      .button .interaction-ripple {background:rgba(37,47,44,.18);}
+      @keyframes interaction-ripple {to {transform:scale(1);opacity:0;}}
+      @media(prefers-reduced-motion:reduce) {
+        .feature,.interior .panel,.archive-page .card,.archive-page .poem,.archive-page .highlight-item {transform:none!important;}
+        .interaction-ripple{display:none;}
+        main a:not(.button),.site-header .nav-links a,.site-header .brand {transition:none;}
+      }
       @media(prefers-reduced-motion:reduce) {
         *,*::before,*::after { animation-duration:.01ms!important; animation-iteration-count:1!important; transition-duration:.01ms!important; scroll-behavior:auto!important; }
       }
@@ -48,6 +80,7 @@ const { title = "Isiah Fletcher — Code, Music & Writing", description = "The p
     <Header />
     <main id="main-content"><slot /></main>
     <Footer />
+    <PointerInteractions />
     <style>.skip{position:absolute;left:-9999px;top:1rem;background:#e2d7bb;color:#252f2c;padding:.6rem;z-index:100}.skip:focus{left:1rem}</style>
   </body>
 </html>
