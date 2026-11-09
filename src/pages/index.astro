@@ -6,6 +6,7 @@ try { featuredPost = (await getSubstackPosts())?.[0]; } catch (error) { console.
 ---
 <Home>
   <section class="hero shell">
+    <img class="hero-image" src="/drummer-bubs-transparent.png" alt="Isiah playing the drums" width="666" height="500" fetchpriority="high" />
     <div class="intro">
       <p class="eyebrow">Software engineer / Drummer / Writer</p>
       <h1>Hi, I'm Isiah.</h1>
@@ -13,7 +14,6 @@ try { featuredPost = (await getSubstackPosts())?.[0]; } catch (error) { console.
       <p>I like making things, understanding how they work, and following ideas that interest me. This is a home for the projects, music, writing, and occasional curiosities that come out of that.</p>
       <div class="actions"><a class="button" href="#explore">Explore the site ↘</a><a href="/hobbies">More about me</a></div>
     </div>
-    <img class="hero-image" src="/drummer-bubs-transparent.png" alt="Isiah playing the drums" width="666" height="500" fetchpriority="high" />
   </section>
   <section class="shell" id="explore">
     <div class="section-intro"><p class="eyebrow">A few things I do</p><h2>Different interests. One life.</h2></div>
@@ -45,7 +45,7 @@ try { featuredPost = (await getSubstackPosts())?.[0]; } catch (error) { console.
 <style>
 .shell{width:min(1160px,calc(100% - 3rem));margin-inline:auto}
 .eyebrow{font:600 .76rem/1.5 system-ui,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#a9c1a3;margin:0 0 1rem}
-.hero{min-height:600px;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:clamp(2rem,5vw,5rem);align-items:center;padding-block:clamp(3rem,6vw,5rem)}
+.hero{min-height:600px;display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(2rem,5vw,5rem);align-items:center;padding-block:clamp(3rem,6vw,5rem)}
 .intro{max-width:590px}.intro>p:not(.eyebrow){max-width:51ch;color:#c3d0bf}
 h1{font-size:clamp(3.5rem,5.5vw,5.75rem);margin:0 0 1rem}
 .lead{font:normal clamp(1.5rem,2.8vw,2.1rem)/1.35 Georgia,serif!important;color:#e2d7bb!important}
