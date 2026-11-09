@@ -249,7 +249,6 @@ const BOOKS_LIST = [
   .book-spine{display:flex;align-items:center;justify-content:center;background:#405447;border-right:1px solid #6d806f;color:#bf8f68;font:400 2rem "CormorantGaramond",Georgia,serif}
   .book-content{padding:clamp(1.4rem,3vw,2.4rem);display:flex;flex-direction:column;align-items:flex-start}
   .book-content p:not(.section-label){max-width:75ch}
-  .game-card,.book-card,.poetry-grid :global(.poem){transform:perspective(900px) rotateX(var(--tilt-x,0deg)) rotateY(var(--tilt-y,0deg))}
   .game-card,.book-card,.poetry-grid :global(.poem),.library-index a{transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease,background-color .3s ease}
   @media(hover:hover) and (pointer:fine){.game-card:hover,.book-card:hover,.poetry-grid :global(.poem):hover{border-color:#a9c1a3;box-shadow:0 18px 36px rgba(10,20,16,.25)}}
   @media(max-width:850px){.poetry-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
