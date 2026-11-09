@@ -2,10 +2,33 @@
 import Interior from "../../layouts/Interior.astro";
 import { BAND_LINKS, SOCIAL_LINKS } from "../../consts";
 ---
-<Interior title="Music — Isiah Fletcher" description="Drumming, performances, bands, and lessons with Isiah Fletcher." eyebrow="02 / Music" heading="Behind the kit." intro="I've been playing drums since I was twelve. It's taken me into bands, onto stages, and through more hours of practice than I could count.">
+<Interior title="Music — Isiah Fletcher" description="An archive of drum performances and recorded music by Isiah Fletcher." eyebrow="02 / Music" heading="Behind the kit." intro="Drumming has been part of my life since I was twelve. Here are some of the performances and recordings from the years I've spent playing.">
   <section class="section grid-two">
-    <div><h2>Playing and learning</h2><p>I spent years performing and touring with extreme metal bands based in Boise, Idaho. I played with <a href={BAND_LINKS.wealdAndWoe.href} target="_blank" rel="noopener noreferrer">{BAND_LINKS.wealdAndWoe.title}</a> and <a href={BAND_LINKS.aterrima.href} target="_blank" rel="noopener noreferrer">{BAND_LINKS.aterrima.title}</a>, each of which challenged me in different ways.</p><p>I'm currently taking a break from bands and spending time on my own music. The curiosity that got me behind a kit in the first place hasn't gone anywhere.</p></div>
-    <div><div class="video"><iframe src="https://www.youtube-nocookie.com/embed/lc_rCn2em8o" title="Isiah Fletcher drumming performance" loading="lazy" allow="encrypted-media; picture-in-picture" allowfullscreen></iframe></div><p class="small">A performance from the archive.</p></div>
+    <div>
+      <p class="eyebrow">Watch</p>
+      <h2>Performances</h2>
+      <p>Videos of my playing live and behind the kit are collected on my YouTube channel.</p>
+      <p><a href="https://www.youtube.com/@isiahfletcher2859" target="_blank" rel="noopener noreferrer">Watch performances on YouTube ↗</a></p>
+    </div>
+    <div class="panel">
+      <p class="eyebrow">Listen</p>
+      <h2>Recorded music</h2>
+      <p>I played with two Boise-based extreme metal bands. You can find the music through their pages.</p>
+      <p><a href={BAND_LINKS.wealdAndWoe.href} target="_blank" rel="noopener noreferrer">{BAND_LINKS.wealdAndWoe.title} ↗</a></p>
+      <p><a href={BAND_LINKS.aterrima.href} target="_blank" rel="noopener noreferrer">{BAND_LINKS.aterrima.title} ↗</a></p>
+    </div>
   </section>
-  <section class="section grid-two"><div><p class="eyebrow">Teaching</p><h2>Drum lessons</h2><p>I've taught drums since 2021, with an emphasis on technique, healthy posture, and musical expression. Lessons are shaped around the student's goals, whether they're learning the basics or refining more advanced playing.</p><p>For lesson availability and scheduling in Olympia, please <a href={SOCIAL_LINKS.facebook} target="_blank" rel="noopener noreferrer">contact me on Facebook ↗</a>.</p></div><div class="panel"><h3>What we can work on</h3><p>Grip and stroke mechanics, rhythmic vocabulary, coordination, efficient movement, and finding your own voice behind the kit.</p><p class="small">Lesson times and availability are confirmed directly rather than listed here, so the page doesn't show an outdated schedule.</p></div></section>
+  <section class="section grid-two">
+    <div>
+      <h2>A little history</h2>
+      <p>I performed and toured with bands based in Boise, Idaho, including shows across the Pacific Northwest and Southwest. Each band asked something different of me, from technical precision to composition and endurance.</p>
+      <p>I'm taking a break from performing with bands while finding my way back to making music in my own time.</p>
+    </div>
+    <div class="panel">
+      <p class="eyebrow">Teaching</p>
+      <h3>Drum lessons</h3>
+      <p>I've also taught drums, with a focus on technique, posture, and musical expression.</p>
+      <p>For current lesson availability, <a href={SOCIAL_LINKS.facebook} target="_blank" rel="noopener noreferrer">get in touch on Facebook ↗</a>.</p>
+    </div>
+  </section>
 </Interior>
