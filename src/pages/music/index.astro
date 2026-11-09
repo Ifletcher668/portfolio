@@ -1,90 +1,11 @@
 ---
-import { SOCIAL_LINKS, BAND_LINKS } from "../../consts";
-import Layout from "../../layouts/Page.astro";
+import Interior from "../../layouts/Interior.astro";
+import { BAND_LINKS, SOCIAL_LINKS } from "../../consts";
 ---
-
-<Layout
-  title="Music & Drum Lessons"
-  description="Professional drum lessons in Olympia, Washington with touring musician Isiah Fletcher. Expert instruction in technique, posture, and musical expression for all skill levels. Former member of Aterrima and Weald & Woe metal bands."
->
-  <p>
-    Since I was 12, I've dedicated my life to drumming, evolving from a
-    passionate beginner to a professional touring musician. I played in two
-    Extreme Metal bands, both based in Boise, Idaho, and regularly toured the
-    Pacific Northwest and Southwest.
-  </p>
-  <p>
-    I am on hiatus from playing in bands, working on my own music for the time
-    being.
-  </p>
-
-  <p>
-    However, I played in both
-    <a href={BAND_LINKS.wealdAndWoe.href}>{BAND_LINKS.wealdAndWoe.title}</a> and
-    <a href={BAND_LINKS.aterrima.href}>{BAND_LINKS.aterrima.title}</a>. Both
-    bands offered different challenges to me. One, from a composition and
-    technical complexity standpoint, and the other, an opportunity to strive for
-    perfection and power.
-  </p>
-
-  <h3>Lessons</h3>
-  <p>
-    In 2021, I began offering drum lessons to share my expertise and love for
-    music. My focus is on technique, posture, and musical expression, aiming to
-    build a solid foundation for students of all levels.
-  </p>
-  <h4>Overview</h4>
-  <ul>
-    <li>
-      <b>Technique Mastery:</b> I teach everything from fundamental grip and stroke
-      techniques to advanced rhythmic patterns, ensuring a comprehensive skill set
-      for progression.
-    </li>
-    <li>
-      <b>Posture Perfection:</b> Emphasizing the importance of proper posture to
-      prevent injuries and promote efficient playing.
-    </li>
-    <li>
-      <b>Expressive Musicality:</b> Encouraging students to explore their own style
-      and expression through music, enhancing their personal connection to their
-      playing. Studio and Scheduling
-    </li>
-  </ul>
-
-  <p>
-    My studio, located in Olympia, and is outfitted for lessons with a kit and
-    practice pads. I offer flexible scheduling to fit your lifestyle.
-  </p>
-
-  <h4>Booking</h4>
-  <p>
-    If you are interested in a lesson, please DM me on<a
-      href={SOCIAL_LINKS.facebook}
-      target="_blank">Facebook</a
-    >. I'm currently accepting students of all ages and skill levels.
-  </p>
-  <h5>Here are my hours:</h5>
-  <ul>
-    <li><b>Monday</b>: 12 pm - 5 pm</li>
-    <li><b>Tuesday</b>: 12 pm - 5 pm</li>
-    <li><b>Wednesday</b>: 12 pm - 5 pm</li>
-    <li><b>Thursday</b>: 12 pm - 5 pm</li>
-    <li><b>Friday</b>: 12 pm - 5 pm</li>
-    <li><b>Saturday</b>: 12 pm - 5 pm</li>
-    <li><b>Sunday</b>: <b>N/A</b></li>
-  </ul>
-
-  <h4>Why Me?</h4>
-  <ul>
-    <li>
-      <b>Experienced Instructor:</b> Years of performance and teaching experience
-      provide unique insights and techniques.
-    </li>
-    <li>
-      <b>Personalized Learning:</b> Lessons tailored to your individual needs, focusing
-      on your strengths and goals. Interested in starting your drumming journey or
-      advancing your skills? Contact me to schedule your first lesson and take the
-      next step in your musical development.
-    </li>
-  </ul>
-</Layout>
+<Interior title="Music — Isiah Fletcher" description="Drumming, performances, bands, and lessons with Isiah Fletcher." eyebrow="02 / Music" heading="Behind the kit." intro="I've been playing drums since I was twelve. It's taken me into bands, onto stages, and through more hours of practice than I could count.">
+  <section class="section grid-two">
+    <div><h2>Playing and learning</h2><p>I spent years performing and touring with extreme metal bands based in Boise, Idaho. I played with <a href={BAND_LINKS.wealdAndWoe.href} target="_blank" rel="noopener noreferrer">{BAND_LINKS.wealdAndWoe.title}</a> and <a href={BAND_LINKS.aterrima.href} target="_blank" rel="noopener noreferrer">{BAND_LINKS.aterrima.title}</a>, each of which challenged me in different ways.</p><p>I'm currently taking a break from bands and spending time on my own music. The curiosity that got me behind a kit in the first place hasn't gone anywhere.</p></div>
+    <div><div class="video"><iframe src="https://www.youtube-nocookie.com/embed/lc_rCn2em8o" title="Isiah Fletcher drumming performance" loading="lazy" allow="encrypted-media; picture-in-picture" allowfullscreen></iframe></div><p class="small">A performance from the archive.</p></div>
+  </section>
+  <section class="section grid-two"><div><p class="eyebrow">Teaching</p><h2>Drum lessons</h2><p>I've taught drums since 2021, with an emphasis on technique, healthy posture, and musical expression. Lessons are shaped around the student's goals, whether they're learning the basics or refining more advanced playing.</p><p>For lesson availability and scheduling in Olympia, please <a href={SOCIAL_LINKS.facebook} target="_blank" rel="noopener noreferrer">contact me on Facebook ↗</a>.</p></div><div class="panel"><h3>What we can work on</h3><p>Grip and stroke mechanics, rhythmic vocabulary, coordination, efficient movement, and finding your own voice behind the kit.</p><p class="small">Lesson times and availability are confirmed directly rather than listed here, so the page doesn't show an outdated schedule.</p></div></section>
+</Interior>
