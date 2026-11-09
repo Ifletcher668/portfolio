@@ -2,10 +2,12 @@
 import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+interface Props { title?: string; description?: string; }
+const { title = "Isiah Fletcher — Code, Music & Writing", description = "The personal home of Isiah Fletcher: software engineer, drummer, and writer." } = Astro.props;
 ---
 <html lang="en">
   <head>
-    <BaseHead title="Isiah Fletcher — Code, Music & Writing" description="The personal home of Isiah Fletcher: software engineer, drummer, and writer." />
+    <BaseHead title={title} description={description} />
     <style is:global>
       :root { --forest:#252f2c; --moss:#34443c; --sage:#a9c1a3; --paper:#e2d7bb; --copper:#bf8f68; }
       *,*::before,*::after { box-sizing:border-box; }

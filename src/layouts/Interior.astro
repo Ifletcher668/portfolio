@@ -1,0 +1,36 @@
+---
+import Home from "./Home.astro";
+interface Props { title: string; description: string; eyebrow: string; heading: string; intro: string; }
+const { title, description, eyebrow, heading, intro } = Astro.props;
+---
+<Home title={title} description={description}>
+  <div class="interior shell">
+    <header class="page-intro">
+      <p class="eyebrow">{eyebrow}</p>
+      <h1>{heading}</h1>
+      <p class="lede">{intro}</p>
+    </header>
+    <slot />
+  </div>
+</Home>
+<style is:global>
+  .interior.shell{width:min(1100px,calc(100% - 3rem));margin-inline:auto;padding:clamp(3rem,7vw,6rem) 0 7rem}
+  .interior .page-intro{max-width:850px;margin-bottom:clamp(3rem,6vw,5rem)}
+  .interior .eyebrow{font:600 .76rem/1.5 system-ui,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#a9c1a3;margin:0 0 1rem}
+  .interior h1{font-size:clamp(3.6rem,7vw,6rem);margin:0 0 1.5rem}
+  .interior h2{font-size:clamp(2.3rem,4vw,3.5rem);margin:0 0 1rem}
+  .interior h3{font-size:clamp(1.6rem,3vw,2.2rem);margin:0 0 .8rem}
+  .interior p{color:#c3d0bf;margin:0 0 1.3rem}
+  .interior .lede{font:normal clamp(1.4rem,2.4vw,1.9rem)/1.4 Georgia,serif;color:#e2d7bb;max-width:42ch}
+  .interior .section{border-top:1px solid #536259;padding:3rem 0}
+  .interior .grid-two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2rem}
+  .interior .panel{background:#34443c;padding:clamp(1.4rem,3vw,2.3rem)}
+  .interior .panel p:last-child{margin-bottom:0}
+  .interior .media{width:100%;aspect-ratio:16/9;object-fit:cover;margin-bottom:1.5rem}
+  .interior .video{width:100%;aspect-ratio:16/9;margin-bottom:1.5rem}
+  .interior .video iframe{width:100%;height:100%;border:0}
+  .interior a{color:#a9c1a3}
+  .interior a:hover{color:#e2d7bb}
+  .interior .small{font-size:.88rem;color:#a9b6a8}
+  @media(max-width:700px){.interior .grid-two{grid-template-columns:1fr}.interior.shell{width:calc(100% - 2rem);padding-bottom:4rem}}
+</style>
