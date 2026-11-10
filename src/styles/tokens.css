@@ -13,6 +13,7 @@
   --color-text: #c3d0bf;
   --color-muted: #a9b6a8;
   --color-link: var(--color-sage);
+  --color-homepage-button-background: var(--color-link);
   --color-link-hover: var(--color-paper);
   --color-accent: var(--color-copper);
   --color-border: #536259;

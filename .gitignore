@@ -16,6 +16,13 @@ pnpm-debug.log*
 # environment variables
 .env
 .env.production
+.env.*
+!.env.example
+
+# generated CMS / hosting output
+public/admin/
+tina/__generated__/
+.netlify/
 
 # macOS-specific files
 .DS_Store

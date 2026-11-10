@@ -3,5 +3,17 @@
   "compilerOptions": {
     "strictNullChecks": true
   },
-  "exclude": ["dist", "node_modules"]
+  "exclude": [
+    "dist",
+    "node_modules",
+    "public/admin",
+    "tina/__generated__",
+    ".netlify"
+  ],
+  "include": [
+    "src/**/*",
+    "tina/config.ts",
+    "astro.config.mjs",
+    ".astro/types.d.ts"
+  ]
 }
