@@ -1,53 +1,108 @@
-<div class="icosahedron-background" aria-hidden="true" data-icosahedron-background>
+<div
+  class="icosahedron-background"
+  aria-hidden="true"
+  data-icosahedron-background
+>
   <canvas data-geometry-canvas></canvas>
 </div>
 <style>
-  .icosahedron-background { position:absolute; inset:-12% -10% -12% -10%; overflow:hidden; pointer-events:none; z-index:0; opacity:.7; mask-image:radial-gradient(ellipse at 40% 48%,#000 10%,transparent 73%); }
-  canvas { display:block; width:100%; height:100%; }
-  @media(max-width:800px){.icosahedron-background{inset:-5%;opacity:.48}}
-  @media(prefers-reduced-motion:reduce){.icosahedron-background{display:none}}
+  .icosahedron-background {
+    position: absolute;
+    inset: -12% -10% -12% -10%;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.7;
+    mask-image: radial-gradient(
+      ellipse at 40% 48%,
+      var(--color-mask) 10%,
+      transparent 73%
+    );
+  }
+  canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  @media (max-width: 800px) {
+    .icosahedron-background {
+      inset: -5%;
+      opacity: 0.48;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .icosahedron-background {
+      display: none;
+    }
+  }
 </style>
 <script>
   import * as THREE from "three";
-  const host = document.querySelector<HTMLElement>("[data-icosahedron-background]");
-  const canvas = host?.querySelector<HTMLCanvasElement>("[data-geometry-canvas]");
-  if (host && canvas && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  const host = document.querySelector<HTMLElement>(
+    "[data-icosahedron-background]",
+  );
+  const canvas = host?.querySelector<HTMLCanvasElement>(
+    "[data-geometry-canvas]",
+  );
+  if (
+    host &&
+    canvas &&
+    !window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  ) {
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(35, 1, .1, 100);
+    const camera = new THREE.PerspectiveCamera(35, 1, 0.1, 100);
     camera.position.z = 8;
-    const renderer = new THREE.WebGLRenderer({canvas,alpha:true,antialias:false,powerPreference:"low-power"});
+    const renderer = new THREE.WebGLRenderer({
+      canvas,
+      alpha: true,
+      antialias: false,
+      powerPreference: "low-power",
+    });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
     const geometry = new THREE.IcosahedronGeometry(2.45, 2);
     const mesh = new THREE.LineSegments(
       new THREE.EdgesGeometry(geometry, 18),
-      new THREE.LineBasicMaterial({color:0xa9c1a3,transparent:true,opacity:.19})
+      new THREE.LineBasicMaterial({
+        color: getComputedStyle(host).getPropertyValue("--color-link").trim(),
+        transparent: true,
+        opacity: 0.19,
+      }),
     );
     const points = new THREE.Points(
       geometry,
-      new THREE.PointsMaterial({color:0xbf8f68,size:.045,transparent:true,opacity:.65,sizeAttenuation:true})
+      new THREE.PointsMaterial({
+        color: getComputedStyle(host).getPropertyValue("--color-accent").trim(),
+        size: 0.045,
+        transparent: true,
+        opacity: 0.65,
+        sizeAttenuation: true,
+      }),
     );
     const group = new THREE.Group();
-    group.add(mesh,points);
-    group.position.x = -.55;
+    group.add(mesh, points);
+    group.position.x = -0.55;
     scene.add(group);
-    let targetX = 0, targetY = 0, frame = 0;
+    let targetX = 0,
+      targetY = 0,
+      frame = 0;
     let visible = true;
     const resize = () => {
-      const w = host.clientWidth, h = host.clientHeight;
+      const w = host.clientWidth,
+        h = host.clientHeight;
       if (!w || !h) return;
-      camera.aspect = w/h;
+      camera.aspect = w / h;
       camera.updateProjectionMatrix();
-      renderer.setSize(w,h,false);
+      renderer.setSize(w, h, false);
     };
     const observer = new ResizeObserver(resize);
     observer.observe(host);
     resize();
-    const onPointer = (event:PointerEvent) => {
-      targetX = (event.clientX/window.innerWidth-.5)*.28;
-      targetY = (event.clientY/window.innerHeight-.5)*.28;
+    const onPointer = (event: PointerEvent) => {
+      targetX = (event.clientX / window.innerWidth - 0.5) * 0.28;
+      targetY = (event.clientY / window.innerHeight - 0.5) * 0.28;
     };
-    window.addEventListener("pointermove",onPointer,{passive:true});
-    const visibilityObserver = new IntersectionObserver(entries => {
+    window.addEventListener("pointermove", onPointer, { passive: true });
+    const visibilityObserver = new IntersectionObserver((entries) => {
       visible = entries[0]?.isIntersecting ?? false;
       if (visible && !frame) frame = requestAnimationFrame(draw);
     });
@@ -55,27 +110,34 @@
     const draw = () => {
       frame = 0;
       if (!visible || document.hidden) return;
-      group.rotation.y += .0016;
-      group.rotation.x += .0007;
-      group.rotation.y += (targetX-group.rotation.y*.1)*.001;
-      group.rotation.x += (targetY-group.rotation.x*.1)*.001;
-      renderer.render(scene,camera);
+      group.rotation.y += 0.0016;
+      group.rotation.x += 0.0007;
+      group.rotation.y += (targetX - group.rotation.y * 0.1) * 0.001;
+      group.rotation.x += (targetY - group.rotation.x * 0.1) * 0.001;
+      renderer.render(scene, camera);
       frame = requestAnimationFrame(draw);
     };
-    const onVisibility = () => { if (!document.hidden && visible && !frame) frame=requestAnimationFrame(draw); };
-    document.addEventListener("visibilitychange",onVisibility);
+    const onVisibility = () => {
+      if (!document.hidden && visible && !frame)
+        frame = requestAnimationFrame(draw);
+    };
+    document.addEventListener("visibilitychange", onVisibility);
     draw();
-    document.addEventListener("astro:before-swap", () => {
-      cancelAnimationFrame(frame);
-      observer.disconnect();
-      visibilityObserver.disconnect();
-      window.removeEventListener("pointermove",onPointer);
-      document.removeEventListener("visibilitychange",onVisibility);
-      renderer.dispose();
-      geometry.dispose();
-      (mesh.geometry as THREE.BufferGeometry).dispose();
-      (mesh.material as THREE.Material).dispose();
-      (points.material as THREE.Material).dispose();
-    },{once:true});
+    document.addEventListener(
+      "astro:before-swap",
+      () => {
+        cancelAnimationFrame(frame);
+        observer.disconnect();
+        visibilityObserver.disconnect();
+        window.removeEventListener("pointermove", onPointer);
+        document.removeEventListener("visibilitychange", onVisibility);
+        renderer.dispose();
+        geometry.dispose();
+        (mesh.geometry as THREE.BufferGeometry).dispose();
+        (mesh.material as THREE.Material).dispose();
+        (points.material as THREE.Material).dispose();
+      },
+      { once: true },
+    );
   }
 </script>

@@ -1,28 +1,62 @@
+---
+import "../../../styles/tokens.css";
+---
+
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Floating 3D Text with Donuts - Three.js Demo | Isiah Fletcher</title>
-    <meta name="description" content="Interactive Three.js WebGL experiment featuring floating 3D text and animated donuts by software engineer Isiah Fletcher. Creative coding with JavaScript, Three.js, and custom shaders." />
+    <meta
+      name="description"
+      content="Interactive Three.js WebGL experiment featuring floating 3D text and animated donuts by software engineer Isiah Fletcher. Creative coding with JavaScript, Three.js, and custom shaders."
+    />
     <meta name="author" content="Isiah Fletcher" />
-    <link rel="canonical" href="https://isiahfletcher.com/projects/three-js-journey/floating-text-with-donuts/" />
+    <link
+      rel="canonical"
+      href="https://isiahfletcher.com/projects/three-js-journey/floating-text-with-donuts/"
+    />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Floating 3D Text with Donuts - Three.js Demo | Isiah Fletcher" />
-    <meta property="og:description" content="Interactive Three.js WebGL experiment featuring floating 3D text and animated donuts by software engineer Isiah Fletcher." />
-    <meta property="og:url" content="https://isiahfletcher.com/projects/three-js-journey/floating-text-with-donuts/" />
-    <meta property="og:image" content="https://isiahfletcher.com/floating-text-with-donuts.webp" />
+    <meta
+      property="og:title"
+      content="Floating 3D Text with Donuts - Three.js Demo | Isiah Fletcher"
+    />
+    <meta
+      property="og:description"
+      content="Interactive Three.js WebGL experiment featuring floating 3D text and animated donuts by software engineer Isiah Fletcher."
+    />
+    <meta
+      property="og:url"
+      content="https://isiahfletcher.com/projects/three-js-journey/floating-text-with-donuts/"
+    />
+    <meta
+      property="og:image"
+      content="https://isiahfletcher.com/floating-text-with-donuts.webp"
+    />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Floating 3D Text with Donuts - Three.js Demo" />
-    <meta name="twitter:description" content="Interactive Three.js WebGL experiment by Isiah Fletcher" />
-    <meta name="twitter:image" content="https://isiahfletcher.com/floating-text-with-donuts.webp" />
+    <meta
+      name="twitter:title"
+      content="Floating 3D Text with Donuts - Three.js Demo"
+    />
+    <meta
+      name="twitter:description"
+      content="Interactive Three.js WebGL experiment by Isiah Fletcher"
+    />
+    <meta
+      name="twitter:image"
+      content="https://isiahfletcher.com/floating-text-with-donuts.webp"
+    />
   </head>
   <body>
-    <nav class="demo-nav" aria-label="Project navigation"><a href="/projects/three-js-journey/">← Back to experiments</a><span>Three.js / Floating text</span></nav>
+    <nav class="demo-nav" aria-label="Project navigation">
+      <a href="/projects/three-js-journey/">← Back to experiments</a><span
+        >Three.js / Floating text</span>
+    </nav>
     <canvas class="webgl"></canvas>
     <script src="../../../scripts/floating-text-with-donuts.js"></script>
   </body>
@@ -39,12 +73,43 @@
     overflow: hidden;
   }
 
-  body { background: #252f2c; color: #e2d7bb; font-family: system-ui, sans-serif; }
-  .demo-nav { position: fixed; z-index: 10; top: 1rem; left: 1rem; right: 1rem; display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; align-items: center; padding: .85rem 1.1rem; background: rgba(37,47,44,.9); border: 1px solid #536259; border-radius: 4px; font-size: .9rem; }
-  .demo-nav a { color: #a9c1a3; text-decoration: none; }
-  .demo-nav a:hover { color: #e2d7bb; }
-  .demo-nav a:focus-visible { outline: 3px solid #bf8f68; outline-offset: 3px; }
-  .demo-nav span { color: #e2d7bb; }
+  body {
+    background: var(--color-bg);
+    color: var(--color-heading);
+    font: var(--font-size-body) / var(--line-height-body)
+      var(--font-family-body);
+  }
+  .demo-nav {
+    position: fixed;
+    z-index: 10;
+    top: var(--space-4);
+    left: var(--space-4);
+    right: var(--space-4);
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+    align-items: center;
+    padding: var(--space-3) var(--space-4);
+    background: var(--color-overlay);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-caption);
+  }
+  .demo-nav a {
+    color: var(--color-link);
+    text-decoration: none;
+  }
+  .demo-nav a:hover {
+    color: var(--color-heading);
+  }
+  .demo-nav a:focus-visible {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+  .demo-nav span {
+    color: var(--color-heading);
+  }
   .webgl {
     position: fixed;
     top: 0;

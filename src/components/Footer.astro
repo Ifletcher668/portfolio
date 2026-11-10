@@ -2,21 +2,81 @@
 import SocialLinks from "../components/SocialLinks.astro";
 const year = new Date().getFullYear();
 ---
+
 <footer class="site-footer">
   <div class="footer-inner">
-    <div><p class="footer-title">Isiah Fletcher</p><p>Code, music, writing, and whatever comes next.</p></div>
-    <div class="footer-links"><a href="/code">Code</a><a href="/music">Music</a><a href="/writing">Writing</a><a href="/about">About</a></div>
-    <div class="footer-social"><SocialLinks /><a href="https://isiahfletcher7.substack.com/" target="_blank" rel="noopener noreferrer">Read on Substack ↗</a></div>
+    <div>
+      <p class="footer-title">Isiah Fletcher</p><p>
+        Code, music, writing, and whatever comes next.
+      </p>
+    </div>
+    <div class="footer-links">
+      <a href="/code">Code</a><a href="/music">Music</a><a href="/writing"
+        >Writing</a
+      ><a href="/about">About</a>
+    </div>
+    <div class="footer-social">
+      <SocialLinks /><a
+        href="https://isiahfletcher7.substack.com/"
+        target="_blank"
+        rel="noopener noreferrer">Read on Substack ↗</a>
+    </div>
   </div>
   <p class="copyright">© {year} Isiah Fletcher.</p>
 </footer>
 <style>
-.site-footer{background:var(--color-footer);color:var(--color-text);border-top:1px solid var(--color-border);padding:3rem clamp(1rem,5vw,4rem) 1.5rem;font:var(--font-size-body)/var(--line-height-body) var(--font-family-body)}
-.footer-inner{max-width:var(--layout-wide);margin:auto;display:grid;grid-template-columns:2fr 1fr 1.4fr;gap:var(--space-6)}
-.footer-title{font:normal 1.8rem Georgia,serif;color:var(--color-heading);margin-bottom:var(--space-2)}
-.footer-links{display:flex;flex-direction:column;gap:var(--space-2)}
-.footer-social{display:flex;flex-direction:column;align-items:flex-start;gap:var(--space-4)}
-.site-footer a{color:var(--color-link);text-decoration:none}.site-footer a:hover{color:var(--color-heading)}
-.copyright{max-width:var(--layout-wide);margin:var(--space-6) auto 0;padding-top:var(--space-4);border-top:1px solid var(--color-surface);font-size:var(--font-size-caption)}
-@media(max-width:700px){.footer-inner{grid-template-columns:1fr 1fr}.footer-inner>div:first-child{grid-column:1/-1}}
+  .site-footer {
+    background: var(--color-footer);
+    color: var(--color-text);
+    border-top: 1px solid var(--color-border);
+    padding: var(--space-7) var(--chrome-gutter) var(--space-5);
+    font: var(--font-size-body) / var(--line-height-body)
+      var(--font-family-body);
+  }
+  .footer-inner {
+    max-width: var(--layout-wide);
+    margin: auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1.4fr;
+    gap: var(--space-6);
+  }
+  .footer-title {
+    font: var(--font-weight-regular) var(--font-size-footer-title) /
+      var(--line-height-heading) var(--font-family-lede);
+    color: var(--color-heading);
+    margin-bottom: var(--space-2);
+  }
+  .footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+  .footer-social {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-4);
+  }
+  .site-footer a {
+    color: var(--color-link);
+    text-decoration: none;
+  }
+  .site-footer a:hover {
+    color: var(--color-heading);
+  }
+  .copyright {
+    max-width: var(--layout-wide);
+    margin: var(--space-6) auto 0;
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--color-surface);
+    font-size: var(--font-size-caption);
+  }
+  @media (max-width: 700px) {
+    .footer-inner {
+      grid-template-columns: 1fr 1fr;
+    }
+    .footer-inner > div:first-child {
+      grid-column: 1/-1;
+    }
+  }
 </style>

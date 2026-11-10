@@ -16,20 +16,20 @@ Use the role or relationship token in a component. Add a new foundation only whe
 The scale is 0, 4, 8, 12, 16, 24, 32, 48, 64, 96, 128px at a 16px root.
 The numeric names are scale indices, not pixel multipliers.
 
-| Relationship | Token | Default size |
-| --- | --- | --- |
-| Label → supporting text | `--gap-label` | 12px |
-| Title → summary | `--gap-title-body` | 16px |
-| Paragraph → paragraph | `--gap-prose` | 24px |
-| Summary → action | `--gap-action` | 32px minimum |
-| Section heading → content | `--gap-section-heading` | 32px |
-| Grid gutter | `--gap-grid` | 24–32px |
-| Compact page intro gaps | `--gap-intro` | 32–48px |
-| Between jobs | `--gap-job` | 48px |
-| Between sections | `--gap-section` | 64–96px |
-| Compact card inset | `--card-padding-compact` | 24px |
-| Editorial card inset | `--card-padding` | 24–48px |
-| Page side gutter | `--page-gutter` | 16–24px |
+| Relationship              | Token                    | Default size |
+| ------------------------- | ------------------------ | ------------ |
+| Label → supporting text   | `--gap-label`            | 12px         |
+| Title → summary           | `--gap-title-body`       | 16px         |
+| Paragraph → paragraph     | `--gap-prose`            | 24px         |
+| Summary → action          | `--gap-action`           | 32px minimum |
+| Section heading → content | `--gap-section-heading`  | 32px         |
+| Grid gutter               | `--gap-grid`             | 24–32px      |
+| Compact page intro gaps   | `--gap-intro`            | 32–48px      |
+| Between jobs              | `--gap-job`              | 48px         |
+| Between sections          | `--gap-section`          | 64–96px      |
+| Compact card inset        | `--card-padding-compact` | 24px         |
+| Editorial card inset      | `--card-padding`         | 24–48px      |
+| Page side gutter          | `--page-gutter`          | 16–24px      |
 
 Use one owner for each gap. Avoid parent gap plus child margins for the same relationship. Paragraphs and headings have baseline margins; explicit card rules replace those margins. Essay cards keep a 24px date-to-title gap, 16px title-to-summary gap and at least 32px before the action. Actions align at the bottom of each grid row; text remains naturally sized with no line clamping or fixed card heights.
 
@@ -52,8 +52,16 @@ Size tokens use rem and clamp, with minimums that remain readable on phones. Do 
 
 Preserve the forest, moss, sage, paper and copper palette. Components use purpose-based names for background, surface, text, headings, metadata, borders, links and focus/accent. The light homepage writing section has separate text/link/border roles for its paper background.
 
-Older RGB-channel variables and size aliases remain available for legacy archive components and effects. New styles use the semantic tokens. Primary layouts, navigation, footer, homepage, interior panels and the résumé consume the shared system; individual historical project/poetry styles still retain some legacy values.
+All authored page and component styles use these tokens, including the Hobbies library, poems, older blog, social links, image captions, project index, and standalone Three.js demo. Legacy RGB-channel variables and old size aliases have been removed. The homepage canvas reads semantic colors from computed CSS; the demo imports tokens directly and renders over the shared background. Browser theme color also reads `--color-bg`.
+
+Third-party iframe interiors (Bandcamp, YouTube, Substack) and baked-in image/3D matcap textures are controlled by their providers/assets; their site-owned containers follow the tokens. Layout dimensions, media aspect ratios, breakpoints, border widths, animation geometry, and font-face registration descriptors remain concrete values because they do not represent typography/color/spacing choices.
+
+## Enforcement
+
+`npm run check:tokens` audits every authored CSS file, Astro style block, and inline style. It rejects raw colors (including canvas hex literals), literal typography, literal spacing, page-local token definitions, and undefined token references. Zero resets, auto margins and inherited typography remain valid CSS. `npm run build` runs this audit before the Astro checks and production build.
+
+When adding a visual role, define it here rather than reintroducing a page-local palette. Shared shadow/tint tokens centralize effects and retain the same forest palette.
 
 ## Validation
 
-Review `/`, `/work` and `/writing` at desktop and phone widths. Check long titles, wrapped metadata, bottom-aligned essay actions, one-column mobile cards, keyboard focus and horizontal overflow. Build with `npm run build`; this includes the repository's existing type check.
+Review `/`, `/work` and `/writing` at desktop and phone widths. Check long titles, wrapped metadata, bottom-aligned essay actions, one-column mobile cards, keyboard focus and horizontal overflow. Build with `npm run build`; this includes the token audit, type check and production build.

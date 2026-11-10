@@ -11,26 +11,58 @@ const posts = await getSubstackPosts();
 >
   <div class="blog-container">
     <div class="blog-intro-and-subscribe">
+      <h2>What is Gimbles and Toads?</h2>
+      <p>
+        For starters, “gimble” is an old English verb I’m trying to resurrect
+        after reading it in Alan Watts’ Become What You Are. It means “to grin
+        or smile,” “to move one’s lips in an unbecoming manner.” And it
+        certainly made me smile the moment I read it.
+      </p>
 
-      <h2>What is Gimbles and Toads? </h2>
-      <p>For starters, “gimble” is an old English verb I’m trying to resurrect after reading it in Alan Watts’ Become What You Are. It means “to grin or smile,” “to move one’s lips in an unbecoming manner.” And it certainly made me smile the moment I read it.</p>
-      
-      <p>It’s also the name of a toad that I have tattooed below my right knee that is shown sitting, smoking “Lily pad”, and pondering his own pontifications on the meaning of life. Peculiar, yes, that I had named my tattoo months before I knew the word’s true meaning.</p>
-      
-      <p>I’ve always been drawn to toads, ever since I was a kid at summer camp, wallowing in the mud and reeds in search of the source of their strange songs. They make me smile. They’re an instant spell that puts me in flow. It’s a treasure to hear their croaking lullabies at night, or to watch them catch a fly in mid-air as I meditate beside a pond.</p>
-      
-      <p>And now I wander in search of gimbles and toads and the meaning of our marvelous existence. I’ve had the good fortune to grow up in a household that valued exploration. But I also gathered my fair share of scars along the way.</p>
-      
-      <p>Here, I’m collecting the moments that made me gimble and moments that broke me open. I’ve learned that the best stories come from both. The joy and the heaviness. The flow and the friction.</p>
-      
-      <p>This newsletter is where I share those stories. Memoir. Philosophy. The strange croaking songs of a life lived in search of what makes us smile, even when—especially when—things get heavy.</p>
-      
+      <p>
+        It’s also the name of a toad that I have tattooed below my right knee
+        that is shown sitting, smoking “Lily pad”, and pondering his own
+        pontifications on the meaning of life. Peculiar, yes, that I had named
+        my tattoo months before I knew the word’s true meaning.
+      </p>
+
+      <p>
+        I’ve always been drawn to toads, ever since I was a kid at summer camp,
+        wallowing in the mud and reeds in search of the source of their strange
+        songs. They make me smile. They’re an instant spell that puts me in
+        flow. It’s a treasure to hear their croaking lullabies at night, or to
+        watch them catch a fly in mid-air as I meditate beside a pond.
+      </p>
+
+      <p>
+        And now I wander in search of gimbles and toads and the meaning of our
+        marvelous existence. I’ve had the good fortune to grow up in a household
+        that valued exploration. But I also gathered my fair share of scars
+        along the way.
+      </p>
+
+      <p>
+        Here, I’m collecting the moments that made me gimble and moments that
+        broke me open. I’ve learned that the best stories come from both. The
+        joy and the heaviness. The flow and the friction.
+      </p>
+
+      <p>
+        This newsletter is where I share those stories. Memoir. Philosophy. The
+        strange croaking songs of a life lived in search of what makes us smile,
+        even when—especially when—things get heavy.
+      </p>
+
       <p>If that sounds like something worth reading, stick around.</p>
-      
-      <iframe src="https://isiahfletcher7.substack.com/embed" width="480" height="150" style="border:1px solid #EEE; background:white;" frameborder="0" scrolling="no"></iframe>
+
+      <iframe
+        src="https://isiahfletcher7.substack.com/embed"
+        width="480"
+        height="150"
+        class="subscribe-frame"
+        title="Subscribe to Gimbles and Toads"></iframe>
     </div>
     <div class="cards-grid">
-     
       {
         posts.map((post) => (
           <article class="card">
@@ -59,103 +91,74 @@ const posts = await getSubstackPosts();
   .blog-container {
     display: flex;
     flex-direction: column;
-    gap: 56px;
-    max-width: var(--content-width-wide);
+    gap: var(--gap-section);
+    max-width: var(--layout-content);
     margin: 0 auto;
-    padding: var(--space-3xl) var(--space-xl);
   }
-
   .blog-intro-and-subscribe {
     display: flex;
     flex-direction: column;
-    align-items:baseline;
+    align-items: baseline;
   }
-
-  .blog-intro-and-subscribe iframe {
+  .subscribe-frame {
     align-self: center;
+    border: 1px solid var(--color-border-on-light);
+    background: var(--color-heading);
   }
-
-  h1 {
-    font-size: var(--font-size-5xl);
-    color: var(--accent);
-    margin-bottom: var(--space-3xl);
-    text-align: center;
-  }
-
   .cards-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: var(--space-xl);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+    gap: var(--gap-grid);
     max-width: 100%;
   }
-
   .card {
-    background: rgba(var(--gray-dark), 100%);
-    border: 1px solid rgba(var(--accent), 0.2);
-    border-radius: var(--radius-xl);
-    padding: var(--space-xl);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--card-padding);
     display: flex;
     flex-direction: column;
-    transition: all var(--transition-base);
-    min-height: 280px;
-    max-width: 400px;
-    justify-self: center;
-    cursor: pointer;
+    transition:
+      transform var(--transition-base),
+      box-shadow var(--transition-base);
+    width: 100%;
   }
-
-  .card:hover {
-    transform: translateY(-6px);
-    box-shadow:
-      0px 10px 15px -3px var(--accent-dark),
-      0px 4px 6px -2px var(--accent),
-      0px 2px 4px var(--accent-dark);
-  }
-
   .card-content {
     flex: 1;
+    padding: 0;
   }
-
   .date {
     display: block;
-    font-size: var(--font-size-sm);
-    color: rgba(var(--white), 0.6);
-    margin-bottom: var(--space-sm);
+    font-size: var(--font-size-caption);
+    color: var(--color-muted);
+    margin-bottom: var(--space-5);
   }
-
   .title {
-    font-size: var(--font-size-xl);
-    color: var(--accent);
-    margin: 0 0 var(--space-md);
-    line-height: var(--line-height-tight);
+    font-size: var(--font-size-card);
+    color: var(--color-heading);
+    margin: 0 0 var(--gap-title-body);
+    line-height: var(--line-height-heading);
   }
-
   .excerpt {
-    color: rgba(var(--white), 0.8);
-    line-height: var(--line-height-base);
-    margin-bottom: var(--space-lg);
-    font-size: var(--font-size-md);
+    color: var(--color-text);
+    line-height: var(--line-height-body);
+    margin-bottom: var(--gap-action);
+    font-size: var(--font-size-body);
   }
-
   .read-link {
-    color: var(--accent-light);
+    color: var(--color-link);
     text-decoration: none;
-    font-weight: 500;
+    font-weight: var(--font-weight-label);
     align-self: flex-start;
     transition: color var(--transition-fast);
-    font-size: var(--font-size-md);
+    font-size: var(--font-size-body);
   }
-
   .read-link:hover {
-    color: var(--accent);
+    color: var(--color-link-hover);
   }
-
   @media (max-width: 768px) {
     .cards-grid {
       grid-template-columns: 1fr;
-    }
-
-    .blog-container {
-      padding: var(--space-2xl) var(--space-lg);
     }
   }
 </style>

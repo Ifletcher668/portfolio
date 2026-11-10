@@ -98,7 +98,17 @@ const siteName = "Isiah Fletcher";
 <meta name="twitter:image:alt" content={`${title} - ${siteName}`} />
 
 <!-- Additional SEO -->
-<meta name="theme-color" content="#000000" />
+<meta name="theme-color" />
+<script>
+  document
+    .querySelector('meta[name="theme-color"]')
+    ?.setAttribute(
+      "content",
+      getComputedStyle(document.documentElement)
+        .getPropertyValue("--color-bg")
+        .trim(),
+    );
+</script>
 <link
   rel="alternate"
   type="application/rss+xml"
