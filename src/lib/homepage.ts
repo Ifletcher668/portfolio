@@ -1,0 +1,10 @@
+import { requestWithMetadata } from "@tinacms/astro/data";
+import client from "../../tina/__generated__/client";
+
+export const getHomepage = () =>
+  requestWithMetadata(
+    client.queries.homepage({ relativePath: "home.json" }),
+    { priority: "primary" },
+  );
+
+export type Homepage = Awaited<ReturnType<typeof getHomepage>>["data"]["homepage"];

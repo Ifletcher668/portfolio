@@ -3,27 +3,37 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "npm run check:tokens && astro check && astro build",
+    "dev": "tinacms dev -c \"astro dev\"",
+    "start": "npm run dev",
+    "build": "tinacms build --content=local -c \"npm run check:tokens && astro check && astro build\"",
     "preview": "astro preview",
     "astro": "astro",
+    "build:local": "tinacms build --local --skip-cloud-checks -c \"npm run check:tokens && astro check && astro build\"",
     "check:tokens": "node scripts/check-design-tokens.mjs"
   },
   "dependencies": {
-    "@astrojs/check": "^0.5.2",
-    "@astrojs/mdx": "^2.1.1",
+    "@astrojs/check": "^0.9.12",
+    "@astrojs/mdx": "^4.3.14",
+    "@astrojs/netlify": "^6.6.5",
     "@astrojs/rss": "^4.0.5",
-    "@astrojs/sitemap": "^3.0.5",
-    "astro": "^4.3.5",
+    "@astrojs/sitemap": "^3.7.4",
+    "@tinacms/astro": "^0.8.0",
+    "astro": "^5.18.2",
     "lil-gui": "^0.19.2",
     "rss-parser": "^3.13.0",
     "three": "^0.172.0",
     "typescript": "^5.3.3"
   },
   "devDependencies": {
+    "@tinacms/cli": "^4.0.5",
     "@types/three": "^0.172.0",
     "prettier": "^3.6.2",
-    "prettier-plugin-astro": "^0.14.1"
+    "prettier-plugin-astro": "^0.14.1",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "tinacms": "^3.15.2"
+  },
+  "engines": {
+    "node": "22.x"
   }
 }

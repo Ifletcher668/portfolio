@@ -1,5 +1,10 @@
 ---
 import Home from "../layouts/Home.astro";
+import TinaIsland from "@tinacms/astro/TinaIsland.astro";
+import HomepageIntro from "../components/HomepageIntro.astro";
+import { getHomepage } from "../lib/homepage";
+import { islands } from "../lib/islands";
+const homepage = await getHomepage();
 import IcosahedronBackground from "../components/IcosahedronBackground.astro";
 import { getSubstackPosts } from "../lib/substack";
 let featuredPost;
@@ -21,21 +26,9 @@ try {
       height="500"
       fetchpriority="high"
     />
-    <div class="intro">
-      <p class="eyebrow">Software engineer / Drummer / Writer</p>
-      <h1>Hi, I'm Isiah.</h1>
-      <p class="lead">I build software, play drums, and write.</p>
-      <p>
-        I like making things, understanding how they work, and following ideas
-        that interest me. This is a home for the projects, music, writing, and
-        occasional curiosities that come out of that.
-      </p>
-      <div class="actions">
-        <a class="button" href="#explore">Explore the site ↘</a><a
-          href="/about">More about me</a
-        >
-      </div>
-    </div>
+    <TinaIsland name="homepage" wrapper={islands.homepage.wrapper} primary>
+      <HomepageIntro data={homepage.data.homepage} />
+    </TinaIsland>
   </section>
   <section class="shell" id="explore">
     <div class="section-intro">
@@ -162,22 +155,10 @@ try {
     position: relative;
     z-index: 1;
   }
-  .intro {
-    max-width: 590px;
-  }
-  .intro > p:not(.eyebrow) {
-    max-width: 51ch;
-    color: var(--color-text);
-  }
-  h1 {
-    font-size: var(--font-size-title);
-    margin: 0 0 var(--gap-title-body);
-  }
-  .lead {
-    font: var(--font-weight-regular) var(--font-size-lede) /
-      var(--line-height-lede) var(--font-family-lede) !important;
-    color: var(--color-heading) !important;
-  }
+
+
+
+
   .hero-image {
     width: 100%;
     max-height: 650px;
@@ -185,25 +166,9 @@ try {
     filter: drop-shadow(var(--shadow-hero));
     border-radius: 0;
   }
-  .actions {
-    display: flex;
-    gap: var(--gap-grid);
-    align-items: center;
-    flex-wrap: wrap;
-    margin-top: var(--gap-action);
-  }
-  .button {
-    background: var(--color-link);
-    color: var(--color-bg);
-    padding: var(--space-3) var(--space-5);
-    text-decoration: none;
-    font-weight: var(--font-weight-button);
-    border-radius: var(--radius-md);
-  }
-  .button:hover {
-    background: var(--color-heading);
-    color: var(--color-bg);
-  }
+
+
+
   .section-intro {
     padding: var(--gap-section) 0 var(--gap-section-heading);
     border-top: 1px solid var(--color-border);
