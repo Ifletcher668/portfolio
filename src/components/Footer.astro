@@ -11,12 +11,12 @@ const year = new Date().getFullYear();
   <p class="copyright">© {year} Isiah Fletcher.</p>
 </footer>
 <style>
-.site-footer{background:#1e2924;color:#c3d0bf;border-top:1px solid #48584d;padding:3rem clamp(1rem,5vw,4rem) 1.5rem;font:normal 1rem/1.6 system-ui,sans-serif}
-.footer-inner{max-width:1160px;margin:auto;display:grid;grid-template-columns:2fr 1fr 1.4fr;gap:2rem}
-.footer-title{font:normal 1.8rem Georgia,serif;color:#e2d7bb;margin-bottom:.5rem}
-.footer-links{display:flex;flex-direction:column;gap:.45rem}
-.footer-social{display:flex;flex-direction:column;align-items:flex-start;gap:1rem}
-.site-footer a{color:#a9c1a3;text-decoration:none}.site-footer a:hover{color:#e2d7bb}
-.copyright{max-width:1160px;margin:2rem auto 0;padding-top:1rem;border-top:1px solid #34443c;font-size:.85rem}
+.site-footer{background:var(--color-footer);color:var(--color-text);border-top:1px solid var(--color-border);padding:3rem clamp(1rem,5vw,4rem) 1.5rem;font:var(--font-size-body)/var(--line-height-body) var(--font-family-body)}
+.footer-inner{max-width:var(--layout-wide);margin:auto;display:grid;grid-template-columns:2fr 1fr 1.4fr;gap:var(--space-6)}
+.footer-title{font:normal 1.8rem Georgia,serif;color:var(--color-heading);margin-bottom:var(--space-2)}
+.footer-links{display:flex;flex-direction:column;gap:var(--space-2)}
+.footer-social{display:flex;flex-direction:column;align-items:flex-start;gap:var(--space-4)}
+.site-footer a{color:var(--color-link);text-decoration:none}.site-footer a:hover{color:var(--color-heading)}
+.copyright{max-width:var(--layout-wide);margin:var(--space-6) auto 0;padding-top:var(--space-4);border-top:1px solid var(--color-surface);font-size:var(--font-size-caption)}
 @media(max-width:700px){.footer-inner{grid-template-columns:1fr 1fr}.footer-inner>div:first-child{grid-column:1/-1}}
 </style>

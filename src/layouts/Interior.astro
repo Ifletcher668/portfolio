@@ -14,23 +14,29 @@ const { title, description, eyebrow, heading, intro } = Astro.props;
   </div>
 </Home>
 <style is:global>
-  .interior.shell{width:min(1100px,calc(100% - 3rem));margin-inline:auto;padding:clamp(3rem,7vw,6rem) 0 7rem}
-  .interior .page-intro{max-width:850px;margin-bottom:clamp(3rem,6vw,5rem)}
-  .interior .eyebrow{font:600 .76rem/1.5 system-ui,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#a9c1a3;margin:0 0 1rem}
-  .interior h1{font-size:clamp(3.6rem,7vw,6rem);margin:0 0 1.5rem}
-  .interior h2{font-size:clamp(2.3rem,4vw,3.5rem);margin:0 0 1rem}
-  .interior h3{font-size:clamp(1.6rem,3vw,2.2rem);margin:0 0 .8rem}
-  .interior p{color:#c3d0bf;margin:0 0 1.3rem}
-  .interior .lede{font:normal clamp(1.4rem,2.4vw,1.9rem)/1.4 Georgia,serif;color:#e2d7bb;max-width:42ch}
-  .interior .section{border-top:1px solid #536259;padding:3rem 0}
-  .interior .grid-two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2rem}
-  .interior .panel{background:#34443c;padding:clamp(1.4rem,3vw,2.3rem)}
-  .interior .panel p:last-child{margin-bottom:0}
-  .interior .media{width:100%;aspect-ratio:16/9;object-fit:cover;margin-bottom:1.5rem}
-  .interior .video{width:100%;aspect-ratio:16/9;margin-bottom:1.5rem}
+  .interior.shell{width:min(var(--layout-content),calc(100% - 2 * var(--page-gutter)));margin-inline:auto;padding:var(--page-padding-start) 0 var(--page-padding-end)}
+  .interior .page-intro{max-width:var(--layout-prose);margin-bottom:var(--gap-section)}
+  .interior .eyebrow{font:var(--font-weight-label) var(--font-size-label)/var(--line-height-label) var(--font-family-body);letter-spacing:var(--letter-spacing-label);text-transform:uppercase;color:var(--color-link);margin:0 0 var(--gap-label)}
+  .interior h1{font-size:var(--font-size-title);margin:0 0 var(--space-5)}
+  .interior h2{font-size:var(--font-size-section);margin:0 0 var(--gap-section-heading)}
+  .interior h3{font-size:var(--font-size-card);line-height:var(--line-height-heading);margin:0 0 var(--gap-title-body)}
+  .interior p{color:var(--color-text);margin:0 0 var(--gap-prose)}
+  .interior .lede{font:var(--font-weight-regular) var(--font-size-lede)/var(--line-height-lede) var(--font-family-lede);color:var(--color-heading);max-width:42ch}
+  .interior .section{border-top:1px solid var(--color-border);padding-block:var(--gap-section)}
+  .interior .grid-two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--gap-grid)}
+  .interior .panel{background:var(--color-surface);padding:var(--card-padding)}
+  .interior .panel > :last-child{margin-bottom:0}
+  .interior .media{width:100%;aspect-ratio:16/9;object-fit:cover;margin-bottom:var(--gap-prose)}
+  .interior .video{width:100%;aspect-ratio:16/9;margin-bottom:var(--gap-prose)}
   .interior .video iframe{width:100%;height:100%;border:0}
-  .interior a{color:#a9c1a3}
-  .interior a:hover{color:#e2d7bb}
-  .interior .small{font-size:.88rem;color:#a9b6a8}
-  @media(max-width:700px){.interior .grid-two{grid-template-columns:1fr}.interior.shell{width:calc(100% - 2rem);padding-bottom:4rem}}
+  .interior a{color:var(--color-link)}
+  .interior a:hover{color:var(--color-link-hover)}
+  .interior .small{font-size:var(--font-size-caption);color:var(--color-muted)}
+  /* Explicit card relationships prevent paragraph margins from flattening hierarchy. */
+  .interior .essay-card{display:flex;flex-direction:column;align-items:flex-start}
+  .interior .essay-card .essay-date{margin:0 0 var(--space-5)}
+  .interior .essay-card h3{margin:0 0 var(--gap-title-body)}
+  .interior .essay-card .essay-summary{margin:0 0 var(--gap-action)}
+  .interior .essay-card .essay-action{margin-top:auto}
+  @media(max-width:700px){.interior .grid-two{grid-template-columns:1fr}}
 </style>

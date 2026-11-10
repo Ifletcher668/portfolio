@@ -1,76 +1,8 @@
+@import "./tokens.css";
+
 /* ==========================================================================
    DESIGN TOKENS
    ========================================================================== */
-
-:root {
-  /* Color Palette */
-  --accent: rgb(205, 145, 100);
-  --accent-dark: rgb(180, 95, 50);
-  --accent-light: rgb(230, 180, 140);
-  --accent-lightest: rgba(205, 145, 100, 0.1);
-  --accent-purple: rgb(155, 90, 180);
-  --accent-coral: rgb(255, 120, 100);
-  --accent-bright: 25, 230, 210;
-
-  /* Neutrals */
-  --black: 28, 35, 42;
-  --white: 245, 225, 205;
-  --gray: 70, 85, 95;
-  --gray-dark: 34, 41, 57;
-
-  /* Gradients */
-  --gray-gradient: rgba(var(--gray-dark), 50%), rgba(var(--black));
-  --gray-gradient-solid: rgba(var(--gray-dark), 100%), rgba(var(--black));
-
-  /* Shadows */
-  --box-shadow: 0 2px 6px rgba(var(--gray), 25%),
-    0 8px 24px rgba(var(--gray), 33%), 0 16px 32px rgba(var(--gray), 33%);
-  --box-shadow-sm: 2px 4px 10px rgba(var(--gray), 50%),
-    0 2px 6px rgba(var(--gray), 15%);
-  --box-shadow-lg: 0 2px 10px rgba(var(--accent-bright), 40%),
-    0 2px 6px rgba(var(--gray), 30%);
-
-  /* Spacing Scale */
-  --space-xs: 0.25rem;
-  --space-sm: 0.5rem;
-  --space-md: 1rem;
-  --space-lg: 1.5rem;
-  --space-xl: 2rem;
-  --space-2xl: 3rem;
-  --space-3xl: 4rem;
-
-  /* Typography Scale */
-  --font-size-base: 22px;
-  --font-size-sm: 0.875rem;
-  --font-size-md: 1rem;
-  --font-size-lg: 1.125rem;
-  --font-size-xl: 1.25rem;
-  --font-size-2xl: 1.563rem;
-  --font-size-3xl: 1.953rem;
-  --font-size-4xl: 2.441rem;
-  --font-size-5xl: 3.052rem;
-
-  /* Line Heights */
-  --line-height-tight: 1.2;
-  --line-height-base: 1.7;
-  --line-height-relaxed: 1.8;
-
-  /* Border Radius */
-  --radius-sm: 2px;
-  --radius-md: 4px;
-  --radius-lg: 8px;
-  --radius-xl: 12px;
-
-  /* Transitions */
-  --transition-fast: 0.15s ease;
-  --transition-base: 0.25s ease;
-  --transition-slow: 0.3s ease;
-
-  /* Layout */
-  --content-width: 720px;
-  --content-width-wide: 1100px;
-  --breakpoint-mobile: 720px;
-}
 
 /* ==========================================================================
    FONT FACES
@@ -78,7 +10,7 @@
 
 @font-face {
   font-family: "CormorantGaramond";
-  src: url("/fonts/CormorantGaramond-Regular.ttf") format("woff");
+  src: url("/fonts/CormorantGaramond-Regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -86,7 +18,7 @@
 
 @font-face {
   font-family: "CormorantGaramond";
-  src: url("/fonts/CormorantGaramond-Bold.ttf") format("woff");
+  src: url("/fonts/CormorantGaramond-Bold.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
   font-display: swap;

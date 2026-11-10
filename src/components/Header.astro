@@ -14,12 +14,12 @@ const links = [
   </nav>
 </header>
 <style>
-  .site-header{position:relative;z-index:10;background:#252f2c;border-bottom:1px solid #48584d;color:#e2d7bb}
-  nav{max-width:1200px;margin:auto;padding:1.15rem clamp(1.2rem,5vw,4rem);display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
-  .brand{font-family:Georgia,serif;font-size:1.4rem;letter-spacing:.01em}
+  .site-header{position:relative;z-index:10;background:var(--color-bg);border-bottom:1px solid var(--color-border);color:var(--color-heading)}
+  nav{max-width:1200px;margin:auto;padding:1.15rem clamp(1.2rem,5vw,4rem);display:flex;align-items:center;justify-content:space-between;gap:var(--space-6);flex-wrap:wrap}
+  .brand{font-family:var(--font-family-lede);font-size:1.4rem;letter-spacing:.01em}
   .nav-links{display:flex;gap:clamp(.8rem,3vw,2rem);flex-wrap:wrap}
-  a{color:#e2d7bb;text-decoration:none;font-size:1rem}
-  a:hover{color:#a9c1a3}
-  a:focus-visible{outline:3px solid #bf8f68;outline-offset:4px}
-  @media(max-width:540px){nav{gap:.65rem}.nav-links{width:100%;justify-content:space-between}}
+  a{color:var(--color-heading);text-decoration:none;font-size:var(--font-size-body)}
+  a:hover{color:var(--color-link)}
+  a:focus-visible{outline:3px solid var(--color-accent);outline-offset:4px}
+  @media(max-width:540px){nav{gap:var(--space-3)}.nav-links{width:100%;justify-content:space-between}}
 </style>
