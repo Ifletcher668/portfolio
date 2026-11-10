@@ -1,25 +1,31 @@
 ---
 import { tinaField } from "@tinacms/astro/tina-field";
 import type { Homepage } from "../lib/homepage";
-interface Props { data: Homepage; }
+interface Props {
+  data: Homepage;
+}
 const { data } = Astro.props;
-const buttonColor = data.buttonColor === "paper" ? "var(--color-heading)" : "var(--color-link)";
+const buttonColor =
+  data.buttonColor === "paper" ? "var(--color-heading)" : "var(--color-link)";
 ---
+
 <div class="intro" style={`--color-homepage-button-background:${buttonColor}`}>
-      <p class="eyebrow">Software engineer / Drummer / Writer</p>
-      <h1 data-tina-field={tinaField(data, "headline")}>{data.headline}</h1>
-      <p class="lead">I build software, play drums, and write.</p>
-      <p>
-        I like making things, understanding how they work, and following ideas
-        that interest me. This is a home for the projects, music, writing, and
-        occasional curiosities that come out of that.
-      </p>
-      <div class="actions">
-        <a class="button" href="#explore" data-tina-field={tinaField(data, "buttonColor")}>Explore the site ↘</a><a
-          href="/about">More about me</a
-        >
-      </div>
-    </div>
+  <p class="eyebrow">Software engineer / Drummer / Writer</p>
+  <h1 data-tina-field={tinaField(data, "headline")}>{data.headline}</h1>
+  <p class="lead">I build software, play drums, and write.</p>
+  <p>
+    I like making things, understanding how they work, and following ideas that
+    interest me. This is a home for the projects, music, writing, and occasional
+    curiosities that come out of that.
+  </p>
+  <div class="actions">
+    <a
+      class="button"
+      href="#explore"
+      data-tina-field={tinaField(data, "buttonColor")}>Explore the site ↘</a
+    ><a href="/about">More about me</a>
+  </div>
+</div>
 <style>
   .eyebrow {
     font: var(--font-weight-label) var(--font-size-label) /
