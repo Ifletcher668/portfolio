@@ -5,9 +5,10 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro check && astro build",
+    "build": "npm run check:tokens && astro check && astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "check:tokens": "node scripts/check-design-tokens.mjs"
   },
   "dependencies": {
     "@astrojs/check": "^0.5.2",
@@ -21,6 +22,7 @@
     "typescript": "^5.3.3"
   },
   "devDependencies": {
+    "@types/three": "^0.172.0",
     "prettier": "^3.6.2",
     "prettier-plugin-astro": "^0.14.1"
   }

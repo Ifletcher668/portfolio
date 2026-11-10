@@ -8,7 +8,7 @@ const { title, body } = Astro.props;
 ---
 
 <div class="poem">
-  <bold class="poem-title">{title}</bold>
+  <h3 class="poem-title">{title}</h3>
   <p>
     {
       body.map((line) => {
@@ -28,18 +28,20 @@ const { title, body } = Astro.props;
   .poem {
     display: flex;
     flex-direction: column;
-    gap: 1em;
+    gap: var(--space-4);
 
-    background: rgba(var(--gray-dark), 100%);
-    padding: 2em;
-    border-radius: 2px;
+    background: var(--color-surface);
+    padding: var(--space-6);
+    border-radius: var(--radius-sm);
   }
 
   .poem p {
     margin: 0;
-    color: var(--accent);
+    color: var(--color-text);
   }
   .poem-title {
-    color: rgb(var(--accent-bright));
+    margin: 0;
+    font-size: var(--font-size-poem-title);
+    color: var(--color-heading);
   }
 </style>

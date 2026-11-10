@@ -58,6 +58,7 @@ const BOOKS_LIST = [
   },
 ];
 ---
+
 <Layout
   title="Hobbies & Interests"
   description="Poetry, favorite games, books, and fantasy worlds from Isiah Fletcher's personal archive."
@@ -67,191 +68,461 @@ const BOOKS_LIST = [
       <p class="section-label">A personal collection</p>
       <h2 id="library-heading">Worlds worth wandering.</h2>
       <div class="intro-columns">
-        <p>I love narrative. It <em>excites me</em> to sink my teeth into the flesh of a different world. From Dungeons & Dragons to copious video games, anime to books, it's how I've come to even perceive our own world: a story in which I am one of trillions of characters.</p>
-        <p>I love medieval fantasy above all else. Whether it's the stories I immerse myself in or the Renaissance fairs I attend, there's a part of me that yearns to live as though those worlds were real.</p>
-        <p>Of course, modernity has its perks. I'm a software engineer, after all, and I know full well that video games wouldn't exist without centuries of progress. Perhaps that's the beauty of the modern age: I can lose myself in worlds of swords and sorcery while enjoying the technology that brings them to life.</p>
+        <p>
+          I love narrative. It <em>excites me</em> to sink my teeth into the flesh
+          of a different world. From Dungeons & Dragons to copious video games, anime
+          to books, it's how I've come to even perceive our own world: a story in
+          which I am one of trillions of characters.
+        </p>
+        <p>
+          I love medieval fantasy above all else. Whether it's the stories I
+          immerse myself in or the Renaissance fairs I attend, there's a part of
+          me that yearns to live as though those worlds were real.
+        </p>
+        <p>
+          Of course, modernity has its perks. I'm a software engineer, after
+          all, and I know full well that video games wouldn't exist without
+          centuries of progress. Perhaps that's the beauty of the modern age: I
+          can lose myself in worlds of swords and sorcery while enjoying the
+          technology that brings them to life.
+        </p>
       </div>
       <nav class="library-index" aria-label="Explore interests">
-        <a href="#poetry"><span>01</span> Poetry <span aria-hidden="true">↗</span></a>
-        <a href="#games"><span>02</span> Video games <span aria-hidden="true">↗</span></a>
-        <a href="#books"><span>03</span> Books <span aria-hidden="true">↗</span></a>
+        <a href="#poetry"
+          ><span>01</span> Poetry <span aria-hidden="true">↗</span></a
+        >
+        <a href="#games"
+          ><span>02</span> Video games <span aria-hidden="true">↗</span></a
+        >
+        <a href="#books"
+          ><span>03</span> Books <span aria-hidden="true">↗</span></a
+        >
       </nav>
     </section>
-    <section class="library-section" id="poetry" aria-labelledby="poetry-heading">
-      <div class="section-heading"><div><p class="section-label">01 / Original writing</p><h2 id="poetry-heading">Poetry</h2></div><p>When I'm not writing or reading fantasy stories, coding or working out at the gym, I'm writing poetry. Here are a few pieces from the archive.</p></div>
-    <div class="poetry-grid">
-      <Poem
-        title="The Act of Giving"
-        body={[
-          "Blood cradles the shoreline",
-          "where my visage skitters",
-          "in the firelight behind",
-          "like dawn moonbeams. I heave,",
-          "reel my battered self",
-          "upward, a hunter",
-          "(a prey) no longer to this",
-          "eventuality—ready now",
-          "to nourish, disseminate",
-          "the rhythm of nurtured words",
-          "that drum my final heartbeats:",
-          null,
-          "peace, at last, is listening",
-          "to the ash patter on",
-          "the crests of scattered waves.",
-        ]}
-      />
-      <Poem
-        title="On Letting"
-        body={[
-          "A dream of honey sweetness",
-          "is a dream I know",
-          "in which I love,",
-          "the venesection",
-          "purifies the mind-murmurs",
-          "and grave memories.",
-          null,
-          "The boy who is no longer",
-          "afraid of troll's",
-          "blood mourns his own",
-          "passing, funeral",
-          "blessed by rain, laughter:",
-          "let him be slowly",
-          "consumed by lichen,",
-          "moss, blood-forged love",
-          "in the hardship of friendship,",
-          "and let his dreams be grounded,",
-          "sorrow answered in the echoes",
-          "between mountains, and apologies",
-          "held softly as a crying child",
-          null,
-          "then released like wistful",
-          "wind. He, to the moment,",
-          "here only",
-          "as breath bargains",
-          "with the interstice. Here,",
-          null,
-          "fear and sorrow",
-          "safeguard temples,",
-          "bow deep in deference",
-          "to antediluvian deities:",
-          "Let them serve a reminder",
-          "of the magic that heals",
-          "all laid barren the past.",
-        ]}
-      />
+    <section
+      class="library-section"
+      id="poetry"
+      aria-labelledby="poetry-heading"
+    >
+      <div class="section-heading">
+        <div>
+          <p class="section-label">01 / Original writing</p><h2
+            id="poetry-heading"
+          >
+            Poetry
+          </h2>
+        </div><p>
+          When I'm not writing or reading fantasy stories, coding or working out
+          at the gym, I'm writing poetry. Here are a few pieces from the
+          archive.
+        </p>
+      </div>
+      <div class="poetry-grid">
+        <Poem
+          title="The Act of Giving"
+          body={[
+            "Blood cradles the shoreline",
+            "where my visage skitters",
+            "in the firelight behind",
+            "like dawn moonbeams. I heave,",
+            "reel my battered self",
+            "upward, a hunter",
+            "(a prey) no longer to this",
+            "eventuality—ready now",
+            "to nourish, disseminate",
+            "the rhythm of nurtured words",
+            "that drum my final heartbeats:",
+            null,
+            "peace, at last, is listening",
+            "to the ash patter on",
+            "the crests of scattered waves.",
+          ]}
+        />
+        <Poem
+          title="On Letting"
+          body={[
+            "A dream of honey sweetness",
+            "is a dream I know",
+            "in which I love,",
+            "the venesection",
+            "purifies the mind-murmurs",
+            "and grave memories.",
+            null,
+            "The boy who is no longer",
+            "afraid of troll's",
+            "blood mourns his own",
+            "passing, funeral",
+            "blessed by rain, laughter:",
+            "let him be slowly",
+            "consumed by lichen,",
+            "moss, blood-forged love",
+            "in the hardship of friendship,",
+            "and let his dreams be grounded,",
+            "sorrow answered in the echoes",
+            "between mountains, and apologies",
+            "held softly as a crying child",
+            null,
+            "then released like wistful",
+            "wind. He, to the moment,",
+            "here only",
+            "as breath bargains",
+            "with the interstice. Here,",
+            null,
+            "fear and sorrow",
+            "safeguard temples,",
+            "bow deep in deference",
+            "to antediluvian deities:",
+            "Let them serve a reminder",
+            "of the magic that heals",
+            "all laid barren the past.",
+          ]}
+        />
 
-      <Poem
-        title="In Recurse"
-        body={[
-          "Memory is a meteor shower",
-          "and galaxy black is an empty",
-          "oblivion if in-betweens",
-          "are seen as something",
-          "discarded, distant from all,",
-          "but is emptiness anything",
-          "besides anticipation,",
-          "a seed that flowers into",
-          null,
-          "joy? A small streak ignites",
-          "the thought of a flurry",
-          "of fur unfurling",
-          "when you stretch your loving",
-          "body across my lap,",
-          "and the impact...",
-          "well, that's the easy part:",
-          "when the last thing I saw",
-          "was your love limp",
-          "and cold as a starless sky,",
-          "and the emptiness it created",
-          "when I knew I did not fill",
-          "each moment with precious",
-          null,
-          "joy. But to you, it wasn't",
-          "a thing to fill or discard,",
-          "but who you were. Joy becoming",
-          "itself. You were the sky",
-          "across galaxies, and you,",
-          "too, became a prediction",
-          "in the art of loving,",
-          "until all that was",
-          "and all that is",
-          "is a unanimous pulse",
-          "in anticipation",
-          "of dawn.",
-        ]}
-      />
-    </div>
-
-
+        <Poem
+          title="In Recurse"
+          body={[
+            "Memory is a meteor shower",
+            "and galaxy black is an empty",
+            "oblivion if in-betweens",
+            "are seen as something",
+            "discarded, distant from all,",
+            "but is emptiness anything",
+            "besides anticipation,",
+            "a seed that flowers into",
+            null,
+            "joy? A small streak ignites",
+            "the thought of a flurry",
+            "of fur unfurling",
+            "when you stretch your loving",
+            "body across my lap,",
+            "and the impact...",
+            "well, that's the easy part:",
+            "when the last thing I saw",
+            "was your love limp",
+            "and cold as a starless sky,",
+            "and the emptiness it created",
+            "when I knew I did not fill",
+            "each moment with precious",
+            null,
+            "joy. But to you, it wasn't",
+            "a thing to fill or discard,",
+            "but who you were. Joy becoming",
+            "itself. You were the sky",
+            "across galaxies, and you,",
+            "too, became a prediction",
+            "in the art of loving,",
+            "until all that was",
+            "and all that is",
+            "is a unanimous pulse",
+            "in anticipation",
+            "of dawn.",
+          ]}
+        />
+      </div>
     </section>
     <section class="library-section" id="games" aria-labelledby="games-heading">
-      <div class="section-heading"><div><p class="section-label">02 / Interactive worlds</p><h2 id="games-heading">Video games</h2></div><p>The games I enjoy most.</p></div>
+      <div class="section-heading">
+        <div>
+          <p class="section-label">02 / Interactive worlds</p><h2
+            id="games-heading"
+          >
+            Video games
+          </h2>
+        </div><p>The games I enjoy most.</p>
+      </div>
       <div class="game-grid">
-        {GAMES_LIST.map((game,index) => (
-          <article class="game-card">
-            <div class="card-top"><span class="item-number">{String(index+1).padStart(2,"0")}</span><span class="rating">{game.rating}</span></div>
-            <h3>{game.title}</h3>
-            <p>{game.description}</p>
-            <a href={game.steam} target="_blank" rel="noopener noreferrer">View on Steam ↗</a>
-          </article>
-        ))}
+        {
+          GAMES_LIST.map((game, index) => (
+            <article class="game-card">
+              <div class="card-top">
+                <>
+                  <span class="item-number">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <span class="rating">{game.rating}</span>
+                </>
+              </div>
+              <h3>{game.title}</h3>
+              <p>{game.description}</p>
+              <a href={game.steam} target="_blank" rel="noopener noreferrer">
+                View on Steam ↗
+              </a>
+            </article>
+          ))
+        }
       </div>
     </section>
     <section class="library-section" id="books" aria-labelledby="books-heading">
-      <div class="section-heading"><div><p class="section-label">03 / On the shelf</p><h2 id="books-heading">Books</h2></div><p>A couple of stories that stayed with me.</p></div>
+      <div class="section-heading">
+        <div>
+          <p class="section-label">03 / On the shelf</p><h2 id="books-heading">
+            Books
+          </h2>
+        </div><p>A couple of stories that stayed with me.</p>
+      </div>
       <div class="book-grid">
-        {BOOKS_LIST.map((book,index) => (
-          <article class="book-card">
-            <div class="book-spine" aria-hidden="true"><span>{String(index+1).padStart(2,"0")}</span></div>
-            <div class="book-content">
-              <p class="section-label">From the bookshelf</p>
-              <h3>{book.title}</h3>
-              <p>{book.description}</p>
-              <a href={book.goodReads} target="_blank" rel="noopener noreferrer">Find on Goodreads ↗</a>
-            </div>
-          </article>
-        ))}
+        {
+          BOOKS_LIST.map((book, index) => (
+            <article class="book-card">
+              <div class="book-spine" aria-hidden="true">
+                <span>{String(index + 1).padStart(2, "0")}</span>
+              </div>
+              <div class="book-content">
+                <p class="section-label">From the bookshelf</p>
+                <h3>{book.title}</h3>
+                <p>{book.description}</p>
+                <a
+                  href={book.goodReads}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Find on Goodreads ↗
+                </a>
+              </div>
+            </article>
+          ))
+        }
       </div>
     </section>
   </div>
 </Layout>
 <style>
-  .hobbies-library{--library-border:#566b5d;--library-sage:#a9c1a3;--library-paper:#e2d7bb}
-  .library-intro{padding:0 0 2.8rem}
-  .section-label{font:600 .72rem/1.5 system-ui,sans-serif;letter-spacing:.17em;text-transform:uppercase;color:var(--library-sage)!important;margin:0 0 .9rem}
-  .library-intro h2{font-size:clamp(2.8rem,5vw,4.35rem);line-height:1.1;max-width:none;margin:0 0 1.6rem;color:var(--library-paper)}
-  .intro-columns{display:block;max-width:70ch}
-  .intro-columns p{line-height:1.75;margin:0 0 1.15rem;color:#c3d0bf}
-  .intro-columns p:first-child{font-size:1.1rem;color:var(--library-paper)}
-  .library-index{display:flex;flex-wrap:wrap;gap:clamp(1.3rem,3vw,3rem);margin-top:2rem;padding-top:1rem;border-top:1px solid var(--library-border)}
-  .library-index a{display:inline-flex;gap:.7rem;align-items:center;padding:.35rem 0;color:var(--library-paper);text-decoration:none;border-bottom:1px solid transparent}
-  .library-index a span:first-child{color:var(--library-sage);font:600 .75rem system-ui,sans-serif}
-  .library-index a span:last-child{color:var(--library-sage)}
-  .library-index a:hover,.library-index a:focus-visible{border-bottom-color:#a9c1a3;color:#a9c1a3}
-  .library-section{padding:3.5rem 0 4.5rem;border-top:1px solid var(--library-border);scroll-margin-top:2rem}
-  .section-heading{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:end;margin-bottom:2rem}
-  .section-heading h2{font-size:clamp(2.7rem,5vw,4.2rem);margin:0}
-  .section-heading>p{max-width:48ch;margin:0 0 .4rem;color:#c3d0bf}
-  .poetry-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.1rem;align-items:stretch}
-  .poetry-grid :global(.poem){max-width:none;min-width:0;padding:2rem 1.5rem;background:#34443c;border:1px solid #526658;border-top:3px solid #bf8f68;border-radius:3px;box-shadow:0 10px 28px rgba(10,20,16,.12)}
-  .poetry-grid :global(.poem-title){font-family:"CormorantGaramond",Georgia,serif;font-size:1.75rem;line-height:1.2;color:#e2d7bb}
-  .poetry-grid :global(.poem p){font-size:.99rem;line-height:1.8;color:#d1d9cb}
-  .game-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}
-  .game-card{background:#34443c;border:1px solid #526658;border-radius:3px;padding:clamp(1.4rem,3vw,2rem);display:flex;flex-direction:column;min-height:270px}
-  .card-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.6rem}
-  .item-number{font:600 .8rem system-ui,sans-serif;letter-spacing:.12em;color:#a9c1a3}
-  .rating{display:inline-flex;padding:.25rem .65rem;border:1px solid #6d806f;border-radius:2px;color:#e2d7bb;font:600 .78rem system-ui,sans-serif}
-  .game-card h3,.book-card h3{font-size:clamp(1.8rem,3vw,2.5rem);margin:0 0 .9rem;color:#e2d7bb}
-  .game-card p,.book-card p{color:#c3d0bf;line-height:1.75}
-  .game-card a,.book-card a{margin-top:auto;align-self:flex-start}
-  .book-grid{display:grid;gap:1.25rem}
-  .book-card{display:grid;grid-template-columns:68px minmax(0,1fr);background:#34443c;border:1px solid #526658;border-radius:3px;overflow:hidden}
-  .book-spine{display:flex;align-items:center;justify-content:center;background:#405447;border-right:1px solid #6d806f;color:#bf8f68;font:400 2rem "CormorantGaramond",Georgia,serif}
-  .book-content{padding:clamp(1.4rem,3vw,2.4rem);display:flex;flex-direction:column;align-items:flex-start}
-  .book-content p:not(.section-label){max-width:75ch}
-  .game-card,.book-card,.poetry-grid :global(.poem),.library-index a{transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease,background-color .3s ease}
-  @media(hover:hover) and (pointer:fine){.game-card:hover,.book-card:hover,.poetry-grid :global(.poem):hover{border-color:#a9c1a3;box-shadow:0 18px 36px rgba(10,20,16,.25)}}
-  @media(max-width:850px){.poetry-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-  @media(max-width:650px){.intro-columns,.section-heading,.game-grid{grid-template-columns:1fr}.library-index{gap:.8rem 1.6rem}.poetry-grid{grid-template-columns:1fr}.library-section{padding:2.7rem 0 3rem}.book-card{grid-template-columns:38px minmax(0,1fr)}.book-content{padding:1.3rem}.intro-columns{gap:1rem}}
-  @media(prefers-reduced-motion:reduce){.game-card,.book-card,.poetry-grid :global(.poem),.library-index a{transition:none;transform:none!important}}
+  .library-intro {
+    padding-bottom: var(--space-7);
+  }
+  .section-label {
+    font: var(--font-weight-label) var(--font-size-label) /
+      var(--line-height-label) var(--font-family-body);
+    letter-spacing: var(--letter-spacing-label);
+    text-transform: uppercase;
+    color: var(--color-link) !important;
+    margin: 0 0 var(--gap-label);
+  }
+  .library-intro h2,
+  .section-heading h2 {
+    font-size: var(--font-size-section);
+    line-height: var(--line-height-heading);
+    max-width: none;
+    color: var(--color-heading);
+  }
+  .library-intro h2 {
+    margin: 0 0 var(--gap-title-body);
+  }
+  .intro-columns {
+    display: block;
+    max-width: 70ch;
+  }
+  .intro-columns p {
+    line-height: var(--line-height-body);
+    margin: 0 0 var(--gap-prose);
+    color: var(--color-text);
+  }
+  .intro-columns p:first-child {
+    font-size: var(--font-size-card-label);
+    color: var(--color-heading);
+  }
+  .library-index {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--gap-grid);
+    margin-top: var(--space-6);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--color-border);
+  }
+  .library-index a {
+    display: inline-flex;
+    gap: var(--space-3);
+    align-items: center;
+    padding: var(--space-2) 0;
+    color: var(--color-heading);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+  .library-index a span {
+    color: var(--color-link);
+  }
+  .library-index a span:first-child {
+    font: var(--font-weight-label) var(--font-size-label) /
+      var(--line-height-label) var(--font-family-body);
+  }
+  .library-index a:hover,
+  .library-index a:focus-visible {
+    border-bottom-color: var(--color-link);
+    color: var(--color-link);
+  }
+  .library-section {
+    padding-block: var(--gap-section);
+    border-top: 1px solid var(--color-border);
+    scroll-margin-top: var(--space-6);
+  }
+  .section-heading {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--gap-grid);
+    align-items: end;
+    margin-bottom: var(--gap-section-heading);
+  }
+  .section-heading h2 {
+    margin: 0;
+  }
+  .section-heading > p {
+    max-width: 48ch;
+    margin: 0;
+    color: var(--color-text);
+  }
+  .poetry-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--gap-grid);
+    align-items: stretch;
+  }
+  .poetry-grid :global(.poem) {
+    max-width: none;
+    min-width: 0;
+    padding: var(--space-6) var(--space-5);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-top: 3px solid var(--color-accent);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card);
+  }
+  .poetry-grid :global(.poem-title) {
+    font-family: var(--font-family-display);
+    font-size: var(--font-size-poem-title);
+    line-height: var(--line-height-heading);
+    color: var(--color-heading);
+  }
+  .poetry-grid :global(.poem p) {
+    font-size: var(--font-size-ui);
+    line-height: var(--line-height-poetry);
+    color: var(--color-text);
+  }
+  .game-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--gap-grid);
+  }
+  .game-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--card-padding);
+    display: flex;
+    flex-direction: column;
+    min-height: 270px;
+  }
+  .card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-5);
+  }
+  .item-number {
+    font: var(--font-weight-label) var(--font-size-label) /
+      var(--line-height-label) var(--font-family-body);
+    letter-spacing: var(--letter-spacing-label);
+    color: var(--color-link);
+  }
+  .rating {
+    display: inline-flex;
+    padding: var(--space-1) var(--space-3);
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius-sm);
+    color: var(--color-heading);
+    font: var(--font-weight-label) var(--font-size-label) /
+      var(--line-height-label) var(--font-family-body);
+  }
+  .game-card h3,
+  .book-card h3 {
+    font-size: var(--font-size-card);
+    margin: 0 0 var(--gap-title-body);
+    color: var(--color-heading);
+  }
+  .game-card p,
+  .book-card p {
+    color: var(--color-text);
+    line-height: var(--line-height-body);
+    margin-bottom: var(--gap-action);
+  }
+  .game-card a,
+  .book-card a {
+    margin-top: auto;
+    align-self: flex-start;
+  }
+  .book-grid {
+    display: grid;
+    gap: var(--gap-grid);
+  }
+  .book-card {
+    display: grid;
+    grid-template-columns: 68px minmax(0, 1fr);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+  }
+  .book-spine {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-surface-spine);
+    border-right: 1px solid var(--color-border-strong);
+    color: var(--color-accent);
+    font: var(--font-weight-regular) var(--font-size-job) /
+      var(--line-height-heading) var(--font-family-display);
+  }
+  .book-content {
+    padding: var(--card-padding);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .book-content p:not(.section-label) {
+    max-width: 75ch;
+  }
+  .game-card,
+  .book-card,
+  .poetry-grid :global(.poem),
+  .library-index a {
+    transition:
+      transform var(--transition-slow),
+      box-shadow var(--transition-slow),
+      border-color var(--transition-slow),
+      background-color var(--transition-slow);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .game-card:hover,
+    .book-card:hover,
+    .poetry-grid :global(.poem):hover {
+      border-color: var(--color-link);
+      box-shadow: var(--shadow-card-hover);
+    }
+  }
+  @media (max-width: 850px) {
+    .poetry-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (max-width: 650px) {
+    .section-heading,
+    .game-grid,
+    .poetry-grid {
+      grid-template-columns: 1fr;
+    }
+    .library-index {
+      gap: var(--space-3) var(--space-5);
+    }
+    .book-card {
+      grid-template-columns: 38px minmax(0, 1fr);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .game-card,
+    .book-card,
+    .poetry-grid :global(.poem),
+    .library-index a {
+      transition: none;
+      transform: none !important;
+    }
+  }
 </style>

@@ -3,85 +3,374 @@ import Home from "../layouts/Home.astro";
 import IcosahedronBackground from "../components/IcosahedronBackground.astro";
 import { getSubstackPosts } from "../lib/substack";
 let featuredPost;
-try { featuredPost = (await getSubstackPosts())?.[0]; } catch (error) { console.warn("Substack unavailable", error); }
+try {
+  featuredPost = (await getSubstackPosts())?.[0];
+} catch (error) {
+  console.warn("Substack unavailable", error);
+}
 ---
+
 <Home>
   <section class="hero shell">
     <IcosahedronBackground />
-    <img class="hero-image" src="/drummer-bubs-transparent.png" alt="Isiah playing the drums" width="666" height="500" fetchpriority="high" />
+    <img
+      class="hero-image"
+      src="/drummer-bubs-transparent.png"
+      alt="Isiah playing the drums"
+      width="666"
+      height="500"
+      fetchpriority="high"
+    />
     <div class="intro">
       <p class="eyebrow">Software engineer / Drummer / Writer</p>
       <h1>Hi, I'm Isiah.</h1>
       <p class="lead">I build software, play drums, and write.</p>
-      <p>I like making things, understanding how they work, and following ideas that interest me. This is a home for the projects, music, writing, and occasional curiosities that come out of that.</p>
-      <div class="actions"><a class="button" href="#explore">Explore the site ↘</a><a href="/about">More about me</a></div>
+      <p>
+        I like making things, understanding how they work, and following ideas
+        that interest me. This is a home for the projects, music, writing, and
+        occasional curiosities that come out of that.
+      </p>
+      <div class="actions">
+        <a class="button" href="#explore">Explore the site ↘</a><a
+          href="/about">More about me</a
+        >
+      </div>
     </div>
   </section>
   <section class="shell" id="explore">
-    <div class="section-intro"><p class="eyebrow">A few things I do</p><h2>Different interests. One life.</h2></div>
+    <div class="section-intro">
+      <p class="eyebrow">A few things I do</p><h2>
+        Different interests. One life.
+      </h2>
+    </div>
     <div class="features">
       <article class="feature">
         <p class="eyebrow">01 / Code</p><h2>Things I've built.</h2>
-        <img src="/shelbz-website-project.png" alt="Shelbz Citrine portfolio project" width="1000" height="560" loading="lazy" />
-        <p>I work in software engineering, where I enjoy solving problems, untangling complexity, and turning ideas into something people can use.</p>
+        <img
+          src="/shelbz-website-project.png"
+          alt="Shelbz Citrine portfolio project"
+          width="1000"
+          height="560"
+          loading="lazy"
+        />
+        <p>
+          I work in software engineering, where I enjoy solving problems,
+          untangling complexity, and turning ideas into something people can
+          use.
+        </p>
         <a href="/code">Explore code and projects ↗</a>
       </article>
       <article class="feature">
         <p class="eyebrow">02 / Music</p><h2>Behind the kit.</h2>
-        <div class="video"><iframe src="https://www.youtube-nocookie.com/embed/lc_rCn2em8o" title="Isiah Fletcher drumming performance" loading="lazy" allow="encrypted-media; picture-in-picture" allowfullscreen></iframe></div>
-        <p>Drumming has taken me through bands, recordings, rehearsals, and tours. It's still one of the ways I most enjoy learning, creating, and challenging myself.</p>
+        <div class="video">
+          <iframe
+            src="https://www.youtube-nocookie.com/embed/lc_rCn2em8o"
+            title="Isiah Fletcher drumming performance"
+            loading="lazy"
+            allow="encrypted-media; picture-in-picture"
+            allowfullscreen></iframe>
+        </div>
+        <p>
+          Drumming has taken me through bands, recordings, rehearsals, and
+          tours. It's still one of the ways I most enjoy learning, creating, and
+          challenging myself.
+        </p>
         <a href="/music">Explore music ↗</a>
       </article>
     </div>
   </section>
   <section class="writing">
     <div class="shell writing-grid">
-      <div><p class="eyebrow">03 / Writing</p><h2>Notes from a wandering mind.</h2><p>I write essays and reflections on Substack, often following questions about philosophy, creativity, and the experience of being human. I also keep poetry and selected essays here.</p><a href="/writing">Explore writing ↗</a></div>
-      <div class="post"><p class="eyebrow">From Substack</p>
-        {featuredPost ? <><h3>{featuredPost.title}</h3><p>{featuredPost.excerpt}</p><a href={featuredPost.link} target="_blank" rel="noopener noreferrer">Read on Substack ↗</a></> : <><h3>Essays and reflections</h3><p>My latest writing lives on Substack.</p><a href="https://isiahfletcher7.substack.com/" target="_blank" rel="noopener noreferrer">Visit Substack ↗</a></>}
+      <div>
+        <p class="eyebrow">03 / Writing</p><h2>
+          Notes from a wandering mind.
+        </h2><p>
+          I write essays and reflections on Substack, often following questions
+          about philosophy, creativity, and the experience of being human. I
+          also keep poetry and selected essays here.
+        </p><a href="/writing">Explore writing ↗</a>
+      </div>
+      <div class="post">
+        <p class="eyebrow">From Substack</p>
+        {
+          featuredPost ? (
+            <>
+              <>
+                <h3>{featuredPost.title}</h3>
+                <p>{featuredPost.excerpt}</p>
+                <a
+                  href={featuredPost.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Read on Substack ↗
+                </a>
+              </>
+            </>
+          ) : (
+            <>
+              <>
+                <h3>Essays and reflections</h3>
+                <p>My latest writing lives on Substack.</p>
+                <a
+                  href="https://isiahfletcher7.substack.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Visit Substack ↗
+                </a>
+              </>
+            </>
+          )
+        }
       </div>
     </div>
   </section>
-  <section class="about shell"><p class="eyebrow">04 / Beyond the work</p><h2>Beyond the categories.</h2><p>I'm interested in games, literature, philosophy, music theory, and plenty of things that don't need a dedicated section of a website.</p><a href="/about">A little more about me ↗</a></section>
+  <section class="about shell">
+    <p class="eyebrow">04 / Beyond the work</p><h2>Beyond the categories.</h2><p
+    >
+      I'm interested in games, literature, philosophy, music theory, and plenty
+      of things that don't need a dedicated section of a website.
+    </p><a href="/about">A little more about me ↗</a>
+  </section>
 </Home>
 <style>
-.shell{width:min(var(--layout-wide),calc(100% - 2 * var(--page-gutter)));margin-inline:auto}
-.eyebrow{font:var(--font-weight-label) var(--font-size-label)/var(--line-height-label) var(--font-family-body);letter-spacing:var(--letter-spacing-label);text-transform:uppercase;color:var(--color-link);margin:0 0 var(--gap-title-body)}
-.hero{position:relative;isolation:isolate;min-height:600px;display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:var(--gap-section);align-items:center;padding-block:var(--page-padding-start)}
-.hero > :not(.icosahedron-background){position:relative;z-index:1}
-.intro{max-width:590px}.intro>p:not(.eyebrow){max-width:51ch;color:var(--color-text)}
-h1{font-size:var(--font-size-title);margin:0 0 var(--gap-title-body)}
-.lead{font:var(--font-weight-regular) var(--font-size-lede)/var(--line-height-lede) var(--font-family-lede)!important;color:var(--color-heading)!important}
-.hero-image{width:100%;max-height:650px;object-fit:contain;filter:drop-shadow(0 18px 40px #18231d);border-radius:0}
-.actions{display:flex;gap:var(--gap-grid);align-items:center;flex-wrap:wrap;margin-top:var(--gap-action)}
-.button{background:var(--color-link);color:var(--color-bg);padding:var(--space-3) var(--space-5);text-decoration:none;font-weight:650;border-radius:3px}.button:hover{background:var(--color-heading);color:var(--color-bg)}
-.section-intro{padding:var(--gap-section) 0 var(--gap-section-heading);border-top:1px solid var(--color-border)}
-h2{font-size:var(--font-size-section);margin:0 0 var(--gap-title-body)}
-.features,.writing-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--gap-grid)}
-.features{padding-bottom:var(--gap-section)}
-.feature{background:var(--color-surface);padding:var(--card-padding);display:flex;flex-direction:column;align-items:flex-start}
-.feature img{width:100%;aspect-ratio:16/9;object-fit:cover}
-.video{width:100%;aspect-ratio:16/9}.video iframe{width:100%;height:100%;border:0}
-.feature p:not(.eyebrow){color:var(--color-text);margin:var(--gap-prose) 0 var(--gap-action)}.feature a{margin-top:auto}
-.writing{background:var(--color-heading);color:var(--color-on-light);padding:var(--gap-section) 0}.writing h2,.writing h3{color:var(--color-on-light)}.writing p{color:var(--color-text-on-light)}.writing .eyebrow{color:var(--color-muted-on-light)}.writing a{color:var(--color-link-on-light);text-decoration-color:#829783;transition:color .2s ease,background-size .26s ease}
-.writing a:hover{color:var(--color-link-hover-on-light);text-decoration-color:var(--color-link-hover-on-light)}
-.writing a:active{color:var(--color-accent-on-light)}
-.writing a:focus-visible{outline:3px solid var(--color-accent-on-light);outline-offset:5px;border-radius:2px}
-.writing .post{
-  border:1px solid var(--color-border-on-light);
-  border-left:3px solid var(--color-rule-on-light);
-  border-radius:3px;
-  padding:var(--card-padding);
-  background:rgba(49,78,60,.035);
-  transition:transform .35s cubic-bezier(.2,.75,.25,1),box-shadow .35s ease,background-color .3s ease,border-color .3s ease;
-}
-.writing a:not(.button){background-image:linear-gradient(var(--color-link-on-light),var(--color-link-on-light));background-repeat:no-repeat;background-position:0 100%;background-size:0 2px;text-decoration:none}
-.writing a:not(.button):hover,.writing a:not(.button):focus-visible{background-size:100% 2px}
-@media(hover:hover) and (pointer:fine){.writing .post:hover{border-color:var(--color-border-hover-on-light);background-color:rgba(49,78,60,.075);box-shadow:0 14px 30px rgba(37,47,44,.16)}}
-@media(prefers-reduced-motion:reduce){.writing .post{transform:none!important}.writing a:not(.button){transition:none}}
-.writing-grid{gap:var(--gap-section);align-items:center}.post{border-left:1px solid var(--color-rule-on-light);padding-left:var(--space-6)}.post h3{font-size:var(--font-size-card)}
-.about{padding-block:var(--gap-section) var(--page-padding-end);max-width:850px}.about p:not(.eyebrow){max-width:58ch;color:var(--color-text)}
-a:focus-visible{outline:3px solid var(--color-accent);outline-offset:4px}
-@media(max-width:800px){.hero{grid-template-columns:1fr;min-height:0;padding-block:var(--page-padding-start)}.hero-image{max-width:550px;margin:auto}.features,.writing-grid{grid-template-columns:1fr}.features{padding-bottom:var(--gap-section)}.writing{padding:var(--gap-section) 0}}
-@media(max-width:480px){.hero-image{max-height:410px}}
+  .shell {
+    width: min(var(--layout-wide), calc(100% - 2 * var(--page-gutter)));
+    margin-inline: auto;
+  }
+  .eyebrow {
+    font: var(--font-weight-label) var(--font-size-label) /
+      var(--line-height-label) var(--font-family-body);
+    letter-spacing: var(--letter-spacing-label);
+    text-transform: uppercase;
+    color: var(--color-link);
+    margin: 0 0 var(--gap-title-body);
+  }
+  .hero {
+    overflow: clip;
+    position: relative;
+    isolation: isolate;
+    min-height: 600px;
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: var(--gap-section);
+    align-items: center;
+    padding-block: var(--page-padding-start);
+  }
+  .hero > :not(.icosahedron-background) {
+    position: relative;
+    z-index: 1;
+  }
+  .intro {
+    max-width: 590px;
+  }
+  .intro > p:not(.eyebrow) {
+    max-width: 51ch;
+    color: var(--color-text);
+  }
+  h1 {
+    font-size: var(--font-size-title);
+    margin: 0 0 var(--gap-title-body);
+  }
+  .lead {
+    font: var(--font-weight-regular) var(--font-size-lede) /
+      var(--line-height-lede) var(--font-family-lede) !important;
+    color: var(--color-heading) !important;
+  }
+  .hero-image {
+    width: 100%;
+    max-height: 650px;
+    object-fit: contain;
+    filter: drop-shadow(var(--shadow-hero));
+    border-radius: 0;
+  }
+  .actions {
+    display: flex;
+    gap: var(--gap-grid);
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: var(--gap-action);
+  }
+  .button {
+    background: var(--color-link);
+    color: var(--color-bg);
+    padding: var(--space-3) var(--space-5);
+    text-decoration: none;
+    font-weight: var(--font-weight-button);
+    border-radius: var(--radius-md);
+  }
+  .button:hover {
+    background: var(--color-heading);
+    color: var(--color-bg);
+  }
+  .section-intro {
+    padding: var(--gap-section) 0 var(--gap-section-heading);
+    border-top: 1px solid var(--color-border);
+  }
+  h2 {
+    font-size: var(--font-size-section);
+    margin: 0 0 var(--gap-title-body);
+  }
+  .features,
+  .writing-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--gap-grid);
+  }
+  .features {
+    padding-bottom: var(--gap-section);
+  }
+  .feature {
+    background: var(--color-surface);
+    padding: var(--card-padding);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .feature img {
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+  }
+  .video {
+    width: 100%;
+    aspect-ratio: 16/9;
+  }
+  .video iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+  .feature p:not(.eyebrow) {
+    color: var(--color-text);
+    margin: var(--gap-prose) 0 var(--gap-action);
+  }
+  .feature a {
+    margin-top: auto;
+  }
+  .writing {
+    background: var(--color-heading);
+    color: var(--color-on-light);
+    padding: var(--gap-section) 0;
+  }
+  .writing h2,
+  .writing h3 {
+    color: var(--color-on-light);
+  }
+  .writing p {
+    color: var(--color-text-on-light);
+  }
+  .writing .eyebrow {
+    color: var(--color-muted-on-light);
+  }
+  .writing a {
+    color: var(--color-link-on-light);
+    text-decoration-color: var(--color-underline-on-light);
+    transition:
+      color 0.2s ease,
+      background-size 0.26s ease;
+  }
+  .writing a:hover {
+    color: var(--color-link-hover-on-light);
+    text-decoration-color: var(--color-link-hover-on-light);
+  }
+  .writing a:active {
+    color: var(--color-accent-on-light);
+  }
+  .writing a:focus-visible {
+    outline: 3px solid var(--color-accent-on-light);
+    outline-offset: 5px;
+    border-radius: var(--radius-sm);
+  }
+  .writing .post {
+    border: 1px solid var(--color-border-on-light);
+    border-left: 3px solid var(--color-rule-on-light);
+    border-radius: var(--radius-md);
+    padding: var(--card-padding);
+    background: var(--color-tint-on-light);
+    transition:
+      transform 0.35s cubic-bezier(0.2, 0.75, 0.25, 1),
+      box-shadow 0.35s ease,
+      background-color 0.3s ease,
+      border-color 0.3s ease;
+  }
+  .writing a:not(.button) {
+    background-image: linear-gradient(
+      var(--color-link-on-light),
+      var(--color-link-on-light)
+    );
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    background-size: 0 2px;
+    text-decoration: none;
+  }
+  .writing a:not(.button):hover,
+  .writing a:not(.button):focus-visible {
+    background-size: 100% 2px;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .writing .post:hover {
+      border-color: var(--color-border-hover-on-light);
+      background-color: var(--color-tint-hover-on-light);
+      box-shadow: var(--shadow-post-hover);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .writing .post {
+      transform: none !important;
+    }
+    .writing a:not(.button) {
+      transition: none;
+    }
+  }
+  .writing-grid {
+    gap: var(--gap-section);
+    align-items: center;
+  }
+  .post {
+    border-left: 1px solid var(--color-rule-on-light);
+    padding-left: var(--space-6);
+  }
+  .post h3 {
+    font-size: var(--font-size-card);
+  }
+  .about {
+    padding-block: var(--gap-section) var(--page-padding-end);
+    max-width: 850px;
+  }
+  .about p:not(.eyebrow) {
+    max-width: 58ch;
+    color: var(--color-text);
+  }
+  a:focus-visible {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 4px;
+  }
+  @media (max-width: 800px) {
+    .hero {
+      grid-template-columns: 1fr;
+      min-height: 0;
+      padding-block: var(--page-padding-start);
+    }
+    .hero-image {
+      max-width: 550px;
+      margin: auto;
+    }
+    .features,
+    .writing-grid {
+      grid-template-columns: 1fr;
+    }
+    .features {
+      padding-bottom: var(--gap-section);
+    }
+    .writing {
+      padding: var(--gap-section) 0;
+    }
+  }
+  @media (max-width: 480px) {
+    .hero-image {
+      max-height: 410px;
+    }
+  }
 </style>

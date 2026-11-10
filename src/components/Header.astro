@@ -7,19 +7,62 @@ const links = [
   { href: "/about", label: "About" },
 ];
 ---
+
 <header class="site-header">
   <nav aria-label="Primary navigation">
     <a class="brand" href="/">{SITE_TITLE}</a>
-    <div class="nav-links">{links.map(({href,label}) => <a href={href}>{label}</a>)}</div>
+    <div class="nav-links">
+      {links.map(({ href, label }) => <a href={href}>{label}</a>)}
+    </div>
   </nav>
 </header>
 <style>
-  .site-header{position:relative;z-index:10;background:var(--color-bg);border-bottom:1px solid var(--color-border);color:var(--color-heading)}
-  nav{max-width:1200px;margin:auto;padding:1.15rem clamp(1.2rem,5vw,4rem);display:flex;align-items:center;justify-content:space-between;gap:var(--space-6);flex-wrap:wrap}
-  .brand{font-family:var(--font-family-lede);font-size:1.4rem;letter-spacing:.01em}
-  .nav-links{display:flex;gap:clamp(.8rem,3vw,2rem);flex-wrap:wrap}
-  a{color:var(--color-heading);text-decoration:none;font-size:var(--font-size-body)}
-  a:hover{color:var(--color-link)}
-  a:focus-visible{outline:3px solid var(--color-accent);outline-offset:4px}
-  @media(max-width:540px){nav{gap:var(--space-3)}.nav-links{width:100%;justify-content:space-between}}
+  .site-header {
+    position: relative;
+    z-index: 10;
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+    color: var(--color-heading);
+  }
+  nav {
+    max-width: 1200px;
+    margin: auto;
+    padding: var(--space-4) var(--chrome-gutter);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-6);
+    flex-wrap: wrap;
+  }
+  .brand {
+    font-family: var(--font-family-lede);
+    font-size: var(--font-size-brand);
+    letter-spacing: var(--letter-spacing-brand);
+  }
+  .nav-links {
+    display: flex;
+    gap: var(--nav-gap);
+    flex-wrap: wrap;
+  }
+  a {
+    color: var(--color-heading);
+    text-decoration: none;
+    font-size: var(--font-size-body);
+  }
+  a:hover {
+    color: var(--color-link);
+  }
+  a:focus-visible {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 4px;
+  }
+  @media (max-width: 540px) {
+    nav {
+      gap: var(--space-3);
+    }
+    .nav-links {
+      width: 100%;
+      justify-content: space-between;
+    }
+  }
 </style>
