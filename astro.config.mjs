@@ -3,6 +3,7 @@ import mdx from "@astrojs/mdx";
 
 import sitemap from "@astrojs/sitemap";
 import netlify from "@astrojs/netlify";
+import node from "@astrojs/node";
 import tina from "@tinacms/astro/integration";
 import { tinaAdminDevRedirect } from "@tinacms/astro/vite";
 
@@ -10,7 +11,8 @@ import { tinaAdminDevRedirect } from "@tinacms/astro/vite";
 export default defineConfig({
   site: "https://isiahfletcher.com",
   output: "static",
-  adapter: netlify(),
+  // Use a portable Node server locally; production uses Netlify Functions.
+  adapter: process.env.NETLIFY ? netlify() : node({ mode: "standalone" }),
   integrations: [mdx(), sitemap(), tina()],
   vite: {
     plugins: [tinaAdminDevRedirect()],

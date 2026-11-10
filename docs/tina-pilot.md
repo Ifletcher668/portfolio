@@ -16,7 +16,7 @@ code. Content lives in `content/homepage/home.json` in GitHub.
   available to builds and functions, including production and deploy previews.
   Never put the token in GitHub, chat, or a public-prefixed variable.
 - Add the exact deploy-preview origin to TinaCloud → Configuration → Site URLs.
-  Keep the production origins and your local development origin there as well.
+  Keep the production origins and your local development origin (`http://localhost:4322`) there as well.
 - Netlify must build from GitHub using `npm run build`. `netlify.toml` provides
   that command, the `dist` publish directory, and the Node version.
 - Commit `tina/tina-lock.json`: TinaCloud needs it to index the content schema.
@@ -79,9 +79,10 @@ Review pull requests before merging. The CMS does not replace code review.
 
 For local development, use the Node version in `.nvmrc`, run `npm ci`, copy
 `.env.example` to ignored `.env`, and fill in project credentials. `npm run dev`
-starts Tina and Astro. If Astro chooses a port other than 4321 because another
-site is running, add that local origin to TinaCloud's allowed Site URLs before
-testing cloud authentication.
+starts Tina and Astro on port 4322, leaving the existing portfolio dev server on
+4321 alone. The foreground flag keeps Tina’s local API running alongside Astro
+when launched from an agent. If a different port is needed, update the dev
+command and TinaCloud’s allowed Site URLs together.
 
 `npm run build:local` builds an offline/local editor for development checks.
 It is **not** the production build: production uses `npm run build`, which
@@ -96,5 +97,7 @@ Git content; only editor refreshes need TinaCloud at request time.
   public pages and the Netlify editor-refresh function generated successfully.
 - Authenticated browser editing, deployment publishing, timing, and production
   recovery remain pending until the browser and deployment setup are available.
-- The requested Astro 5 dependency line has a remaining critical advisory;
-  do not treat this draft as cleared for production until that is resolved.
+- User approved upgrading beyond Astro 5 to resolve its critical advisory.
+  Current Astro 7.4.8 and matching integrations are installed; the dependency
+  audit now reports zero critical findings. Other dependency advisories remain
+  and are recorded in the pull request.
