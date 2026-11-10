@@ -1,10 +1,10 @@
 ---
 import Home from "./Home.astro";
-interface Props { title?: string; description?: string; heroImage?: string; }
-const { title = "Archive", description = "From the personal archive of Isiah Fletcher.", heroImage } = Astro.props;
+interface Props { title?: string; description?: string; heroImage?: string; compactIntro?: boolean; }
+const { title = "Archive", description = "From the personal archive of Isiah Fletcher.", heroImage, compactIntro = false } = Astro.props;
 ---
 <Home title={title === "Archive" ? "Archive — Isiah Fletcher" : `${title} — Isiah Fletcher`} description={description}>
-  <article class="archive-page">
+  <article class:list={["archive-page", { "compact-intro": compactIntro }]}>
     <header class="archive-header">
       <p class="archive-eyebrow"><a href="/">Home</a> / Archive</p>
       <h1>{title}</h1>
@@ -15,38 +15,44 @@ const { title = "Archive", description = "From the personal archive of Isiah Fle
 </Home>
 <style is:global>
   .archive-page {
-    --accent: #a9c1a3;
-    --accent-dark: #bf8f68;
-    --accent-light: #c3d0bf;
-    --accent-lightest: #34443c;
+    --accent: var(--color-link);
+    --accent-dark: var(--color-accent);
+    --accent-light: var(--color-text);
+    --accent-lightest: var(--color-surface);
     --accent-bright: 169,193,163;
     --black: 37,47,44;
     --white: 226,215,187;
     --gray: 83,98,89;
     --gray-dark: 52,68,60;
-    width: min(1100px, calc(100% - 3rem));
+    width: min(var(--layout-content), calc(100% - 2 * var(--page-gutter)));
     margin: 0 auto;
-    padding: clamp(3rem,7vw,6rem) 0 7rem;
-    color: #c3d0bf;
+    padding: var(--page-padding-start) 0 var(--page-padding-end);
+    color: var(--color-text);
   }
-  .archive-page .archive-header { margin-bottom: 2.5rem; }
-  .archive-page .archive-eyebrow { font: 600 .76rem/1.5 system-ui,sans-serif; letter-spacing: .16em; text-transform: uppercase; color: #a9c1a3; margin: 0 0 1rem; }
+  .archive-page .archive-header { margin-bottom: var(--gap-section); }
+  .archive-page.compact-intro .archive-header { margin-bottom:var(--gap-intro); }
+  .archive-page.compact-intro .archive-content > .resume-intro { margin-bottom:var(--gap-intro); }
+  .archive-page .archive-eyebrow { font: var(--font-weight-label) var(--font-size-label)/var(--line-height-label) var(--font-family-body); letter-spacing: var(--letter-spacing-label); text-transform: uppercase; color: var(--color-link); margin: 0 0 var(--gap-label); }
   .archive-page .archive-eyebrow a { color: inherit; }
-  .archive-page h1 { font: 400 clamp(3.4rem,7vw,6rem)/1.08 "CormorantGaramond",Georgia,serif; color: #e2d7bb; margin: 0; }
-  .archive-page h2, .archive-page h3, .archive-page h4, .archive-page h5 { font-family: "CormorantGaramond",Georgia,serif; font-weight: 400; color: #e2d7bb; }
-  .archive-page h2 { font-size: clamp(2rem,4vw,3.2rem); }
-  .archive-page h3 { font-size: clamp(1.5rem,3vw,2.2rem); }
-  .archive-page p, .archive-page li { color: #c3d0bf; }
-  .archive-page a { color: #a9c1a3; }
-  .archive-page a:hover { color: #e2d7bb; }
+  .archive-page h1 { font: var(--font-weight-regular) var(--font-size-title)/var(--line-height-display) var(--font-family-display); color: var(--color-heading); margin: 0; }
+  .archive-page h2, .archive-page h3, .archive-page h4, .archive-page h5 { font-family: var(--font-family-display); font-weight: var(--font-weight-regular); color: var(--color-heading); }
+  .archive-page h2 { font-size: var(--font-size-section); }
+  .archive-page h3 { font-size: var(--font-size-card); }
+  .archive-page p, .archive-page li { color: var(--color-text); }
+  .archive-page a { color: var(--color-link); }
+  .archive-page a:hover { color: var(--color-heading); }
   .archive-page .archive-hero { display:block; width:100%; max-height:520px; object-fit:cover; margin:0 0 2.5rem; border-radius:4px; }
   .archive-page .archive-content { min-width:0; }
   .archive-page .archive-content > p { max-width:78ch; }
   .archive-page .archive-content > iframe { max-width:100%; }
-  .archive-page .archive-content > :not(:last-child) { margin-bottom:1.5rem; }
-  .archive-page .highlight-item, .archive-page .card, .archive-page .poem { background:#34443c; color:#e2d7bb; }
-  .archive-page .highlight-item strong { color:#e2d7bb; }
+  .archive-page .archive-content > :not(:last-child) { margin-bottom:var(--gap-prose); }
+  .archive-page .archive-content > section:not(:last-child) { margin-bottom:var(--gap-section); }
+  .archive-page .resume-highlights h2, .archive-page .resume-section h2 { font-size:var(--font-size-subsection); margin:0 0 var(--gap-section-heading); }
+  .archive-page .resume-section h3 { font-size:var(--font-size-job); line-height:var(--line-height-heading); margin:0 0 var(--gap-label); }
+  .archive-page .resume-section > ul { margin-bottom:var(--gap-job); }
+  .archive-page .highlight-item, .archive-page .card, .archive-page .poem { background:var(--color-surface); color:var(--color-heading); }
+  .archive-page .highlight-item strong { color:var(--color-heading); }
   .archive-page .blog-container { padding:0; }
   .archive-page .blog-intro-and-subscribe iframe { max-width:100%; }
-  @media(max-width:700px){.archive-page{width:calc(100% - 2rem);padding-bottom:4rem}.archive-page .archive-hero{max-height:320px}}
+  @media(max-width:700px){.archive-page{padding-bottom:var(--page-padding-end)}.archive-page .archive-hero{max-height:320px}}
 </style>

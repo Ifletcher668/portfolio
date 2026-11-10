@@ -10,11 +10,10 @@ const { title = "Isiah Fletcher — Code, Music & Writing", description = "The p
   <head>
     <BaseHead title={title} description={description} />
     <style is:global>
-      :root { --forest:#252f2c; --moss:#34443c; --sage:#a9c1a3; --paper:#e2d7bb; --copper:#bf8f68; }
       *,*::before,*::after { box-sizing:border-box; }
       html { background:var(--forest); scroll-behavior:smooth; }
-      body { margin:0; background:var(--forest); color:var(--paper); font: 17px/1.65 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
-      h1,h2,h3 { font-family:"CormorantGaramond",Georgia,serif; font-weight:400; color:var(--paper); line-height:1.08; }
+      body { margin:0; background:var(--forest); color:var(--paper); font: var(--font-size-body)/var(--line-height-body) var(--font-family-body); }
+      h1,h2,h3 { font-family:var(--font-family-display); font-weight:var(--font-weight-regular); color:var(--paper); line-height:var(--line-height-display); }
       a { color:var(--sage); }
       a:hover { color:var(--paper); }
       a:focus-visible { outline:3px solid var(--copper); outline-offset:4px; }
@@ -70,6 +69,6 @@ const { title = "Isiah Fletcher — Code, Music & Writing", description = "The p
     <main id="main-content"><slot /></main>
     <Footer />
     <PointerInteractions />
-    <style>.skip{position:absolute;left:-9999px;top:1rem;background:#e2d7bb;color:#252f2c;padding:.6rem;z-index:100}.skip:focus{left:1rem}</style>
+    <style>.skip{position:absolute;left:-9999px;top:1rem;background:var(--color-heading);color:var(--color-bg);padding:.6rem;z-index:100}.skip:focus{left:1rem}</style>
   </body>
 </html>

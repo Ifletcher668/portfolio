@@ -1,0 +1,157 @@
+/* Foundations → semantic roles → component relationships.
+   Use semantic tokens in new styles; legacy names below remain for archive pages. */
+:root {
+  --color-forest: #252f2c;
+  --color-moss: #34443c;
+  --color-sage: #a9c1a3;
+  --color-paper: #e2d7bb;
+  --color-copper: #bf8f68;
+  --color-bg: var(--color-forest);
+  --color-surface: var(--color-moss);
+  --color-footer: #1e2924;
+  --color-heading: var(--color-paper);
+  --color-text: #c3d0bf;
+  --color-muted: #a9b6a8;
+  --color-link: var(--color-sage);
+  --color-link-hover: var(--color-paper);
+  --color-accent: var(--color-copper);
+  --color-border: #536259;
+  --color-on-light: #283a31;
+  --color-text-on-light: #314438;
+  --color-muted-on-light: #52634f;
+  --color-link-on-light: #314e3c;
+  --color-link-hover-on-light: #172e24;
+  --color-accent-on-light: #875332;
+  --color-border-on-light: #b6bba8;
+  --color-rule-on-light: #8e9b80;
+  --color-border-hover-on-light: #607b65;
+
+  --font-family-display: "CormorantGaramond", Georgia, serif;
+  --font-family-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-family-lede: Georgia, serif;
+  --font-size-label: .76rem;
+  --font-size-caption: .875rem;
+  --font-size-body: 1.0625rem;
+  --font-size-card-label: 1.125rem;
+  --font-size-intro: 1.25rem;
+  --font-size-lede: clamp(1.4rem, 2.4vw, 1.9rem);
+  --font-size-title: clamp(3.4rem, 7vw, 6rem);
+  --font-size-section: clamp(2.3rem, 4vw, 3.5rem);
+  --font-size-card: clamp(1.75rem, 3vw, 2.2rem);
+  --font-size-subsection: clamp(1.75rem, 2.5vw, 2.25rem);
+  --font-size-job: clamp(1.5rem, 2.5vw, 2rem);
+  --font-weight-regular: 400;
+  --font-weight-label: 600;
+  --line-height-display: 1.08;
+  --line-height-heading: 1.2;
+  --line-height-body: 1.65;
+  --line-height-label: 1.5;
+  --line-height-lede: 1.4;
+  --letter-spacing-label: .16em;
+
+  /* A 4px base at the default root size. No viewport-dependent root font size. */
+  --space-0: 0;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+  --space-10: 8rem;
+
+  --gap-label: var(--space-3);
+  --gap-title-body: var(--space-4);
+  --gap-prose: var(--space-5);
+  --gap-action: var(--space-6);
+  --gap-grid: clamp(var(--space-5), 3vw, var(--space-6));
+  --gap-section-heading: var(--space-6);
+  --gap-section: clamp(var(--space-8), 6vw, var(--space-9));
+  --gap-intro: clamp(var(--space-6), 3vw, var(--space-7));
+  --gap-job: var(--space-7);
+  --card-padding: clamp(var(--space-5), 3vw, var(--space-7));
+  --card-padding-compact: var(--space-5);
+  --page-gutter: clamp(var(--space-4), 3vw, var(--space-5));
+  --page-padding-start: clamp(var(--space-7), 7vw, var(--space-9));
+  --page-padding-end: clamp(var(--space-8), 8vw, var(--space-10));
+  --layout-content: 68.75rem;
+  --layout-wide: 72.5rem;
+  --layout-prose: 44rem;
+
+  /* Existing public aliases. */
+  --forest: var(--color-bg);
+  --moss: var(--color-surface);
+  --sage: var(--color-link);
+  --paper: var(--color-heading);
+  --copper: var(--color-accent);
+  /* Legacy archive palette and effects; do not use for new components. */
+  --accent: rgb(205, 145, 100);
+  --accent-dark: rgb(180, 95, 50);
+  --accent-light: rgb(230, 180, 140);
+  --accent-lightest: rgba(205, 145, 100, 0.1);
+  --accent-purple: rgb(155, 90, 180);
+  --accent-coral: rgb(255, 120, 100);
+  --accent-bright: 25, 230, 210;
+
+  /* Neutrals */
+  --black: 28, 35, 42;
+  --white: 245, 225, 205;
+  --gray: 70, 85, 95;
+  --gray-dark: 34, 41, 57;
+
+  /* Gradients */
+  --gray-gradient: rgba(var(--gray-dark), 50%), rgba(var(--black));
+  --gray-gradient-solid: rgba(var(--gray-dark), 100%), rgba(var(--black));
+
+  /* Shadows */
+  --box-shadow: 0 2px 6px rgba(var(--gray), 25%),
+    0 8px 24px rgba(var(--gray), 33%), 0 16px 32px rgba(var(--gray), 33%);
+  --box-shadow-sm: 2px 4px 10px rgba(var(--gray), 50%),
+    0 2px 6px rgba(var(--gray), 15%);
+  --box-shadow-lg: 0 2px 10px rgba(var(--accent-bright), 40%),
+    0 2px 6px rgba(var(--gray), 30%);
+
+  /* Spacing Scale */
+  --space-xs: var(--space-1);
+  --space-sm: var(--space-2);
+  --space-md: var(--space-4);
+  --space-lg: var(--space-5);
+  --space-xl: var(--space-6);
+  --space-2xl: var(--space-7);
+  --space-3xl: var(--space-8);
+
+  /* Typography Scale */
+  --font-size-base: var(--font-size-body);
+  --font-size-sm: 0.875rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.563rem;
+  --font-size-3xl: 1.953rem;
+  --font-size-4xl: 2.441rem;
+  --font-size-5xl: 3.052rem;
+
+  /* Line Heights */
+  --line-height-tight: 1.2;
+  --line-height-base: 1.7;
+  --line-height-relaxed: 1.8;
+
+  /* Border Radius */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-base: 0.25s ease;
+  --transition-slow: 0.3s ease;
+
+  /* Layout */
+  --content-width: 720px;
+  --content-width-wide: var(--layout-content);
+  --breakpoint-mobile: 720px;
+
+}
