@@ -3,10 +3,11 @@ import TinaIsland from "@tinacms/astro/TinaIsland.astro";
 import ThemeStyle from "./ThemeStyle.astro";
 import { getTheme } from "../lib/theme";
 import { islands } from "../lib/islands";
-const theme = await getTheme();
+const themePreview = Astro.url.pathname === "/theme-preview";
+const theme = await getTheme(themePreview);
 ---
 
-<TinaIsland name="theme" wrapper={islands.theme.wrapper}>
+<TinaIsland name="theme" wrapper={islands.theme.wrapper} primary={themePreview}>
   <ThemeStyle data={theme.data.theme} />
 </TinaIsland>
 

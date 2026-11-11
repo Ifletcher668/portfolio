@@ -48,47 +48,56 @@ test("shared preview selects the requested document in either registration order
     JSON.parse(decoded);
     forms.push({ name, raw: decoded, id: JSON.parse(decoded).id });
   }
-  const page = await readFile("dist/client/index.html", "utf8");
-  assert.ok(!/<div[^>]*data-tina-island-primary/.test(page));
-  const selectionScript = page.match(
-    /<script[^>]*data-tina-document-selection[^>]*>([\s\S]*?)<\/script>/,
-  )?.[1];
-  assert.ok(
-    selectionScript,
-    "Selection must execute inline before bridge initialization",
+  const rootPage = await readFile("dist/client/index.html", "utf8");
+  assert.match(
+    rootPage,
+    /data-tina-island="\/tina-island\/homepage"[^>]*data-tina-island-primary/,
   );
+  assert.ok(
+    !/data-tina-island="\/tina-island\/theme"[^>]*data-tina-island-primary/.test(
+      rootPage,
+    ),
+  );
+  const themeResponse = await fetch(
+    "http://127.0.0.1:4334/theme-preview?tina-edit=1",
+  );
+  assert.equal(themeResponse.status, 200);
+  const themePage = await themeResponse.text();
+  assert.match(themePage, /content="noindex, follow"/);
+  const themePayloads = [
+    ...themePage.matchAll(
+      /<div data-tina-form="([^\"]+)"( data-tina-primary)?/g,
+    ),
+  ];
+  assert.equal(themePayloads.length, 2);
+  const primaryPayload = themePayloads.find((match) => match[2]);
+  assert.ok(primaryPayload);
+  const primaryId = JSON.parse(
+    primaryPayload[1].replace(/&quot;/g, '"').replace(/&amp;/g, "&"),
+  ).id;
+  assert.equal(primaryId, forms.find((form) => form.name === "theme").id);
   const require = createRequire(import.meta.url);
   const source = await readFile(require.resolve("@tinacms/bridge"), "utf8");
-  for (const selected of [null, "theme", "homepage", "unknown"]) {
+  for (const selected of ["theme", "homepage"]) {
     for (const order of [forms, [...forms].reverse()]) {
       const messages = [];
       const parent = { postMessage: (message) => messages.push(message) };
-      const primary = new Set();
-      // Mirror primeIsland's documented transfer from the island primary marker
-      // to its fetched form payload. The payloads themselves come from the server.
       const payloads = order.map((form) => ({
         getAttribute: () => form.raw,
-        hasAttribute: () => primary.has(form.name),
+        hasAttribute: () => form.name === selected,
       }));
       const context = vm.createContext({
-        URLSearchParams,
         window: {
           self: {},
           top: parent,
           parent,
-          location: {
-            origin: "http://localhost",
-            search: selected ? `?tina-document=${selected}` : "",
-          },
+          location: { origin: "http://localhost" },
           addEventListener() {},
         },
         document: {
           addEventListener() {},
-          querySelector: (selector) => {
-            if (selector === "[data-tina-form]") return payloads[0];
-            const name = selector.match(/tina-island\/(theme|homepage)/)?.[1];
-            return name ? { setAttribute: () => primary.add(name) } : null;
-          },
+          querySelector: (selector) =>
+            selector === "[data-tina-form]" ? payloads[0] : null,
           querySelectorAll: (selector) =>
             selector === "[data-tina-form]" ? payloads : [],
         },
@@ -96,7 +105,6 @@ test("shared preview selects the requested document in either registration order
         setTimeout: () => 1,
         clearTimeout() {},
       });
-      vm.runInContext(selectionScript, context);
       vm.runInContext(
         source.replace(/export\s*\{[^}]*\};?\s*$/, "") +
           "\nthis.run = { init, refreshForms };",
@@ -109,16 +117,13 @@ test("shared preview selects the requested document in either registration order
       const selections = messages.filter(
         (message) => message.type === "user-select-form",
       );
-      if (selected === "theme" || selected === "homepage") {
-        assert.ok(selections.length > 0);
-        assert.ok(
-          selections.every(
-            (message) =>
-              message.formId ===
-              forms.find((form) => form.name === selected).id,
-          ),
-        );
-      } else assert.equal(selections.length, 0);
+      assert.ok(selections.length > 0);
+      assert.ok(
+        selections.every(
+          (message) =>
+            message.formId === forms.find((form) => form.name === selected).id,
+        ),
+      );
     }
   }
 });

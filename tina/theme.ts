@@ -10,7 +10,7 @@ export const themeCollection: Collection = {
   format: "json",
   ui: {
     allowedActions: { create: false, delete: false },
-    router: () => "/?tina-document=theme",
+    router: () => "/theme-preview",
   },
   fields: [
     {

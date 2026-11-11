@@ -14,7 +14,11 @@ interface Props {
   modifiedTime?: string;
 }
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const themePreview = Astro.url.pathname === "/theme-preview";
+const canonicalURL = new URL(
+  themePreview ? "/" : Astro.url.pathname,
+  Astro.site,
+);
 
 const {
   title,
@@ -65,7 +69,10 @@ const siteName = "Isiah Fletcher";
   name="keywords"
   content="Isiah Fletcher, session drummer, software engineer, React developer, TypeScript, web developer, Olympia Washington, musician, drummer, digital health, Hinge Health, full-stack developer, frontend developer"
 />
-<meta name="robots" content="index, follow" />
+<meta
+  name="robots"
+  content={themePreview ? "noindex, follow" : "index, follow"}
+/>
 <meta name="language" content="English" />
 <meta name="revisit-after" content="7 days" />
 
