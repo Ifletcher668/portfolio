@@ -1,17 +1,16 @@
 {
-  "_template": "landing",
   "title": "Isiah Fletcher — Code, Music & Writing",
   "description": "The personal home of Isiah Fletcher: software engineer, drummer, and writer.",
-  "heading": "Hi, I'm Isiah.",
-  "eyebrow": "Software engineer / Drummer / Writer",
-  "intro": "",
   "draft": false,
+  "eyebrow": "Software engineer / Drummer / Writer",
+  "heading": "Hi, I'm Isiah.",
+  "intro": "",
   "hero": {
-    "image": "/drummer-bubs-transparent.png",
+    "image": "/uploads/drummer-bubs-transparent.png",
     "imageAlt": "Isiah playing the drums",
     "treatment": "icosahedron",
     "lead": "I build software, play drums, and write.",
-    "body": "I like making things, understanding how they work, and following ideas that interest me. This is a home for the projects, music, writing, and occasional curiosities that come out of that.",
+    "body": "I like making things, understanding how they work, and traversing ideas that lead me to interesting places. This is a home for the projects, music, writing, and occasional curiosities that come out of that.\n",
     "actions": [
       {
         "label": "Explore the site ↘",
@@ -25,28 +24,31 @@
   },
   "sections": [
     {
-      "_template": "columns",
-      "columns": "2",
+      "anchor": "explore",
+      "eyebrow": "A few things I do",
+      "heading": "Different interests. One life.",
+      "divider": true,
+      "width": "wide",
       "spacingTop": "none",
       "spacingBottom": "large",
-      "width": "wide",
+      "columns": "2",
       "items": [
         {
           "label": "Code",
           "sections": [
             {
-              "_template": "textImage",
-              "spacingTop": "none",
-              "spacingBottom": "none",
               "eyebrow": "01 / Code",
               "heading": "Things I've built.",
-              "body": "I work in software engineering, where I enjoy solving problems, untangling complexity, and turning ideas into something people can use.\n\n[Explore code and projects ↗](/code)",
-              "image": "/shelbz-website-project.png",
+              "treatment": "panel",
+              "spacingTop": "none",
+              "spacingBottom": "none",
+              "background": "surface",
+              "body": "I work in software engineering, where I enjoy solving problems, untangling complexity, and turning ideas into something people can use.\n\n[Explore code and projects ↗](/code)\n",
+              "image": "/uploads/shelbz-website-project.png",
               "imageAlt": "Shelbz Citrine portfolio project",
               "imageSide": "above",
               "imageRatio": "landscape",
-              "treatment": "panel",
-              "background": "surface"
+              "_template": "textImage"
             }
           ]
         },
@@ -54,46 +56,44 @@
           "label": "Music",
           "sections": [
             {
-              "_template": "video",
+              "eyebrow": "02 / Music",
+              "heading": "Behind the kit.",
+              "treatment": "panel",
               "width": "content",
               "spacingTop": "none",
               "spacingBottom": "none",
               "alignment": "left",
               "background": "surface",
               "url": "https://www.youtube-nocookie.com/embed/lc_rCn2em8o",
-              "eyebrow": "02 / Music",
-              "heading": "Behind the kit.",
-              "body": "Drumming has taken me through bands, recordings, rehearsals, and tours. It's still one of the ways I most enjoy learning, creating, and challenging myself.\n\n[Explore music ↗](/music)",
-              "treatment": "panel"
+              "body": "Drumming has taken me through bands, recordings, rehearsals, and tours. It's still one of the ways I most enjoy learning, creating, and challenging myself.\n\n[Explore music ↗](/music)\n",
+              "_template": "video"
             }
           ]
         }
       ],
-      "heading": "Different interests. One life.",
-      "eyebrow": "A few things I do",
-      "anchor": "explore",
-      "divider": true
+      "_template": "columns"
     },
     {
-      "_template": "columns",
-      "columns": "2",
+      "width": "wide",
       "spacingTop": "large",
       "spacingBottom": "large",
-      "width": "wide",
+      "background": "light",
+      "columns": "2",
+      "verticalAlignment": "center",
       "items": [
         {
           "label": "Writing introduction",
           "sections": [
             {
-              "_template": "richText",
+              "eyebrow": "03 / Writing",
+              "heading": "Notes from a wandering mind.",
               "width": "content",
               "spacingTop": "none",
               "spacingBottom": "none",
               "alignment": "left",
               "background": "default",
-              "eyebrow": "03 / Writing",
-              "heading": "Notes from a wandering mind.",
-              "body": "I write essays and reflections on Substack, often following questions about philosophy, creativity, and the experience of being human. I also keep poetry and selected essays here.\n\n[Explore writing ↗](/writing)"
+              "body": "I write essays and reflections on Substack, often following questions about philosophy, creativity, and the experience of being human. I also keep poetry and selected essays here.\n\n[Explore writing ↗](/writing)\n",
+              "_template": "richText"
             }
           ]
         },
@@ -101,37 +101,37 @@
           "label": "Featured article",
           "sections": [
             {
-              "_template": "feed",
+              "eyebrow": "From Substack",
+              "treatment": "outline",
               "width": "content",
               "spacingTop": "none",
               "spacingBottom": "none",
               "alignment": "left",
               "background": "default",
-              "eyebrow": "From Substack",
               "source": "https://isiahfletcher7.substack.com/feed",
               "limit": 1,
               "presentation": "featured",
               "fallbackText": "My latest writing lives on Substack.",
               "fallbackUrl": "https://isiahfletcher7.substack.com/",
               "fallbackLabel": "Visit Substack",
-              "treatment": "outline"
+              "_template": "feed"
             }
           ]
         }
       ],
-      "background": "light",
-      "verticalAlignment": "center"
+      "_template": "columns"
     },
     {
-      "_template": "richText",
+      "eyebrow": "04 / Beyond the work",
+      "heading": "Beyond the categories.",
       "width": "prose",
       "spacingTop": "large",
       "spacingBottom": "none",
       "alignment": "left",
       "background": "default",
-      "eyebrow": "04 / Beyond the work",
-      "heading": "Beyond the categories.",
-      "body": "I'm interested in games, literature, philosophy, music theory, and plenty of things that don't need a dedicated section of a website.\n\n[A little more about me ↗](/about)"
+      "body": "I'm interested in games, literature, philosophy, music theory, and plenty of things that don't need a dedicated section of a website.\n\n[A little more about me ↗](/about)\n",
+      "_template": "richText"
     }
-  ]
+  ],
+  "_template": "landing"
 }
