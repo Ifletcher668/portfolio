@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile, readdir } from "node:fs/promises";
 import { themeCSS } from "../src/lib/theme-css.ts";
-import defaults from "../content/theme/site.json" with { type: "json" };
+import defaults from "../content/config/site-theme.json" with { type: "json" };
 
 test("palette edits and role assignments reach the global stylesheet", () => {
   const css = themeCSS({ palette: { blue: "#123456" }, roles: { bg: "blue" } });
@@ -43,4 +43,49 @@ test("every built public route includes the CMS theme island", async () => {
   }
   await inspect("dist/client");
   assert.equal(routes, 14);
+});
+
+test("Config stays browsable with only the Site Theme document", async () => {
+  const { createRequire } = await import("node:module");
+  const vm = await import("node:vm");
+  const schema = JSON.parse(
+    await readFile("tina/tina-lock.json", "utf8"),
+  ).schema;
+  const config = schema.collections.find(
+    (collection) => collection.name === "config",
+  );
+  assert.equal(config.label, "Config");
+  assert.equal(config.templates[0].name, defaults._template);
+  assert.equal(config.templates[0].label, defaults.title);
+  const source = await readFile(
+    createRequire(import.meta.url).resolve("tinacms"),
+    "utf8",
+  );
+  const start = source.indexOf("const shouldAutoOpenCollectionDocument =");
+  const end = source.indexOf("const UnableToLoadModal", start);
+  assert.ok(start >= 0 && end > start);
+  const context = vm.createContext({});
+  vm.runInContext(
+    source.slice(start, end) +
+      "\nthis.autoOpen = shouldAutoOpenCollectionDocument;",
+    context,
+  );
+  const singleton = {
+    collection: {
+      documents: { edges: [{ node: { __typename: "ConfigSiteTheme" } }] },
+    },
+    folder: { fullyQualifiedName: "~" },
+  };
+  assert.equal(
+    context.autoOpen({ ...singleton, allowCreate: false, allowDelete: false }),
+    true,
+  );
+  assert.equal(
+    context.autoOpen({
+      ...singleton,
+      allowCreate: config.ui.allowedActions.create,
+      allowDelete: config.ui.allowedActions.delete,
+    }),
+    false,
+  );
 });

@@ -10,7 +10,7 @@ export const islands: IslandRegistry = {
     component: ThemeStyle,
     wrapper: { tag: "div", className: "site-theme" },
     propsFromData: (result) => ({
-      data: (result as Awaited<ReturnType<typeof getTheme>>).data.theme,
+      data: (result as Awaited<ReturnType<typeof getTheme>>).data.config,
     }),
   },
   homepage: {

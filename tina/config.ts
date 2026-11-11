@@ -1,4 +1,4 @@
-import { themeCollection } from "./theme";
+import { configCollection } from "./config-collection";
 import { defineConfig } from "tinacms";
 
 // HEAD is Netlify's source branch, including for pull-request deploys.
@@ -11,7 +11,7 @@ export default defineConfig({
   build: { outputFolder: "admin", publicFolder: "public" },
   schema: {
     collections: [
-      themeCollection,
+      configCollection,
       {
         name: "homepage",
         label: "Homepage",

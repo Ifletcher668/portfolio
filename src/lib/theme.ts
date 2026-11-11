@@ -3,6 +3,6 @@ import client from "../../tina/__generated__/client";
 
 export const getTheme = (primary = false) =>
   requestWithMetadata(
-    client.queries.theme({ relativePath: "site.json" }),
+    client.queries.config({ relativePath: "site-theme.json" }),
     primary ? { priority: "primary" } : undefined,
   );

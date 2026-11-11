@@ -1,18 +1,21 @@
-import type { Collection } from "tinacms";
-import defaults from "../content/theme/site.json";
+import type { Template } from "tinacms";
+import defaults from "../content/config/site-theme.json";
 
 const label = (name: string) =>
   name.replace(/_/g, " ").replace(/([a-z])(\d|[A-Z])/g, "$1 $2");
-export const themeCollection: Collection = {
-  name: "theme",
-  label: "Site theme",
-  path: "content/theme",
-  format: "json",
-  ui: {
-    allowedActions: { create: false, delete: false },
-    router: () => "/theme-preview",
-  },
+export const siteThemeTemplate: Template = {
+  name: "siteTheme",
+  label: "Site Theme",
+  ui: { defaultItem: defaults },
   fields: [
+    {
+      type: "string",
+      name: "title",
+      label: "Name",
+      isTitle: true,
+      required: true,
+      ui: { component: "hidden" },
+    },
     {
       type: "object",
       name: "palette",

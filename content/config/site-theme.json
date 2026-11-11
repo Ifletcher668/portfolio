@@ -1,4 +1,6 @@
 {
+  "_template": "siteTheme",
+  "title": "Site Theme",
   "palette": {
     "black": "#000000",
     "gray0": "#0a1410",

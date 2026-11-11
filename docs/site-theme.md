@@ -72,6 +72,13 @@ CSS fallbacks, schema and preview path together. Keep the fallback appearance
 consistent with saved theme content so loading order does not create a second
 visual theme. Treat renaming a key as a content migration, not a cosmetic refactor.
 
+Group site-wide settings under Config, with a distinct document template for
+settings that need different fields or preview contexts. Add navigation, fonts
+or spacing there when those editing needs are implemented; avoid placeholder
+settings that suggest unsupported control. Keep one canonical filename per
+config type so consumers have a stable document to query. Preserve a browsable
+Config list rather than treating the collection as an auto-opening singleton.
+
 Validate at the boundary affected by the change. For palette or role changes,
 review contrasting surfaces, interaction states and representative pages at
 wide and narrow widths. For schema or rendering changes, also check invalid

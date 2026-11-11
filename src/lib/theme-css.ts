@@ -1,4 +1,4 @@
-import defaults from "../../content/theme/site.json" with { type: "json" };
+import defaults from "../../content/config/site-theme.json" with { type: "json" };
 
 // Only known keys and validated values reach CSS, including during unsaved previews.
 export function themeCSS(data: { palette?: unknown; roles?: unknown }) {

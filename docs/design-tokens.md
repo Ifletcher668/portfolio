@@ -1,7 +1,7 @@
 # Design tokens
 
 Fallback tokens live in `src/styles/tokens.css`, imported once by `global.css`.
-Tina manages the site-wide palette and color-role overrides in `content/theme/site.json`;
+Tina manages the site-wide palette and color-role overrides in `content/config/site-theme.json`;
 see [Site theme](site-theme.md) for editing and publishing.
 Keep the root font size at the browser default so rem values respect reader preferences.
 
