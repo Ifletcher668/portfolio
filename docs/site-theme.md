@@ -1,66 +1,84 @@
-# Site theme: colors
+# Theme design methodology
 
-The Tina pilot is live. The next schema adds **Site theme → site** to `/admin/`.
-This document controls colors across all public routes, including archive pages
-and the standalone Three.js demo. Typography and spacing remain in code.
+Color decisions should express one visual system across the site. Editors need
+room to change its character without having to understand individual components;
+contributors need enough structure to keep those changes coherent. Treat the
+theme as a shared design contract, rather than a collection of page overrides.
 
-## Edit and publish
+## Separate available colors from their purpose
 
-1. Open `/admin/`, choose **Site theme**, then **site**.
-2. Under **Palette**, edit a color using its picker or a six-digit hex value.
-   Names are generic: black, white, gray 0–19, red, orange, yellow, green, cyan,
-   blue, purple, orange dark and green dark. Grays are tinted neutrals ordered
-   from dark to light; the defaults preserve the existing appearance.
-3. Under **Color roles**, choose which palette color serves each purpose:
-   backgrounds, surfaces, text, links, borders, accents, captions and the
-   homepage button. Roles ending in “on light” apply to the light writing panel.
-4. Check the unsaved preview, then inspect Home, Work and Writing. Check text
-   contrast, link hover, keyboard focus and narrow screens. The preview also
-   updates the homepage canvas and browser theme color.
-5. Save to commit to GitHub. Check the matching Netlify deployment, then verify
-   the published pages. Unsaved changes remain in the editor.
+Palette names describe colors in generic terms, following terminal and editor
+conventions: red, green, blue, cyan, and numbered grays. Avoid names tied to a
+brand, mood, page, or current hex value. A palette should remain understandable
+when its values change. Tinted grays are appropriate for the site's atmosphere;
+keep their dark-to-light ordering useful for reasoning about visual hierarchy.
 
-The homepage greeting is still editable in **Homepage**. The pilot's separate
-Sage/Paper button picker is superseded by **Color roles → homepage button
-background**. Its old JSON value is retained for history and no longer used.
+Roles describe why a color appears: text, background, surface, border, link, or
+accent. Components should depend on these purposes so a palette change does not
+require revisiting every use. Choose a role because its meaning matches the
+component, not because it happens to resolve to the desired color today.
 
-The default text/background pairings are unchanged. New combinations are an
-editorial choice: check at least 4.5:1 for normal text, 3:1 for large text, and
-3:1 for focus indicators against adjacent colors before publishing.
+Before adding anything, decide which kind of change is needed:
 
-## Implementation and recovery
+- Change a palette value when the color itself should change wherever selected.
+- Reassign a role when one visual purpose should use a different available color.
+- Add a role when a purpose needs independent control, even if it initially shares
+  a color with another role. Explain why the existing roles cannot express it.
+- Add a palette entry when a needed hue or tonal step is missing. Avoid creating
+  near-duplicates to solve a component-specific styling problem.
 
-- `content/theme/site.json` stores palette values and role assignments in Git.
-- `tina/theme.ts` defines the singleton form. Creating/deleting themes is disabled.
-- `src/styles/tokens.css` supplies fallback tokens; the CMS stylesheet overrides
-  palette values and roles. Components continue to consume semantic tokens.
-- Only known palette/role keys, six-digit hex colors and allowed palette choices
-  reach the stylesheet. Invalid preview values fall back to checked-out values.
-- Translucent overlays, ripples, tints and shadows derive from palette/role tokens;
-  their opacity and geometry remain code-owned.
-- Provider-controlled iframe contents and baked-in images/textures are unchanged.
-- The shared Tina island registry refreshes theme styles on unsaved edits. Public
-  pages are statically built from Git and do not need TinaCloud at request time.
+## Design relationships, not isolated swatches
 
-For an unsaved mistake, discard changes. For a saved mistake, restore the affected
-values in Tina and save again. For a failed build, the previous successful deploy
-stays live. Follow `docs/tina-pilot.md` for credentials, branch targeting and Git
-recovery. Do not publish an offline/local editor as the production admin.
+Judge colors in the contexts where they meet. Text and its background, a link
+and its surrounding prose, or a focus indicator and adjacent surfaces form the
+useful unit of review. Matching a hue across contexts does not guarantee matching
+contrast; light surfaces need their own role assignments.
 
-After merging the schema and its generated `tina/tina-lock.json`, exercise a
-palette edit and a role edit in the authenticated deployed admin; verify both
-unsaved preview and save-to-deployment, then restore them. Local build checks do
-not prove TinaCloud publishing works.
+Preserve readable hierarchy between headings, body text and metadata, and make
+interactive states distinguishable. Check hover, focus, overlays and captions as
+well as resting states. Translucent effects depend on the surface beneath them;
+review the composite result instead of judging the source swatch alone.
 
-## Local verification
+Require at least 4.5:1 contrast for normal text and 3:1 for large text. Aim for
+at least 3:1 between focus indicators and adjacent colors. A syntactically valid
+palette is not evidence that these relationships remain accessible.
 
-- Node 22: Tina local schema/editor build, design-token audit, Astro checks and all
-  14 static public routes pass.
-- `node --experimental-strip-types --test scripts/theme.test.mjs` checks palette
-  edits, role assignment, invalid-value/CSS-injection fallback and theme coverage
-  in every built public route (run after building).
-- Browser review: Home, Work and Writing render with the existing palette. Home
-  computes background `rgb(37, 47, 44)` and text `rgb(195, 208, 191)`, with no
-  horizontal overflow at the review viewport.
-- Authenticated unsaved editing, phone-width review and save-to-publish on Netlify
-  remain deployment acceptance checks; they have not been claimed as completed.
+## Keep the editor boundary deliberate
+
+Expose choices that help an editor express a coherent theme. Keep layout,
+effect geometry and opacity rules in code unless there is a concrete editorial
+need to control them. Expanding the form has a cost: every independent choice
+creates more combinations to understand and review.
+
+Treat preview values as untrusted input. Preserve validation at the CSS output
+boundary as well as in the editing form, and retain usable fallbacks during
+incomplete edits. Never make arbitrary CSS an escape hatch for a missing role.
+
+Saved public pages should retain their appearance without an available CMS.
+Unsaved previews should exercise the same color relationships as published
+pages, including colors consumed outside ordinary stylesheets. When adding a
+canvas, browser-level treatment or other color consumer, account for both its
+initial value and subsequent preview changes.
+
+Provider-controlled embeds and colors baked into media have separate ownership.
+Theme their surrounding surfaces; evaluate the resulting composition without
+assuming the palette can recolor their interiors.
+
+## Contribute through the shared contract
+
+Start with the intended relationship and its consumers. Trace an existing role
+before introducing a new one, then carry any change through the content model,
+CSS fallbacks, schema and preview path together. Keep the fallback appearance
+consistent with saved theme content so loading order does not create a second
+visual theme. Treat renaming a key as a content migration, not a cosmetic refactor.
+
+Validate at the boundary affected by the change. For palette or role changes,
+review contrasting surfaces, interaction states and representative pages at
+wide and narrow widths. For schema or rendering changes, also check invalid
+input, unsaved preview updates and the saved build. Build and token checks catch
+structural mistakes; visual and contrast review establish whether the design
+still works.
+
+Keep this document focused on intent and decision rules. Field inventories,
+file wiring and command details belong in code or operational documentation;
+completed checks and rollout status belong in pull requests.
