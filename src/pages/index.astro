@@ -29,6 +29,20 @@ try {
     <TinaIsland name="homepage" wrapper={islands.homepage.wrapper}>
       <HomepageIntro data={homepage.data.homepage} />
     </TinaIsland>
+    <!-- Preserve the collection-menu intent before the deferred Tina bridge
+         primes either island. An unqualified public visit forces no form. -->
+    <script is:inline data-tina-document-selection>
+      const selectedDocument = new URLSearchParams(window.location.search).get(
+        "tina-document",
+      );
+      if (selectedDocument === "theme" || selectedDocument === "homepage") {
+        document
+          .querySelector(
+            `[data-tina-island="/tina-island/${selectedDocument}"]`,
+          )
+          ?.setAttribute("data-tina-island-primary", "");
+      }
+    </script>
   </section>
   <section class="shell" id="explore">
     <div class="section-intro">

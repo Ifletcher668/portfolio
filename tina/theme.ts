@@ -8,7 +8,10 @@ export const themeCollection: Collection = {
   label: "Site theme",
   path: "content/theme",
   format: "json",
-  ui: { allowedActions: { create: false, delete: false }, router: () => "/" },
+  ui: {
+    allowedActions: { create: false, delete: false },
+    router: () => "/?tina-document=theme",
+  },
   fields: [
     {
       type: "object",

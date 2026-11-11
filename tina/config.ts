@@ -19,7 +19,7 @@ export default defineConfig({
         format: "json",
         ui: {
           allowedActions: { create: false, delete: false },
-          router: () => "/",
+          router: () => "/?tina-document=homepage",
         },
         fields: [
           {
