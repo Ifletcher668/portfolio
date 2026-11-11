@@ -78,6 +78,14 @@
         sizeAttenuation: true,
       }),
     );
+    const updateTheme = () => {
+      const style = getComputedStyle(host);
+      mesh.material.color.set(style.getPropertyValue("--color-link").trim());
+      points.material.color.set(
+        style.getPropertyValue("--color-accent").trim(),
+      );
+    };
+    window.addEventListener("site-theme-change", updateTheme);
     const group = new THREE.Group();
     group.add(mesh, points);
     group.position.x = -0.55;
@@ -128,6 +136,7 @@
       () => {
         cancelAnimationFrame(frame);
         observer.disconnect();
+        window.removeEventListener("site-theme-change", updateTheme);
         visibilityObserver.disconnect();
         window.removeEventListener("pointermove", onPointer);
         document.removeEventListener("visibilitychange", onVisibility);

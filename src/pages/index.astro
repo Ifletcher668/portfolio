@@ -26,7 +26,11 @@ try {
       height="500"
       fetchpriority="high"
     />
-    <TinaIsland name="homepage" wrapper={islands.homepage.wrapper} primary>
+    <TinaIsland
+      name="homepage"
+      wrapper={islands.homepage.wrapper}
+      primary={Astro.url.pathname !== "/theme-preview"}
+    >
       <HomepageIntro data={homepage.data.homepage} />
     </TinaIsland>
   </section>

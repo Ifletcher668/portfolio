@@ -1,0 +1,52 @@
+---
+import TinaIsland from "@tinacms/astro/TinaIsland.astro";
+import ThemeStyle from "./ThemeStyle.astro";
+import { getTheme } from "../lib/theme";
+import { islands } from "../lib/islands";
+const themePreview = Astro.url.pathname === "/theme-preview";
+const theme = await getTheme(themePreview);
+---
+
+<TinaIsland name="theme" wrapper={islands.theme.wrapper} primary={themePreview}>
+  <ThemeStyle data={theme.data.config} />
+</TinaIsland>
+
+<script>
+  const update = () => {
+    // Resolve the computed role: its declaration may itself be a CSS variable.
+    const probe = document.createElement("span");
+    probe.style.color = "var(--color-bg)";
+    probe.hidden = true;
+    document.body.append(probe);
+    document
+      .querySelector('meta[name="theme-color"]')
+      ?.setAttribute("content", getComputedStyle(probe).color);
+    probe.remove();
+    window.dispatchEvent(new Event("site-theme-change"));
+  };
+  const observer = new MutationObserver((records) => {
+    if (
+      records.some(
+        (record) =>
+          (record.target instanceof Element &&
+            record.target.closest(".site-theme")) ||
+          [...record.addedNodes].some(
+            (node) =>
+              node instanceof Element &&
+              (node.matches(".site-theme") ||
+                node.querySelector("[data-site-theme]")),
+          ),
+      )
+    )
+      update();
+  });
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true,
+    characterData: true,
+  });
+  update();
+  document.addEventListener("astro:before-swap", () => observer.disconnect(), {
+    once: true,
+  });
+</script>
