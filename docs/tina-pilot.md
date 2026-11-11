@@ -1,5 +1,9 @@
 # TinaCMS pilot: edit, publish, and recover
 
+> Historical pilot walkthrough. The pilot is now live. The expanded color editor
+> is documented in [Site theme](site-theme.md); its site-wide button role replaces
+> the original Sage/Paper picker. Setup and recovery below still apply.
+
 This pilot makes exactly two things editable: the homepage greeting and the
 background of its **Explore the site** button. Everything else stays in the site
 code. Content lives in `content/homepage/home.json` in GitHub.

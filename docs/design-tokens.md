@@ -1,11 +1,13 @@
 # Design tokens
 
-The shared source is `src/styles/tokens.css`, imported once by `global.css`.
+Fallback tokens live in `src/styles/tokens.css`, imported once by `global.css`.
+Tina manages the site-wide palette and color-role overrides in `content/theme/site.json`;
+see [Site theme](site-theme.md) for editing and publishing.
 Keep the root font size at the browser default so rem values respect reader preferences.
 
 ## Three layers
 
-1. Foundations describe available values: `--color-forest`, `--space-4`, font families and sizes.
+1. Foundations describe available values: `--palette-green`, `--space-4`, font families and sizes.
 2. Semantic roles describe purpose: `--color-text`, `--color-surface`, `--gap-prose`.
 3. Component relationships describe layout: `--card-padding`, `--gap-job`, `--gap-section-heading`.
 
@@ -50,7 +52,8 @@ Size tokens use rem and clamp, with minimums that remain readable on phones. Do 
 
 ## Color
 
-Preserve the forest, moss, sage, paper and copper palette. Components use purpose-based names for background, surface, text, headings, metadata, borders, links and focus/accent. The light homepage writing section has separate text/link/border roles for its paper background.
+The default appearance is preserved with generic palette names (gray 0–19, red,
+green, blue, cyan, etc.). Tina can change both palette values and role assignments. Components use purpose-based names for background, surface, text, headings, metadata, borders, links and focus/accent. The light homepage writing section has separate text/link/border roles for its paper background.
 
 All authored page and component styles use these tokens, including the Hobbies library, poems, older blog, social links, image captions, project index, and standalone Three.js demo. Legacy RGB-channel variables and old size aliases have been removed. The homepage canvas reads semantic colors from computed CSS; the demo imports tokens directly and renders over the shared background. Browser theme color also reads `--color-bg`.
 

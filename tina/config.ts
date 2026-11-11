@@ -1,3 +1,4 @@
+import { themeCollection } from "./theme";
 import { defineConfig } from "tinacms";
 
 // HEAD is Netlify's source branch, including for pull-request deploys.
@@ -10,9 +11,10 @@ export default defineConfig({
   build: { outputFolder: "admin", publicFolder: "public" },
   schema: {
     collections: [
+      themeCollection,
       {
         name: "homepage",
-        label: "Homepage pilot",
+        label: "Homepage",
         path: "content/homepage",
         format: "json",
         ui: {
@@ -27,17 +29,6 @@ export default defineConfig({
             isTitle: true,
             required: true,
             description: "The main greeting at the top of your homepage.",
-          },
-          {
-            type: "string",
-            name: "buttonColor",
-            label: "Button color",
-            required: true,
-            options: [
-              { label: "Sage", value: "sage" },
-              { label: "Paper", value: "paper" },
-            ],
-            description: "Background of the Explore the site button.",
           },
         ],
       },

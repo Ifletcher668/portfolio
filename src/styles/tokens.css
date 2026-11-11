@@ -1,31 +1,81 @@
 /* Foundations → semantic roles → component relationships.
    All pages consume this source; no page-local theme aliases. */
 :root {
-  --color-forest: #252f2c;
-  --color-moss: #34443c;
-  --color-sage: #a9c1a3;
-  --color-paper: #e2d7bb;
-  --color-copper: #bf8f68;
-  --color-bg: var(--color-forest);
-  --color-surface: var(--color-moss);
-  --color-footer: #1e2924;
-  --color-heading: var(--color-paper);
-  --color-text: #c3d0bf;
-  --color-muted: #a9b6a8;
-  --color-link: var(--color-sage);
-  --color-homepage-button-background: var(--color-link);
-  --color-link-hover: var(--color-paper);
-  --color-accent: var(--color-copper);
-  --color-border: #536259;
-  --color-on-light: #283a31;
-  --color-text-on-light: #314438;
-  --color-muted-on-light: #52634f;
-  --color-link-on-light: #314e3c;
-  --color-link-hover-on-light: #172e24;
-  --color-accent-on-light: #875332;
-  --color-border-on-light: #b6bba8;
-  --color-rule-on-light: #8e9b80;
-  --color-border-hover-on-light: #607b65;
+  --palette-black: #000000;
+  --palette-gray0: #0a1410;
+  --palette-gray1: #18231d;
+  --palette-gray2: #1e2924;
+  --palette-gray3: #252f2c;
+  --palette-gray4: #283a31;
+  --palette-gray5: #314438;
+  --palette-gray6: #34443c;
+  --palette-gray7: #314e3c;
+  --palette-gray8: #405447;
+  --palette-gray9: #415449;
+  --palette-gray10: #52634f;
+  --palette-gray11: #536259;
+  --palette-gray12: #607b65;
+  --palette-gray13: #6d806f;
+  --palette-gray14: #829783;
+  --palette-gray15: #8e9b80;
+  --palette-gray16: #a9b6a8;
+  --palette-gray17: #b6bba8;
+  --palette-gray18: #c3d0bf;
+  --palette-gray19: #e2d7bb;
+  --palette-white: #ffffff;
+  --palette-red: #e67e80;
+  --palette-orange: #bf8f68;
+  --palette-yellow: #dbbc7f;
+  --palette-green: #a9c1a3;
+  --palette-cyan: #83c092;
+  --palette-blue: #7fbbb3;
+  --palette-purple: #d699b6;
+  --palette-orangeDark: #875332;
+  --palette-greenDark: #172e24;
+  --color-bg: var(--palette-gray3);
+  --color-surface: var(--palette-gray6);
+  --color-footer: var(--palette-gray2);
+  --color-heading: var(--palette-gray19);
+  --color-text: var(--palette-gray18);
+  --color-muted: var(--palette-gray16);
+  --color-link: var(--palette-green);
+  --color-homepage-button-background: var(--palette-green);
+  --color-link-hover: var(--palette-gray19);
+  --color-accent: var(--palette-orange);
+  --color-border: var(--palette-gray11);
+  --color-on-light: var(--palette-gray4);
+  --color-text-on-light: var(--palette-gray5);
+  --color-muted-on-light: var(--palette-gray10);
+  --color-link-on-light: var(--palette-gray7);
+  --color-link-hover-on-light: var(--palette-greenDark);
+  --color-accent-on-light: var(--palette-orangeDark);
+  --color-border-on-light: var(--palette-gray17);
+  --color-rule-on-light: var(--palette-gray15);
+  --color-border-hover-on-light: var(--palette-gray12);
+  --color-surface-hover: var(--palette-gray9);
+  --color-surface-spine: var(--palette-gray8);
+  --color-border-strong: var(--palette-gray13);
+  --color-underline-on-light: var(--palette-gray14);
+  --color-caption-text: var(--palette-white);
+  --color-mask: var(--palette-black);
+  --color-caption-overlay: color-mix(
+    in srgb,
+    var(--palette-black) 85%,
+    transparent
+  );
+  --color-overlay: color-mix(in srgb, var(--color-bg) 90%, transparent);
+  --color-ripple: color-mix(in srgb, var(--color-heading) 28%, transparent);
+  --color-ripple-on-light: color-mix(in srgb, var(--color-bg) 18%, transparent);
+  --color-tint-on-light: color-mix(
+    in srgb,
+    var(--color-link-on-light) 3.5%,
+    transparent
+  );
+  --color-tint-hover-on-light: color-mix(
+    in srgb,
+    var(--color-link-on-light) 7.5%,
+    transparent
+  );
 
   --font-family-display: "CormorantGaramond", Georgia, serif;
   --font-family-body:
@@ -83,18 +133,6 @@
   --layout-prose: 44rem;
 
   /* Shared treatments and small UI roles. */
-  --color-surface-hover: #415449;
-  --color-surface-spine: #405447;
-  --color-border-strong: #6d806f;
-  --color-underline-on-light: #829783;
-  --color-caption-overlay: rgba(0, 0, 0, 0.85);
-  --color-caption-text: #ffffff;
-  --color-overlay: rgba(37, 47, 44, 0.9);
-  --color-ripple: rgba(226, 215, 187, 0.28);
-  --color-ripple-on-light: rgba(37, 47, 44, 0.18);
-  --color-tint-on-light: rgba(49, 78, 60, 0.035);
-  --color-tint-hover-on-light: rgba(49, 78, 60, 0.075);
-  --color-mask: #000000;
   --font-size-ui: 1rem;
   --font-size-brand: 1.4rem;
   --font-size-footer-title: 1.8rem;
@@ -111,11 +149,15 @@
   --radius-md: 4px;
   --radius-lg: 8px;
   --radius-xl: 12px;
-  --shadow-card: 0 10px 28px rgba(10, 20, 16, 0.12);
-  --shadow-card-hover: 0 18px 40px rgba(10, 20, 16, 0.22);
-  --shadow-button-hover: 0 9px 24px rgba(10, 20, 16, 0.22);
-  --shadow-post-hover: 0 14px 30px rgba(37, 47, 44, 0.16);
-  --shadow-hero: 0 18px 40px #18231d;
+  --shadow-card: 0 10px 28px
+    color-mix(in srgb, var(--palette-gray0) 12%, transparent);
+  --shadow-card-hover: 0 18px 40px
+    color-mix(in srgb, var(--palette-gray0) 22%, transparent);
+  --shadow-button-hover: 0 9px 24px
+    color-mix(in srgb, var(--palette-gray0) 22%, transparent);
+  --shadow-post-hover: 0 14px 30px
+    color-mix(in srgb, var(--palette-gray3) 16%, transparent);
+  --shadow-hero: 0 18px 40px var(--palette-gray1);
   --transition-fast: 0.15s ease;
   --transition-base: 0.25s ease;
   --transition-slow: 0.3s ease;

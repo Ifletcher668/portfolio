@@ -1,0 +1,8 @@
+---
+import { themeCSS } from "../lib/theme-css";
+interface Props {
+  data: { palette?: unknown; roles?: unknown };
+}
+---
+
+<style is:inline data-site-theme set:html={themeCSS(Astro.props.data)}></style>
