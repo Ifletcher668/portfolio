@@ -1,0 +1,56 @@
+{
+  "_template": "interior",
+  "draft": false,
+  "title": "Music — Isiah Fletcher",
+  "description": "An archive of drum performances and recorded music by Isiah Fletcher.",
+  "eyebrow": "02 / Music",
+  "heading": "Behind the kit.",
+  "intro": "Drumming has been part of my life since I was twelve. Here are some of the performances and recordings from the years I've spent playing.",
+  "sections": [
+    {
+      "_template": "cardGrid",
+      "width": "content",
+      "spacingTop": "medium",
+      "spacingBottom": "medium",
+      "alignment": "left",
+      "background": "default",
+      "cards": [
+        {
+          "eyebrow": "Watch",
+          "heading": "Performances",
+          "linkLabel": "Watch performances on YouTube ↗",
+          "linkUrl": "https://www.youtube.com/@isiahfletcher2859",
+          "body": "Videos of my playing live and behind the kit are collected on my YouTube channel."
+        },
+        {
+          "eyebrow": "Listen",
+          "heading": "Recorded music",
+          "linkLabel": "Aterrima ↗",
+          "linkUrl": "/music/aterrima",
+          "body": "I played with two Boise-based extreme metal bands. You can find the music through their pages.\n\n[Weald & Woe ↗](/music/weald-and-woe)"
+        }
+      ],
+      "columns": "2"
+    },
+    {
+      "_template": "cardGrid",
+      "width": "content",
+      "spacingTop": "medium",
+      "spacingBottom": "medium",
+      "alignment": "left",
+      "background": "default",
+      "cards": [
+        {
+          "heading": "A little history",
+          "body": "I performed and toured with bands based in Boise, Idaho, including shows across the Pacific Northwest and Southwest. Each band asked something different of me, from technical precision to composition and endurance.\n\nI'm taking a break from performing with bands while finding my way back to making music in my own time."
+        },
+        {
+          "eyebrow": "Teaching",
+          "heading": "Drum lessons",
+          "body": "I've also taught drums, with a focus on technique, posture, and musical expression.\n\nFor current lesson availability, [get in touch on Facebook ↗](https://www.facebook.com/fletchmydrumsticks/)."
+        }
+      ],
+      "columns": "2"
+    }
+  ]
+}

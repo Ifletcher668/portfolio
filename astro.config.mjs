@@ -13,7 +13,14 @@ export default defineConfig({
   output: "static",
   // Use a portable Node server locally; production uses Netlify Functions.
   adapter: process.env.NETLIFY ? netlify() : node({ mode: "standalone" }),
-  integrations: [mdx(), sitemap(), tina()],
+  integrations: [
+    mdx(),
+    sitemap({
+      filter: (page) =>
+        new URL(page).pathname.replace(/\/$/, "") !== "/theme-preview",
+    }),
+    tina(),
+  ],
   vite: {
     plugins: [tinaAdminDevRedirect()],
     ssr: { noExternal: ["@tinacms/astro", "@tinacms/bridge"] },

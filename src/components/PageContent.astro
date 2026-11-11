@@ -1,0 +1,190 @@
+---
+import TinaMarkdown from "@tinacms/astro/TinaMarkdown.astro";
+import { tinaField } from "@tinacms/astro/tina-field";
+import { sanitizeHref, sanitizeImageSrc } from "@tinacms/astro/sanitize";
+import IcosahedronBackground from "./IcosahedronBackground.astro";
+import { sectionKind, sectionRenderers } from "./sections/registry";
+import type { Page } from "../lib/pages";
+import type { FeedItem } from "../lib/feeds";
+import "../styles/page-builder.css";
+interface Props {
+  data: Page;
+  feeds?: Record<string, FeedItem[]>;
+}
+const { data, feeds = {} } = Astro.props;
+const landing = data.__typename === "PagesLanding";
+const hero = data.__typename === "PagesLanding" ? data.hero : undefined;
+const writing = data.__typename === "PagesWriting" ? data : undefined;
+const date =
+  writing?.date && Number.isFinite(Date.parse(writing.date))
+    ? new Date(writing.date)
+    : undefined;
+---
+
+<article class:list={["builder-page", { "builder-writing": !!writing }]}>
+  <header
+    class:list={[
+      "builder-intro",
+      {
+        "builder-hero": landing,
+        "hero-with-image": !!sanitizeImageSrc(hero?.image),
+      },
+    ]}
+  >
+    {hero?.treatment === "icosahedron" && <IcosahedronBackground />}
+    {
+      sanitizeImageSrc(hero?.image) && (
+        <img
+          class="builder-hero-image"
+          src={sanitizeImageSrc(hero?.image)}
+          alt={hero?.imageAlt || ""}
+          width="666"
+          height="500"
+          fetchpriority="high"
+          data-tina-field={tinaField(hero, "image")}
+        />
+      )
+    }
+    <div class="builder-intro-copy">
+      {
+        data.eyebrow && (
+          <p
+            class="section-eyebrow"
+            data-tina-field={tinaField(data, "eyebrow")}
+          >
+            {data.eyebrow}
+          </p>
+        )
+      }
+      <h1 data-tina-field={tinaField(data, "heading")}>{data.heading}</h1>
+      {
+        (date || writing?.byline) && (
+          <p class="section-date">
+            {date && (
+              <time
+                datetime={date.toISOString()}
+                data-tina-field={tinaField(writing, "date")}
+              >
+                {date.toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                  timeZone: "UTC",
+                })}
+              </time>
+            )}
+            {date && writing?.byline && " · "}
+            <span data-tina-field={tinaField(writing, "byline")}>
+              {writing?.byline}
+            </span>
+          </p>
+        )
+      }
+      {
+        data.intro && (
+          <p class="builder-lead" data-tina-field={tinaField(data, "intro")}>
+            {data.intro}
+          </p>
+        )
+      }
+      {
+        hero?.lead && (
+          <p class="builder-lead" data-tina-field={tinaField(hero, "lead")}>
+            {hero.lead}
+          </p>
+        )
+      }
+      {
+        hero?.body && (
+          <div class="section-prose" data-tina-field={tinaField(hero, "body")}>
+            <TinaMarkdown content={hero.body} />
+          </div>
+        )
+      }
+      {
+        hero?.actions?.length && (
+          <div
+            class="builder-actions"
+            data-tina-field={tinaField(hero, "actions")}
+          >
+            {hero.actions.map(
+              (action) =>
+                action && <a href={sanitizeHref(action.url)}>{action.label}</a>,
+            )}
+          </div>
+        )
+      }
+    </div>
+  </header>
+  {
+    writing?.body && (
+      <div
+        class="builder-article section-prose"
+        data-tina-field={tinaField(writing, "body")}
+      >
+        <TinaMarkdown content={writing.body} />
+      </div>
+    )
+  }
+  <div data-tina-field={tinaField(data, "sections")}>
+    {
+      data.sections?.map((section) => {
+        if (!section) return null;
+        const kind = sectionKind(section.__typename);
+        if (!kind) return null;
+        const Component = sectionRenderers[kind];
+        const anchor =
+          section.anchor && /^[a-z][a-z0-9-]*$/.test(section.anchor)
+            ? section.anchor
+            : undefined;
+        const width = ["prose", "content", "wide"].includes(section.width || "")
+          ? section.width
+          : "content";
+        const top = ["none", "small", "medium", "large"].includes(
+          section.spacingTop || "",
+        )
+          ? section.spacingTop
+          : "medium";
+        const bottom = ["none", "small", "medium", "large"].includes(
+          section.spacingBottom || "",
+        )
+          ? section.spacingBottom
+          : "medium";
+        return (
+          <section
+            id={anchor}
+            class:list={[
+              "builder-section",
+              `width-${width}`,
+              `top-${top}`,
+              `bottom-${bottom}`,
+              {
+                "align-center": section.alignment === "center",
+                "background-surface": section.background === "surface",
+                "background-light": section.background === "light",
+              },
+            ]}
+            data-tina-field={tinaField(section)}
+          >
+            <div class="builder-section-inner">
+              {section.eyebrow && (
+                <p
+                  class="section-eyebrow"
+                  data-tina-field={tinaField(section, "eyebrow")}
+                >
+                  {section.eyebrow}
+                </p>
+              )}
+              {section.heading && (
+                <h2 data-tina-field={tinaField(section, "heading")}>
+                  {section.heading}
+                </h2>
+              )}
+              <Component data={section} feeds={feeds} />
+            </div>
+          </section>
+        );
+      })
+    }
+  </div>
+</article>

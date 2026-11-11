@@ -1,0 +1,15 @@
+---
+import ConfiguredPage from "../components/ConfiguredPage.astro";
+import { publishedPageDocuments } from "../lib/pages";
+export function getStaticPaths() {
+  return publishedPageDocuments.map((page) => ({
+    params: { page: page.url === "/" ? undefined : page.url.slice(1) },
+    props: { relativePath: page.relativePath },
+  }));
+}
+interface Props {
+  relativePath: string;
+}
+---
+
+<ConfiguredPage relativePath={Astro.props.relativePath} />

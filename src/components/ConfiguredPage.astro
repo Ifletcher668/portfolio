@@ -1,0 +1,25 @@
+---
+import Home from "../layouts/Home.astro";
+import TinaIsland from "@tinacms/astro/TinaIsland.astro";
+import PageContent from "./PageContent.astro";
+import { getPage, getPageFeeds } from "../lib/pages";
+import { islands } from "../lib/islands";
+interface Props {
+  relativePath: string;
+}
+const { relativePath } = Astro.props;
+const page = await getPage(relativePath);
+const data = page.data.pages;
+const feeds = await getPageFeeds(data);
+---
+
+<Home title={data.title} description={data.description || undefined}>
+  <TinaIsland
+    name="page"
+    params={{ relativePath }}
+    wrapper={islands.page.wrapper}
+    primary={Astro.url.pathname !== "/theme-preview"}
+  >
+    <PageContent data={data} feeds={feeds} />
+  </TinaIsland>
+</Home>

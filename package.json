@@ -9,7 +9,10 @@
     "preview": "astro preview",
     "astro": "astro",
     "build:local": "tinacms build --local --skip-cloud-checks -c \"npm run check:tokens && astro check && astro build\"",
-    "check:tokens": "node scripts/check-design-tokens.mjs"
+    "check:tokens": "node scripts/check-design-tokens.mjs",
+    "test:pages": "node --experimental-strip-types --test scripts/pages.test.mjs",
+    "test:preview": "node --experimental-strip-types --test scripts/pages-preview.test.mjs scripts/tina-form-selection.test.mjs",
+    "validate:pages": "tinacms build --local --skip-cloud-checks -c \"npm run check:tokens && astro check && astro build && npm run test:pages && npm run test:preview && node --experimental-strip-types --test scripts/theme.test.mjs\""
   },
   "dependencies": {
     "@astrojs/check": "^0.9.12",

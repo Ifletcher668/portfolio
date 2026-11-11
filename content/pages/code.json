@@ -1,0 +1,48 @@
+{
+  "_template": "interior",
+  "draft": false,
+  "title": "Code — Isiah Fletcher",
+  "description": "Professional experience and software engineering background of Isiah Fletcher.",
+  "eyebrow": "01 / Code",
+  "heading": "Working in software.",
+  "intro": "Software engineering is my profession. This is a record of the teams, systems, and problems I've worked with along the way.",
+  "sections": [
+    {
+      "_template": "cardGrid",
+      "width": "content",
+      "spacingTop": "medium",
+      "spacingBottom": "medium",
+      "alignment": "left",
+      "background": "default",
+      "cards": [
+        {
+          "heading": "Professional experience",
+          "linkLabel": "Read my résumé and work history ↗",
+          "linkUrl": "/work",
+          "body": "My work has focused on frontend engineering, React, TypeScript, design systems, and the collaboration between engineering and design.\n\nRather than inventing project case studies, I've kept my professional history together in one place: roles, responsibilities, technical skills, and education."
+        },
+        {
+          "eyebrow": "Technical interests",
+          "heading": "Making useful things.",
+          "body": "Accessible interfaces, understandable code, maintainable systems, and the small details that make software easier to use.\n\nSome of my code is available on [GitHub ↗](https://github.com/Ifletcher668)."
+        }
+      ],
+      "columns": "2"
+    },
+    {
+      "_template": "textImage",
+      "width": "content",
+      "spacingTop": "medium",
+      "spacingBottom": "medium",
+      "alignment": "left",
+      "background": "default",
+      "eyebrow": "From the archive",
+      "heading": "Shelbz Citrine",
+      "image": "/shelbz-website-project.png",
+      "imageAlt": "Screenshot of the Shelbz Citrine website",
+      "body": "A website project from my earlier work, kept here as part of the archive.",
+      "imageSide": "left",
+      "imageRatio": "landscape"
+    }
+  ]
+}

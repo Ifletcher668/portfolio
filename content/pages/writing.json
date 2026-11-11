@@ -1,0 +1,51 @@
+{
+  "_template": "writing",
+  "draft": false,
+  "title": "Writing — Isiah Fletcher",
+  "description": "Essays, reflections, and poetry by Isiah Fletcher.",
+  "eyebrow": "03 / Writing",
+  "heading": "Words gathered along the way.",
+  "intro": "An archive of essays, reflections, and poetry. Some published elsewhere, some kept here.",
+  "sections": [
+    {
+      "_template": "cardGrid",
+      "width": "content",
+      "spacingTop": "medium",
+      "spacingBottom": "medium",
+      "alignment": "left",
+      "background": "default",
+      "cards": [
+        {
+          "heading": "Gimbles and Toads",
+          "linkLabel": "Read and subscribe on Substack ↗",
+          "linkUrl": "https://isiahfletcher7.substack.com/",
+          "body": "On Substack, I've shared essays about philosophy, creativity, memory, and the strange business of being human. Some are personal; others begin with an idea and follow it wherever it leads."
+        },
+        {
+          "eyebrow": "Closer to home",
+          "heading": "Poetry and other writing",
+          "linkLabel": "Read selected poems ↗",
+          "linkUrl": "/hobbies",
+          "body": "Some of my poems are collected on the site's earlier Hobbies page. They're part of this archive too."
+        }
+      ],
+      "columns": "2"
+    },
+    {
+      "_template": "feed",
+      "width": "content",
+      "spacingTop": "medium",
+      "spacingBottom": "medium",
+      "alignment": "left",
+      "background": "default",
+      "eyebrow": "Recent essays",
+      "heading": "From Substack",
+      "source": "https://isiahfletcher7.substack.com/feed",
+      "limit": 6,
+      "presentation": "list",
+      "fallbackText": "The latest essays are available directly on Substack.",
+      "fallbackUrl": "https://isiahfletcher7.substack.com/",
+      "fallbackLabel": "Visit Substack"
+    }
+  ]
+}

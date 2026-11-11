@@ -1,0 +1,43 @@
+{
+  "_template": "interior",
+  "draft": false,
+  "title": "About — Isiah Fletcher",
+  "description": "About Isiah Fletcher: software engineer, drummer, writer, and curious person.",
+  "eyebrow": "04 / About",
+  "heading": "Beyond the categories.",
+  "intro": "I’m a software developer, drummer, and writer, drawn to explore the many ways we make sense of the world.",
+  "sections": [
+    {
+      "_template": "cardGrid",
+      "width": "content",
+      "spacingTop": "medium",
+      "spacingBottom": "medium",
+      "alignment": "left",
+      "background": "default",
+      "cards": [
+        {
+          "heading": "Many interests, one life.",
+          "body": "I like learning how things work, whether it's a piece of music, a technical problem, or an idea worth sitting with.\n\nFantasy, literature, philosophy, and games have shaped the way I think and the things I make. I keep returning to worlds like Skyrim and Elden Ring, and to books that make familiar things feel strange again.\n\nSome interests become projects. Others are simply part of living."
+        },
+        {
+          "eyebrow": "Explore the archive",
+          "heading": "Follow a thread.",
+          "linkLabel": "Books, games, and older poems ↗",
+          "linkUrl": "/hobbies",
+          "body": "[Professional history and code ↗](/code)\n\n[Performances and recorded music ↗](/music)\n\n[Essays and poetry ↗](/writing)"
+        }
+      ],
+      "columns": "2"
+    },
+    {
+      "_template": "richText",
+      "width": "content",
+      "spacingTop": "medium",
+      "spacingBottom": "medium",
+      "alignment": "left",
+      "background": "default",
+      "heading": "A place to return to.",
+      "body": "This website collects things I've worked on, played, written, and thought about. There's room for new work whenever it comes."
+    }
+  ]
+}

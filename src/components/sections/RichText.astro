@@ -1,0 +1,13 @@
+---
+import TinaMarkdown from "@tinacms/astro/TinaMarkdown.astro";
+import { tinaField } from "@tinacms/astro/tina-field";
+import type { SectionData } from "./types";
+interface Props {
+  data: SectionData;
+}
+const { data } = Astro.props;
+---
+
+<div class="section-prose" data-tina-field={tinaField(data, "body")}>
+  <TinaMarkdown content={data.body} />
+</div>

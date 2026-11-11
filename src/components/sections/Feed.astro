@@ -1,0 +1,65 @@
+---
+import { tinaField } from "@tinacms/astro/tina-field";
+import { sanitizeHref } from "@tinacms/astro/sanitize";
+import type { FeedItem } from "../../lib/feeds";
+import type { SectionData } from "./types";
+interface Props {
+  data: SectionData;
+  feeds?: Record<string, FeedItem[]>;
+}
+const { data, feeds = {} } = Astro.props;
+const limit =
+  data.presentation === "featured"
+    ? 1
+    : Number.isInteger(data.limit)
+      ? Math.max(1, Math.min(12, data.limit!))
+      : 6;
+const items = (feeds[data.source || ""] || []).slice(0, limit);
+---
+
+{
+  items.length ? (
+    <div
+      class:list={[
+        "section-cards",
+        data.presentation === "featured" ? "columns-1" : "columns-2",
+      ]}
+      data-tina-field={tinaField(data, "source")}
+    >
+      {items.map((item) => (
+        <article class="section-card">
+          {item.date && (
+            <p class="section-date">
+              <time datetime={item.date}>
+                {new Date(item.date).toLocaleDateString("en-US", {
+                  month: "long",
+                  year: "numeric",
+                  timeZone: "UTC",
+                })}
+              </time>
+            </p>
+          )}
+          <h3>{item.title}</h3>
+          <p>{item.excerpt}</p>
+          <a
+            class="section-card-action"
+            href={sanitizeHref(item.link)}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Read article ↗
+          </a>
+        </article>
+      ))}
+    </div>
+  ) : (
+    <div data-tina-field={tinaField(data, "fallbackText")}>
+      <p>{data.fallbackText || "No articles are available right now."}</p>
+      {data.fallbackUrl && (
+        <a href={sanitizeHref(data.fallbackUrl)}>
+          {data.fallbackLabel || "Visit source"}
+        </a>
+      )}
+    </div>
+  )
+}
