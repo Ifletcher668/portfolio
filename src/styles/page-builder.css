@@ -243,3 +243,114 @@
     max-height: 500px;
   }
 }
+
+/* Layout containers preserve composition without assigning content to templates. */
+.section-columns {
+  display: grid;
+  gap: var(--gap-grid);
+}
+.columns-centered {
+  align-items: center;
+  gap: var(--gap-section);
+}
+.section-column {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-grid);
+}
+.section-column > .builder-section:only-child {
+  flex: 1;
+}
+.contained-section > .builder-section-inner {
+  width: 100%;
+}
+.treatment-panel,
+.treatment-outline {
+  padding: var(--card-padding);
+}
+.treatment-outline {
+  border: 1px solid var(--color-border);
+  border-left: 3px solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+}
+.background-light .treatment-outline {
+  border-color: var(--color-border-on-light);
+  border-left-color: var(--color-rule-on-light);
+  background: var(--color-tint-on-light);
+}
+.section-divider > .builder-section-inner {
+  border-top: 1px solid var(--color-border);
+  padding-top: var(--gap-section);
+}
+.section-split.image-above,
+.section-split.no-image {
+  grid-template-columns: minmax(0, 1fr);
+}
+.section-split.image-above {
+  gap: var(--gap-prose);
+}
+.builder-hero .builder-intro-copy {
+  max-width: 590px;
+}
+.builder-hero .section-prose {
+  max-width: 51ch;
+}
+.builder-hero-image {
+  border-radius: 0;
+}
+.builder-page .builder-lead {
+  max-width: 42ch;
+}
+.builder-writing .builder-intro.intro-content {
+  width: min(var(--layout-content), calc(100% - 2 * var(--page-gutter)));
+}
+.builder-intro.intro-prose {
+  width: min(var(--layout-prose), calc(100% - 2 * var(--page-gutter)));
+}
+.builder-intro.intro-wide {
+  width: min(var(--layout-wide), calc(100% - 2 * var(--page-gutter)));
+}
+.section-column .builder-section > .builder-section-inner {
+  height: 100%;
+}
+.section-prose {
+  min-width: 0;
+}
+.builder-page .section-feed-feature h3 {
+  font-size: var(--font-size-card);
+}
+.section-feed-feature > :last-child {
+  margin-bottom: 0;
+}
+@media (max-width: 800px) {
+  .section-columns {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.builder-intro:not(.builder-hero) {
+  padding-bottom: var(--gap-section);
+}
+
+.builder-intro:not(.builder-hero) h1 {
+  margin-bottom: var(--space-5);
+}
+.treatment-panel,
+.section-card,
+.treatment-outline {
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .treatment-panel:hover,
+  .section-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-card-hover);
+  }
+  .treatment-outline:hover {
+    box-shadow: var(--shadow-post-hover);
+  }
+}

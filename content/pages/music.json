@@ -8,49 +8,82 @@
   "intro": "Drumming has been part of my life since I was twelve. Here are some of the performances and recordings from the years I've spent playing.",
   "sections": [
     {
-      "_template": "cardGrid",
+      "_template": "columns",
+      "columns": "2",
+      "spacingTop": "none",
+      "spacingBottom": "large",
       "width": "content",
-      "spacingTop": "medium",
-      "spacingBottom": "medium",
-      "alignment": "left",
-      "background": "default",
-      "cards": [
+      "items": [
         {
-          "eyebrow": "Watch",
-          "heading": "Performances",
-          "linkLabel": "Watch performances on YouTube ↗",
-          "linkUrl": "https://www.youtube.com/@isiahfletcher2859",
-          "body": "Videos of my playing live and behind the kit are collected on my YouTube channel."
+          "label": "Performances",
+          "sections": [
+            {
+              "_template": "richText",
+              "spacingTop": "none",
+              "spacingBottom": "none",
+              "eyebrow": "Watch",
+              "heading": "Performances",
+              "body": "Videos of my playing live and behind the kit are collected on my YouTube channel.\n\n[Watch performances on YouTube ↗](https://www.youtube.com/@isiahfletcher2859)"
+            }
+          ]
         },
         {
-          "eyebrow": "Listen",
-          "heading": "Recorded music",
-          "linkLabel": "Aterrima ↗",
-          "linkUrl": "/music/aterrima",
-          "body": "I played with two Boise-based extreme metal bands. You can find the music through their pages.\n\n[Weald & Woe ↗](/music/weald-and-woe)"
+          "label": "Recorded music",
+          "sections": [
+            {
+              "_template": "richText",
+              "spacingTop": "none",
+              "spacingBottom": "none",
+              "eyebrow": "Listen",
+              "heading": "Recorded music",
+              "body": "I played with two Boise-based extreme metal bands. You can find the music through their pages.\n\n[Weald & Woe ↗](/music/weald-and-woe)\n\n[Aterrima ↗](/music/aterrima)",
+              "treatment": "panel",
+              "background": "surface",
+              "headingStyle": "section"
+            }
+          ]
         }
       ],
-      "columns": "2"
+      "divider": true
     },
     {
-      "_template": "cardGrid",
+      "_template": "columns",
+      "columns": "2",
+      "spacingTop": "none",
+      "spacingBottom": "large",
       "width": "content",
-      "spacingTop": "medium",
-      "spacingBottom": "medium",
-      "alignment": "left",
-      "background": "default",
-      "cards": [
+      "items": [
         {
-          "heading": "A little history",
-          "body": "I performed and toured with bands based in Boise, Idaho, including shows across the Pacific Northwest and Southwest. Each band asked something different of me, from technical precision to composition and endurance.\n\nI'm taking a break from performing with bands while finding my way back to making music in my own time."
+          "label": "A little history",
+          "sections": [
+            {
+              "_template": "richText",
+              "spacingTop": "none",
+              "spacingBottom": "none",
+              "heading": "A little history",
+              "body": "I performed and toured with bands based in Boise, Idaho, including shows across the Pacific Northwest and Southwest. Each band asked something different of me, from technical precision to composition and endurance.\n\nI'm taking a break from performing with bands while finding my way back to making music in my own time."
+            }
+          ]
         },
         {
-          "eyebrow": "Teaching",
-          "heading": "Drum lessons",
-          "body": "I've also taught drums, with a focus on technique, posture, and musical expression.\n\nFor current lesson availability, [get in touch on Facebook ↗](https://www.facebook.com/fletchmydrumsticks/)."
+          "label": "Drum lessons",
+          "sections": [
+            {
+              "_template": "richText",
+              "spacingTop": "none",
+              "spacingBottom": "none",
+              "eyebrow": "Teaching",
+              "heading": "Drum lessons",
+              "body": "I've also taught drums, with a focus on technique, posture, and musical expression.\n\nFor current lesson availability, [get in touch on Facebook ↗](https://www.facebook.com/fletchmydrumsticks/).",
+              "treatment": "panel",
+              "background": "surface",
+              "headingStyle": "card"
+            }
+          ]
         }
       ],
-      "columns": "2"
+      "divider": true
     }
-  ]
+  ],
+  "introWidth": "content"
 }

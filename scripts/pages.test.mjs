@@ -92,7 +92,7 @@ test("all templates offer the same independent section library", async () => {
     assert.equal(sections.list, true);
     assert.deepEqual(
       sections.templates.map((section) => section.name),
-      ["richText", "textImage", "cardGrid", "video", "feed"],
+      ["richText", "textImage", "cardGrid", "video", "feed", "columns"],
     );
     assert.ok(
       !template.fields.some((field) =>
@@ -164,4 +164,48 @@ test("unavailable and non-public feed inputs produce an empty fallback", async (
     "https://user:pass@example.com/rss",
   ])
     assert.deepEqual(await getFeed(source), []);
+});
+
+test("public IPv4 addresses remain usable when mapped IPv6 addresses are blocked", async () => {
+  const { isPublicFeedAddress } = await import("../src/lib/feeds.ts");
+  for (const address of ["172.64.150.56", "104.18.37.200", "8.8.8.8"])
+    assert.equal(isPublicFeedAddress(address, 4), true);
+  assert.equal(isPublicFeedAddress("2606:4700:4401::ac40:9638", 6), true);
+  for (const address of [
+    "127.0.0.1",
+    "10.1.2.3",
+    "172.16.0.1",
+    "192.168.1.1",
+    "169.254.1.1",
+  ])
+    assert.equal(isPublicFeedAddress(address, 4), false);
+  for (const address of ["::1", "fe80::1", "fd00::1", "::ffff:127.0.0.1"])
+    assert.equal(isPublicFeedAddress(address, 6), false);
+});
+
+test("migration preserves paired media, split editorial content and open-text interiors", async () => {
+  const home = JSON.parse(await readFile("content/pages/home.json", "utf8"));
+  const features = home.sections[0];
+  assert.equal(features._template, "columns");
+  assert.equal(features.columns, "2");
+  assert.deepEqual(
+    features.items.map((item) => item.sections[0]._template),
+    ["textImage", "video"],
+  );
+  const writing = home.sections[1];
+  assert.equal(writing.background, "light");
+  assert.deepEqual(
+    writing.items.map((item) => item.sections[0]._template),
+    ["richText", "feed"],
+  );
+  for (const name of ["about", "code", "music", "writing"]) {
+    const page = JSON.parse(
+      await readFile(`content/pages/${name}.json`, "utf8"),
+    );
+    assert.equal(page.introWidth, "content");
+    const first = page.sections[0];
+    assert.equal(first._template, "columns");
+    assert.notEqual(first.items[0].sections[0].treatment, "panel");
+    assert.equal(first.items[1].sections[0].treatment, "panel");
+  }
 });

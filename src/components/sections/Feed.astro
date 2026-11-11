@@ -27,7 +27,13 @@ const items = (feeds[data.source || ""] || []).slice(0, limit);
       data-tina-field={tinaField(data, "source")}
     >
       {items.map((item) => (
-        <article class="section-card">
+        <article
+          class:list={[
+            data.presentation === "featured"
+              ? "section-feed-feature"
+              : "section-card",
+          ]}
+        >
           {item.date && (
             <p class="section-date">
               <time datetime={item.date}>

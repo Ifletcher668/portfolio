@@ -21,15 +21,21 @@ Moving a published document changes its URL; add a redirect separately if needed
 
 ## Composition
 
-Add, remove, and reorder Rich text, Text with image, Card grid, Video embed, and
-Feed sections. Every section supports theme-based width, top/bottom spacing,
+Add, remove, and reorder Rich text, Text with image, Card grid, Video embed, Feed,
+and Columns sections. Columns arrange independently editable sections side by side
+and stack on narrow screens; each column accepts any non-container section.
+Every section supports theme-based width, top/bottom spacing,
 alignment, and background choices. Text/image sections offer image position and
-ratio; cards offer one to three columns. Narrow screens stack columns. Meaningful
+ratio, including an image above the copy; cards offer one to three columns.
+Plain, panel, and outline treatments and optional top dividers preserve editorial
+hierarchy without prescribing content. Narrow screens stack columns. Meaningful
 images need alternative text; decorative images can leave it empty.
 
 Landing's hero has editable image, lead, rich text, and actions. Its optional
 icosahedron background is a presentation treatment, not required content. Writing
-has a readable article body before its supporting sections. Neither template
+has a readable article body before its supporting sections. Its introduction width
+can be selected independently, including a full content-width introduction for an
+editorial index. Neither template
 requires a video, feed, or any current portfolio content.
 
 Video sections accept HTTPS YouTube and Vimeo links and emit provider-specific

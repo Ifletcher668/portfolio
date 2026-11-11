@@ -8,10 +8,26 @@ interface Props {
 }
 const { data } = Astro.props;
 const image = sanitizeImageSrc(data.image);
+const above = data.imageSide === "above";
+const Heading = data.headingStyle === "card" ? "h3" : "h2";
 ---
 
+{
+  above && data.heading && (
+    <Heading data-tina-field={tinaField(data, "heading")}>
+      {data.heading}
+    </Heading>
+  )
+}
 <div
-  class:list={["section-split", { "image-right": data.imageSide === "right" }]}
+  class:list={[
+    "section-split",
+    {
+      "image-right": data.imageSide === "right",
+      "image-above": above,
+      "no-image": !image,
+    },
+  ]}
 >
   {
     image && (
@@ -31,7 +47,16 @@ const image = sanitizeImageSrc(data.image);
       />
     )
   }
-  <div class="section-prose" data-tina-field={tinaField(data, "body")}>
-    <TinaMarkdown content={data.body} />
+  <div class="section-image-copy">
+    {
+      !above && data.heading && (
+        <Heading data-tina-field={tinaField(data, "heading")}>
+          {data.heading}
+        </Heading>
+      )
+    }
+    <div class="section-prose" data-tina-field={tinaField(data, "body")}>
+      <TinaMarkdown content={data.body} />
+    </div>
   </div>
 </div>

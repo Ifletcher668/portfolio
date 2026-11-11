@@ -56,10 +56,13 @@ const common: TinaField[] = [
   },
   { type: "string", name: "eyebrow", label: "Eyebrow" },
   { type: "string", name: "heading", label: "Heading" },
+  select("treatment", "Treatment", ["plain", "panel", "outline"]),
+  select("headingStyle", "Heading style", ["section", "card"]),
+  { type: "boolean", name: "divider", label: "Top divider" },
   ...layoutFields,
 ];
 const body: TinaField = { type: "rich-text", name: "body", label: "Body" };
-export const sectionTemplates: Template[] = [
+const contentSectionTemplates: Template[] = [
   { name: "richText", label: "Rich text", fields: [...common, body] },
   {
     name: "textImage",
@@ -68,7 +71,7 @@ export const sectionTemplates: Template[] = [
       ...common,
       body,
       ...imageFields,
-      select("imageSide", "Image side", ["left", "right"]),
+      select("imageSide", "Image side", ["left", "right", "above"]),
       select("imageRatio", "Image ratio", ["original", "square", "landscape"]),
     ],
   },
@@ -149,3 +152,43 @@ export const sectionTemplates: Template[] = [
     }),
   },
 })) as Template[];
+
+// A bounded layout container: its columns share the leaf section library.
+// Containers do not recursively embed themselves in the Tina schema.
+export const sectionTemplates: Template[] = [
+  ...contentSectionTemplates,
+  {
+    name: "columns",
+    label: "Columns",
+    fields: [
+      ...common,
+      select("columns", "Columns", ["1", "2", "3"]),
+      select("verticalAlignment", "Vertical alignment", ["start", "center"]),
+      {
+        type: "object",
+        name: "items",
+        label: "Column content",
+        list: true,
+        ui: { itemProps: (item) => ({ label: item?.label || "Column" }) },
+        fields: [
+          { type: "string", name: "label", label: "Editor label" },
+          {
+            type: "object",
+            name: "sections",
+            label: "Sections",
+            list: true,
+            templates: contentSectionTemplates,
+          },
+        ],
+      },
+    ],
+    ui: {
+      defaultItem: {
+        ...sectionDefaults,
+        columns: "2",
+        verticalAlignment: "start",
+        items: [],
+      },
+    },
+  },
+];

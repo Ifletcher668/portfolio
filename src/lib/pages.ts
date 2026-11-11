@@ -37,18 +37,22 @@ export type Section = NonNullable<NonNullable<Page["sections"]>[number]>;
 
 export async function getPageFeeds(data: Page) {
   const { getFeed } = await import("./feeds");
-  const sources = [
-    ...new Set(
-      data.sections?.flatMap((section) =>
-        section && "source" in section && section.source
-          ? [section.source]
-          : [],
-      ) || [],
-    ),
-  ];
+  const sources = new Set<string>();
+  const collect = (
+    sections:
+      | readonly (import("../components/sections/types").SectionData | null)[]
+      | null
+      | undefined,
+  ) => {
+    for (const section of sections || []) {
+      if (section?.source) sources.add(section.source);
+      for (const item of section?.items || []) collect(item?.sections);
+    }
+  };
+  collect(data.sections);
   return Object.fromEntries(
     await Promise.all(
-      sources.map(async (source) => [source, await getFeed(source)]),
+      [...sources].map(async (source) => [source, await getFeed(source)]),
     ),
   );
 }

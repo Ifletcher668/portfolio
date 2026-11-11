@@ -26,6 +26,12 @@ const metadata: TinaField[] = [
     ui: { component: "textarea" },
   },
 ];
+const introWidth: TinaField = {
+  type: "string",
+  name: "introWidth",
+  label: "Introduction width",
+  options: ["prose", "content", "wide"],
+};
 const sections: TinaField = {
   type: "object",
   name: "sections",
@@ -68,12 +74,17 @@ const templates: Template[] = [
       sections,
     ],
   },
-  { name: "interior", label: "Interior", fields: [...metadata, sections] },
+  {
+    name: "interior",
+    label: "Interior",
+    fields: [...metadata, introWidth, sections],
+  },
   {
     name: "writing",
     label: "Writing",
     fields: [
       ...metadata,
+      introWidth,
       { type: "datetime", name: "date", label: "Date" },
       { type: "string", name: "byline", label: "Byline" },
       { type: "rich-text", name: "body", label: "Article body" },

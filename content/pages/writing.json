@@ -8,34 +8,48 @@
   "intro": "An archive of essays, reflections, and poetry. Some published elsewhere, some kept here.",
   "sections": [
     {
-      "_template": "cardGrid",
+      "_template": "columns",
+      "columns": "2",
+      "spacingTop": "none",
+      "spacingBottom": "large",
       "width": "content",
-      "spacingTop": "medium",
-      "spacingBottom": "medium",
-      "alignment": "left",
-      "background": "default",
-      "cards": [
+      "items": [
         {
-          "heading": "Gimbles and Toads",
-          "linkLabel": "Read and subscribe on Substack ↗",
-          "linkUrl": "https://isiahfletcher7.substack.com/",
-          "body": "On Substack, I've shared essays about philosophy, creativity, memory, and the strange business of being human. Some are personal; others begin with an idea and follow it wherever it leads."
+          "label": "Gimbles and Toads",
+          "sections": [
+            {
+              "_template": "richText",
+              "spacingTop": "none",
+              "spacingBottom": "none",
+              "heading": "Gimbles and Toads",
+              "body": "On Substack, I've shared essays about philosophy, creativity, memory, and the strange business of being human. Some are personal; others begin with an idea and follow it wherever it leads.\n\n[Read and subscribe on Substack ↗](https://isiahfletcher7.substack.com/)"
+            }
+          ]
         },
         {
-          "eyebrow": "Closer to home",
-          "heading": "Poetry and other writing",
-          "linkLabel": "Read selected poems ↗",
-          "linkUrl": "/hobbies",
-          "body": "Some of my poems are collected on the site's earlier Hobbies page. They're part of this archive too."
+          "label": "Poetry and other writing",
+          "sections": [
+            {
+              "_template": "richText",
+              "spacingTop": "none",
+              "spacingBottom": "none",
+              "eyebrow": "Closer to home",
+              "heading": "Poetry and other writing",
+              "body": "Some of my poems are collected on the site's earlier Hobbies page. They're part of this archive too.\n\n[Read selected poems ↗](/hobbies)",
+              "treatment": "panel",
+              "background": "surface",
+              "headingStyle": "card"
+            }
+          ]
         }
       ],
-      "columns": "2"
+      "divider": true
     },
     {
       "_template": "feed",
       "width": "content",
-      "spacingTop": "medium",
-      "spacingBottom": "medium",
+      "spacingTop": "none",
+      "spacingBottom": "large",
       "alignment": "left",
       "background": "default",
       "eyebrow": "Recent essays",
@@ -45,7 +59,9 @@
       "presentation": "list",
       "fallbackText": "The latest essays are available directly on Substack.",
       "fallbackUrl": "https://isiahfletcher7.substack.com/",
-      "fallbackLabel": "Visit Substack"
+      "fallbackLabel": "Visit Substack",
+      "divider": true
     }
-  ]
+  ],
+  "introWidth": "content"
 }

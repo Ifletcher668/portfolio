@@ -75,6 +75,11 @@ test("unsaved page overlays add, reorder, remove and configure independent secti
   assert.ok(html.includes("background-light"));
   assert.ok(html.includes("width-content"));
   assert.ok(!html.includes("arbitrary-css-is-not-allowed"));
+  data.pages.sections[1].items[0].sections[0].heading =
+    "An edited column heading";
+  const nested = await render(data);
+  assert.ok(nested.includes("An edited column heading"));
+  assert.ok(!nested.includes("Many interests, one life."));
   data.pages.sections = data.pages.sections.slice(2);
   const removed = await render(data);
   assert.ok(!removed.includes("Many interests, one life."));

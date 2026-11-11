@@ -1,0 +1,75 @@
+---
+import { tinaField } from "@tinacms/astro/tina-field";
+import { sectionKind, sectionRenderers } from "./sections/registry";
+import type { SectionData } from "./sections/types";
+import type { FeedItem } from "../lib/feeds";
+interface Props {
+  data: SectionData;
+  feeds?: Record<string, FeedItem[]>;
+  contained?: boolean;
+}
+const { data, feeds = {}, contained = false } = Astro.props;
+const kind = sectionKind(data.__typename);
+const Component = kind ? sectionRenderers[kind] : undefined;
+const anchor =
+  data.anchor && /^[a-z][a-z0-9-]*$/.test(data.anchor)
+    ? data.anchor
+    : undefined;
+const width = ["prose", "content", "wide"].includes(data.width || "")
+  ? data.width
+  : "content";
+const top = ["none", "small", "medium", "large"].includes(data.spacingTop || "")
+  ? data.spacingTop
+  : contained
+    ? "none"
+    : "medium";
+const bottom = ["none", "small", "medium", "large"].includes(
+  data.spacingBottom || "",
+)
+  ? data.spacingBottom
+  : contained
+    ? "none"
+    : "medium";
+const Heading = data.headingStyle === "card" ? "h3" : "h2";
+---
+
+{
+  Component && (
+    <section
+      id={anchor}
+      class:list={[
+        "builder-section",
+        `width-${width}`,
+        `top-${top}`,
+        `bottom-${bottom}`,
+        {
+          "contained-section": contained,
+          "align-center": data.alignment === "center",
+          "background-surface": data.background === "surface",
+          "background-light": data.background === "light",
+          "treatment-panel": data.treatment === "panel",
+          "treatment-outline": data.treatment === "outline",
+          "section-divider": data.divider === true,
+        },
+      ]}
+      data-tina-field={tinaField(data)}
+    >
+      <div class="builder-section-inner">
+        {data.eyebrow && (
+          <p
+            class="section-eyebrow"
+            data-tina-field={tinaField(data, "eyebrow")}
+          >
+            {data.eyebrow}
+          </p>
+        )}
+        {data.heading && kind !== "textImage" && (
+          <Heading data-tina-field={tinaField(data, "heading")}>
+            {data.heading}
+          </Heading>
+        )}
+        <Component data={data} feeds={feeds} />
+      </div>
+    </section>
+  )
+}

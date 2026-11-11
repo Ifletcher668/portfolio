@@ -8,36 +8,54 @@
   "intro": "I’m a software developer, drummer, and writer, drawn to explore the many ways we make sense of the world.",
   "sections": [
     {
-      "_template": "cardGrid",
+      "_template": "columns",
+      "columns": "2",
+      "spacingTop": "none",
+      "spacingBottom": "large",
       "width": "content",
-      "spacingTop": "medium",
-      "spacingBottom": "medium",
-      "alignment": "left",
-      "background": "default",
-      "cards": [
+      "items": [
         {
-          "heading": "Many interests, one life.",
-          "body": "I like learning how things work, whether it's a piece of music, a technical problem, or an idea worth sitting with.\n\nFantasy, literature, philosophy, and games have shaped the way I think and the things I make. I keep returning to worlds like Skyrim and Elden Ring, and to books that make familiar things feel strange again.\n\nSome interests become projects. Others are simply part of living."
+          "label": "Many interests, one life.",
+          "sections": [
+            {
+              "_template": "richText",
+              "spacingTop": "none",
+              "spacingBottom": "none",
+              "heading": "Many interests, one life.",
+              "body": "I like learning how things work, whether it's a piece of music, a technical problem, or an idea worth sitting with.\n\nFantasy, literature, philosophy, and games have shaped the way I think and the things I make. I keep returning to worlds like Skyrim and Elden Ring, and to books that make familiar things feel strange again.\n\nSome interests become projects. Others are simply part of living."
+            }
+          ]
         },
         {
-          "eyebrow": "Explore the archive",
-          "heading": "Follow a thread.",
-          "linkLabel": "Books, games, and older poems ↗",
-          "linkUrl": "/hobbies",
-          "body": "[Professional history and code ↗](/code)\n\n[Performances and recorded music ↗](/music)\n\n[Essays and poetry ↗](/writing)"
+          "label": "Follow a thread.",
+          "sections": [
+            {
+              "_template": "richText",
+              "spacingTop": "none",
+              "spacingBottom": "none",
+              "eyebrow": "Explore the archive",
+              "heading": "Follow a thread.",
+              "body": "[Professional history and code ↗](/code)\n\n[Performances and recorded music ↗](/music)\n\n[Essays and poetry ↗](/writing)\n\n[Books, games, and older poems ↗](/hobbies)",
+              "treatment": "panel",
+              "background": "surface",
+              "headingStyle": "card"
+            }
+          ]
         }
       ],
-      "columns": "2"
+      "divider": true
     },
     {
       "_template": "richText",
       "width": "content",
-      "spacingTop": "medium",
-      "spacingBottom": "medium",
+      "spacingTop": "none",
+      "spacingBottom": "large",
       "alignment": "left",
       "background": "default",
       "heading": "A place to return to.",
-      "body": "This website collects things I've worked on, played, written, and thought about. There's room for new work whenever it comes."
+      "body": "This website collects things I've worked on, played, written, and thought about. There's room for new work whenever it comes.",
+      "divider": true
     }
-  ]
+  ],
+  "introWidth": "content"
 }

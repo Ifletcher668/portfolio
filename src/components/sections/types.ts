@@ -11,6 +11,17 @@ export type CardData = {
   linkUrl?: string | null;
 };
 export type SectionData = CardData & {
+  treatment?: string | null;
+  headingStyle?: string | null;
+  divider?: boolean | null;
+  verticalAlignment?: string | null;
+  items?:
+    | ({
+        __typename?: string;
+        label?: string | null;
+        sections?: (SectionData | null)[] | null;
+      } | null)[]
+    | null;
   anchor?: string | null;
   label?: string | null;
   width?: string | null;

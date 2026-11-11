@@ -1,0 +1,42 @@
+---
+import PageSection from "../PageSection.astro";
+import { tinaField } from "@tinacms/astro/tina-field";
+import type { SectionData } from "./types";
+import type { FeedItem } from "../../lib/feeds";
+interface Props {
+  data: SectionData;
+  feeds?: Record<string, FeedItem[]>;
+}
+const { data, feeds = {} } = Astro.props;
+const columns = ["1", "2", "3"].includes(data.columns || "")
+  ? data.columns
+  : "2";
+---
+
+<div
+  class:list={[
+    "section-columns",
+    `columns-${columns}`,
+    { "columns-centered": data.verticalAlignment === "center" },
+  ]}
+  data-tina-field={tinaField(data, "items")}
+>
+  {
+    data.items?.map(
+      (item) =>
+        item && (
+          <div
+            class="section-column"
+            data-tina-field={tinaField(item, "sections")}
+          >
+            {item.sections?.map(
+              (section) =>
+                section && (
+                  <PageSection data={section} feeds={feeds} contained />
+                ),
+            )}
+          </div>
+        ),
+    )
+  }
+</div>

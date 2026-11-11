@@ -15,11 +15,17 @@ for (const [network, prefix] of [
   ["240.0.0.0", 4],
 ] as const)
   blocked.addSubnet(network, prefix, "ipv4");
-blocked.addSubnet("::", 128, "ipv6");
-blocked.addSubnet("::1", 128, "ipv6");
-blocked.addSubnet("fc00::", 7, "ipv6");
-blocked.addSubnet("fe80::", 10, "ipv6");
-blocked.addSubnet("::ffff:0:0", 96, "ipv6");
+const blockedIPv6 = new BlockList();
+blockedIPv6.addSubnet("::", 128, "ipv6");
+blockedIPv6.addSubnet("::1", 128, "ipv6");
+blockedIPv6.addSubnet("fc00::", 7, "ipv6");
+blockedIPv6.addSubnet("fe80::", 10, "ipv6");
+blockedIPv6.addSubnet("::ffff:0:0", 96, "ipv6");
+export function isPublicFeedAddress(address: string, family: number) {
+  return family === 6
+    ? !blockedIPv6.check(address, "ipv6")
+    : !blocked.check(address, "ipv4");
+}
 export interface FeedItem {
   title: string;
   link: string;
@@ -56,8 +62,8 @@ async function loadRSS(source: string): Promise<FeedItem[]> {
     const addresses = await lookup(url.hostname, { all: true });
     if (
       !addresses.length ||
-      addresses.some(({ address, family }) =>
-        blocked.check(address, family === 6 ? "ipv6" : "ipv4"),
+      addresses.some(
+        ({ address, family }) => !isPublicFeedAddress(address, family),
       )
     )
       return [];
