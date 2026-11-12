@@ -1,0 +1,89 @@
+---
+import { decorationStyle, ruleStyle } from "../lib/section-decoration";
+import { tinaField } from "@tinacms/astro/tina-field";
+import { sectionKind, sectionRenderers } from "./sections/registry";
+import type { SectionData } from "./sections/types";
+import type { FeedItem } from "../lib/feeds";
+interface Props {
+  data: SectionData;
+  feeds?: Record<string, FeedItem[]>;
+  contained?: boolean;
+  onLight?: boolean;
+}
+const { data, feeds = {}, contained = false, onLight = false } = Astro.props;
+const kind = sectionKind(data.__typename);
+const Component = kind ? sectionRenderers[kind] : undefined;
+const anchor =
+  data.anchor && /^[a-z][a-z0-9-]*$/.test(data.anchor)
+    ? data.anchor
+    : undefined;
+const width = ["prose", "content", "wide"].includes(data.width || "")
+  ? data.width
+  : "content";
+const top = ["none", "small", "medium", "large"].includes(data.spacingTop || "")
+  ? data.spacingTop
+  : contained
+    ? "none"
+    : "medium";
+const bottom = ["none", "small", "medium", "large"].includes(
+  data.spacingBottom || "",
+)
+  ? data.spacingBottom
+  : contained
+    ? "none"
+    : "medium";
+const light =
+  data.background === "light" || (data.background !== "surface" && onLight);
+const rules = data.decoration?.rules;
+const Heading = data.headingStyle === "card" ? "h3" : "h2";
+---
+
+{
+  Component && (
+    <section
+      id={anchor}
+      class:list={[
+        "builder-section",
+        `width-${width}`,
+        `top-${top}`,
+        `bottom-${bottom}`,
+        {
+          "contained-section": contained,
+          "align-left": data.alignment === "left",
+          "align-center": data.alignment === "center",
+          "align-right": data.alignment === "right",
+          "background-surface": data.background === "surface",
+          "background-light": data.background === "light",
+          "background-tint": data.background === "tint",
+        },
+      ]}
+      data-tina-field={tinaField(data)}
+    >
+      <div
+        class="builder-section-inner"
+        style={decorationStyle(data.decoration, light)}
+      >
+        {rules?.top && (
+          <hr class="section-rule" style={ruleStyle(rules, "top", light)} />
+        )}
+        {data.eyebrow && (
+          <p
+            class="section-eyebrow"
+            data-tina-field={tinaField(data, "eyebrow")}
+          >
+            {data.eyebrow}
+          </p>
+        )}
+        {data.heading && kind !== "textImage" && (
+          <Heading data-tina-field={tinaField(data, "heading")}>
+            {data.heading}
+          </Heading>
+        )}
+        <Component data={data} feeds={feeds} onLight={light} />
+        {rules?.bottom && (
+          <hr class="section-rule" style={ruleStyle(rules, "bottom", light)} />
+        )}
+      </div>
+    </section>
+  )
+}

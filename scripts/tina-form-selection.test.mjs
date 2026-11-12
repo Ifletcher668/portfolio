@@ -21,7 +21,7 @@ test("shared preview selects the requested document in either registration order
     }),
   ]);
   const forms = [];
-  for (const name of ["theme", "homepage"]) {
+  for (const name of ["theme", "page"]) {
     const response = await fetch(`http://127.0.0.1:4334/tina-island/${name}`, {
       method: "POST",
       headers: {
@@ -51,7 +51,7 @@ test("shared preview selects the requested document in either registration order
   const rootPage = await readFile("dist/client/index.html", "utf8");
   assert.match(
     rootPage,
-    /data-tina-island="\/tina-island\/homepage"[^>]*data-tina-island-primary/,
+    /data-tina-island="\/tina-island\/page\?relativePath=home.json"[^>]*data-tina-island-primary/,
   );
   assert.ok(
     !/data-tina-island="\/tina-island\/theme"[^>]*data-tina-island-primary/.test(
@@ -78,7 +78,7 @@ test("shared preview selects the requested document in either registration order
   assert.equal(primaryId, forms.find((form) => form.name === "theme").id);
   const require = createRequire(import.meta.url);
   const source = await readFile(require.resolve("@tinacms/bridge"), "utf8");
-  for (const selected of ["theme", "homepage"]) {
+  for (const selected of ["theme", "page"]) {
     for (const order of [forms, [...forms].reverse()]) {
       const messages = [];
       const parent = { postMessage: (message) => messages.push(message) };

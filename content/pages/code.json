@@ -1,0 +1,84 @@
+{
+  "_template": "interior",
+  "draft": false,
+  "title": "Code — Isiah Fletcher",
+  "description": "Professional experience and software engineering background of Isiah Fletcher.",
+  "eyebrow": "01 / Code",
+  "heading": "Working in software.",
+  "intro": "Software engineering is my profession. This is a record of the teams, systems, and problems I've worked with along the way.",
+  "sections": [
+    {
+      "_template": "columns",
+      "columns": "2",
+      "spacingTop": "none",
+      "spacingBottom": "large",
+      "width": "content",
+      "items": [
+        {
+          "label": "Professional experience",
+          "sections": [
+            {
+              "_template": "richText",
+              "spacingTop": "none",
+              "spacingBottom": "none",
+              "heading": "Professional experience",
+              "body": "My work has focused on frontend engineering, React, TypeScript, design systems, and the collaboration between engineering and design.\n\nRather than inventing project case studies, I've kept my professional history together in one place: roles, responsibilities, technical skills, and education.\n\n[Read my résumé and work history ↗](/work)"
+            }
+          ]
+        },
+        {
+          "label": "Making useful things.",
+          "sections": [
+            {
+              "_template": "richText",
+              "spacingTop": "none",
+              "spacingBottom": "none",
+              "eyebrow": "Technical interests",
+              "heading": "Making useful things.",
+              "body": "Accessible interfaces, understandable code, maintainable systems, and the small details that make software easier to use.\n\nSome of my code is available on [GitHub ↗](https://github.com/Ifletcher668).",
+              "background": "surface",
+              "headingStyle": "card",
+              "decoration": {
+                "padding": "medium"
+              }
+            }
+          ]
+        }
+      ],
+      "decoration": {
+        "rules": {
+          "top": true,
+          "style": "solid",
+          "weight": "thin",
+          "color": "border",
+          "spacing": "large"
+        }
+      }
+    },
+    {
+      "_template": "textImage",
+      "width": "content",
+      "spacingTop": "none",
+      "spacingBottom": "large",
+      "alignment": "left",
+      "background": "default",
+      "eyebrow": "From the archive",
+      "heading": "Shelbz Citrine",
+      "image": "/shelbz-website-project.png",
+      "imageAlt": "Screenshot of the Shelbz Citrine website",
+      "body": "A website project from my earlier work, kept here as part of the archive.",
+      "imageSide": "left",
+      "imageRatio": "landscape",
+      "decoration": {
+        "rules": {
+          "top": true,
+          "style": "solid",
+          "weight": "thin",
+          "color": "border",
+          "spacing": "large"
+        }
+      }
+    }
+  ],
+  "introWidth": "content"
+}

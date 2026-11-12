@@ -1,0 +1,37 @@
+---
+import TinaMarkdown from "@tinacms/astro/TinaMarkdown.astro";
+import { tinaField } from "@tinacms/astro/tina-field";
+import { videoEmbed } from "../../lib/video";
+import type { SectionData } from "./types";
+interface Props {
+  data: SectionData;
+}
+const { data } = Astro.props;
+const src = videoEmbed(data.url);
+---
+
+<figure class="section-video" data-tina-field={tinaField(data, "url")}>
+  {
+    src ? (
+      <iframe
+        src={src}
+        title={data.heading || "Video"}
+        loading="lazy"
+        allow="encrypted-media; picture-in-picture"
+        allowfullscreen
+      />
+    ) : (
+      <p>Choose a valid YouTube or Vimeo URL.</p>
+    )
+  }
+  {
+    data.caption && (
+      <figcaption data-tina-field={tinaField(data, "caption")}>
+        {data.caption}
+      </figcaption>
+    )
+  }
+</figure>
+<div class="section-prose" data-tina-field={tinaField(data, "body")}>
+  <TinaMarkdown content={data.body} />
+</div>

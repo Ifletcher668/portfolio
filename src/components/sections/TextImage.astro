@@ -1,0 +1,62 @@
+---
+import TinaMarkdown from "@tinacms/astro/TinaMarkdown.astro";
+import { tinaField } from "@tinacms/astro/tina-field";
+import { sanitizeImageSrc } from "@tinacms/astro/sanitize";
+import type { SectionData } from "./types";
+interface Props {
+  data: SectionData;
+}
+const { data } = Astro.props;
+const image = sanitizeImageSrc(data.image);
+const above = data.imageSide === "above";
+const Heading = data.headingStyle === "card" ? "h3" : "h2";
+---
+
+{
+  above && data.heading && (
+    <Heading data-tina-field={tinaField(data, "heading")}>
+      {data.heading}
+    </Heading>
+  )
+}
+<div
+  class:list={[
+    "section-split",
+    {
+      "image-right": data.imageSide === "right",
+      "image-above": above,
+      "no-image": !image,
+    },
+  ]}
+>
+  {
+    image && (
+      <img
+        class:list={[
+          "section-image",
+          {
+            "ratio-square": data.imageRatio === "square",
+            "ratio-landscape":
+              data.imageRatio !== "original" && data.imageRatio !== "square",
+          },
+        ]}
+        src={image}
+        alt={data.imageAlt || ""}
+        loading="lazy"
+        data-tina-field={tinaField(data, "image")}
+      />
+    )
+  }
+  <div class="section-image-copy">
+    {
+      !above && data.heading && (
+        <Heading data-tina-field={tinaField(data, "heading")}>
+          {data.heading}
+        </Heading>
+      )
+    }
+    <div class="section-prose" data-tina-field={tinaField(data, "body")}>
+      <TinaMarkdown content={data.body} />
+    </div>
+  </div>
+</div>

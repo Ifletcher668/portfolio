@@ -1,7 +1,6 @@
 ---
-import Homepage from "./index.astro";
-// An on-demand route keeps this editing destination out of the static sitemap.
+import ConfiguredPage from "../components/ConfiguredPage.astro";
 export const prerender = false;
 ---
 
-<Homepage />
+<ConfiguredPage relativePath="home.json" />

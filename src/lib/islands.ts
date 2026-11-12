@@ -1,9 +1,13 @@
 import ThemeStyle from "../components/ThemeStyle.astro";
+import PageContent from "../components/PageContent.astro";
 import { getTheme } from "./theme";
+import { getPage, getPageFeeds } from "./pages";
 import type { IslandRegistry } from "@tinacms/astro/experimental";
-import HomepageIntro from "../components/HomepageIntro.astro";
-import { getHomepage } from "./homepage";
 
+async function fetchPage(relativePath: string) {
+  const result = await getPage(relativePath);
+  return { result, feeds: await getPageFeeds(result.data.pages) };
+}
 export const islands: IslandRegistry = {
   theme: {
     fetch: () => getTheme(),
@@ -13,12 +17,14 @@ export const islands: IslandRegistry = {
       data: (result as Awaited<ReturnType<typeof getTheme>>).data.config,
     }),
   },
-  homepage: {
-    fetch: () => getHomepage(),
-    component: HomepageIntro,
-    wrapper: { tag: "div", className: "homepage-editor" },
-    propsFromData: (result) => ({
-      data: (result as Awaited<ReturnType<typeof getHomepage>>).data.homepage,
-    }),
+  page: {
+    fetch: (_request, params) =>
+      fetchPage(params.get("relativePath") || "home.json"),
+    component: PageContent,
+    wrapper: { tag: "div", className: "page-editor" },
+    propsFromData: (value) => {
+      const { result, feeds } = value as Awaited<ReturnType<typeof fetchPage>>;
+      return { data: result.data.pages, feeds };
+    },
   },
 };

@@ -1,0 +1,161 @@
+{
+  "title": "Isiah Fletcher — Code, Music & Writing",
+  "description": "The personal home of Isiah Fletcher: software engineer, drummer, and writer.",
+  "draft": false,
+  "hero": {
+    "image": "/drummer-bubs-transparent.png",
+    "imageAlt": "Isiah playing the drums",
+    "body": "I like making things, understanding how they work, and traversing ideas that lead me to interesting places. This is a home for the projects, music, writing, and occasional curiosities that come out of that.\n",
+    "actions": [
+      {
+        "label": "Explore the site ↘",
+        "url": "#explore"
+      },
+      {
+        "label": "More about me",
+        "url": "/about"
+      }
+    ],
+    "eyebrow": "Software engineer / Drummer / Writer",
+    "heading": "Hi, I'm Isiah.",
+    "intro": "I build software, play drums, and write.",
+    "backgroundEffect": "icosahedron"
+  },
+  "sections": [
+    {
+      "anchor": "explore",
+      "eyebrow": "A few things I do",
+      "heading": "Different interests. One life.",
+      "width": "wide",
+      "spacingTop": "none",
+      "spacingBottom": "large",
+      "columns": "2",
+      "items": [
+        {
+          "label": "Code",
+          "sections": [
+            {
+              "eyebrow": "01 / Code",
+              "heading": "Things I've built.",
+              "spacingTop": "none",
+              "spacingBottom": "none",
+              "background": "surface",
+              "body": "I work in software engineering, where I enjoy solving problems, untangling complexity, and turning ideas into something people can use.\n\n[Explore code and projects ↗](/code)\n",
+              "image": "/shelbz-website-project.png",
+              "imageAlt": "Shelbz Citrine portfolio project",
+              "imageSide": "above",
+              "imageRatio": "landscape",
+              "_template": "textImage",
+              "decoration": {
+                "padding": "medium"
+              }
+            }
+          ]
+        },
+        {
+          "label": "Music",
+          "sections": [
+            {
+              "eyebrow": "02 / Music",
+              "heading": "Behind the kit.",
+              "width": "content",
+              "spacingTop": "none",
+              "spacingBottom": "none",
+              "alignment": "left",
+              "background": "surface",
+              "url": "https://www.youtube-nocookie.com/embed/lc_rCn2em8o",
+              "body": "Drumming has taken me through bands, recordings, rehearsals, and tours. It's still one of the ways I most enjoy learning, creating, and challenging myself.\n\n[Explore music ↗](/music)\n",
+              "_template": "video",
+              "decoration": {
+                "padding": "medium"
+              }
+            }
+          ]
+        }
+      ],
+      "_template": "columns",
+      "decoration": {
+        "rules": {
+          "top": true,
+          "style": "solid",
+          "weight": "thin",
+          "color": "border",
+          "spacing": "large"
+        }
+      }
+    },
+    {
+      "width": "wide",
+      "spacingTop": "large",
+      "spacingBottom": "large",
+      "background": "light",
+      "columns": "2",
+      "verticalAlignment": "center",
+      "items": [
+        {
+          "label": "Writing introduction",
+          "sections": [
+            {
+              "eyebrow": "03 / Writing",
+              "heading": "Notes from a wandering mind.",
+              "width": "content",
+              "spacingTop": "none",
+              "spacingBottom": "none",
+              "alignment": "left",
+              "background": "default",
+              "body": "I write essays and reflections on Substack, often following questions about philosophy, creativity, and the experience of being human. I also keep poetry and selected essays here.\n\n[Explore writing ↗](/writing)\n",
+              "_template": "richText"
+            }
+          ]
+        },
+        {
+          "label": "Featured article",
+          "sections": [
+            {
+              "eyebrow": "From Substack",
+              "width": "content",
+              "spacingTop": "none",
+              "spacingBottom": "none",
+              "alignment": "left",
+              "background": "tint",
+              "source": "https://isiahfletcher7.substack.com/feed",
+              "limit": 1,
+              "presentation": "featured",
+              "fallbackText": "My latest writing lives on Substack.",
+              "fallbackUrl": "https://isiahfletcher7.substack.com/",
+              "fallbackLabel": "Visit Substack",
+              "_template": "feed",
+              "decoration": {
+                "padding": "medium",
+                "radius": "medium",
+                "border": {
+                  "edges": ["top", "right", "bottom", "left"],
+                  "weight": "thin",
+                  "style": "solid",
+                  "color": "border",
+                  "accentEdge": "left",
+                  "accentWeight": "thick",
+                  "accentColor": "strong"
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "_template": "columns",
+      "gap": "large"
+    },
+    {
+      "eyebrow": "04 / Beyond the work",
+      "heading": "Beyond the categories.",
+      "width": "prose",
+      "spacingTop": "large",
+      "spacingBottom": "none",
+      "alignment": "left",
+      "background": "default",
+      "body": "I'm interested in games, literature, philosophy, music theory, and plenty of things that don't need a dedicated section of a website.\n\n[A little more about me ↗](/about)\n",
+      "_template": "richText"
+    }
+  ],
+  "_template": "landing"
+}

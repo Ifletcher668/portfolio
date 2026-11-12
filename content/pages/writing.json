@@ -1,0 +1,85 @@
+{
+  "_template": "writing",
+  "draft": false,
+  "title": "Writing — Isiah Fletcher",
+  "description": "Essays, reflections, and poetry by Isiah Fletcher.",
+  "eyebrow": "03 / Writing",
+  "heading": "Words gathered along the way.",
+  "intro": "An archive of essays, reflections, and poetry. Some published elsewhere, some kept here.",
+  "sections": [
+    {
+      "_template": "columns",
+      "columns": "2",
+      "spacingTop": "none",
+      "spacingBottom": "large",
+      "width": "content",
+      "items": [
+        {
+          "label": "Gimbles and Toads",
+          "sections": [
+            {
+              "_template": "richText",
+              "spacingTop": "none",
+              "spacingBottom": "none",
+              "heading": "Gimbles and Toads",
+              "body": "On Substack, I've shared essays about philosophy, creativity, memory, and the strange business of being human. Some are personal; others begin with an idea and follow it wherever it leads.\n\n[Read and subscribe on Substack ↗](https://isiahfletcher7.substack.com/)"
+            }
+          ]
+        },
+        {
+          "label": "Poetry and other writing",
+          "sections": [
+            {
+              "_template": "richText",
+              "spacingTop": "none",
+              "spacingBottom": "none",
+              "eyebrow": "Closer to home",
+              "heading": "Poetry and other writing",
+              "body": "Some of my poems are collected on the site's earlier Hobbies page. They're part of this archive too.\n\n[Read selected poems ↗](/hobbies)",
+              "background": "surface",
+              "headingStyle": "card",
+              "decoration": {
+                "padding": "medium"
+              }
+            }
+          ]
+        }
+      ],
+      "decoration": {
+        "rules": {
+          "top": true,
+          "style": "solid",
+          "weight": "thin",
+          "color": "border",
+          "spacing": "large"
+        }
+      }
+    },
+    {
+      "_template": "feed",
+      "width": "content",
+      "spacingTop": "none",
+      "spacingBottom": "large",
+      "alignment": "left",
+      "background": "default",
+      "eyebrow": "Recent essays",
+      "heading": "From Substack",
+      "source": "https://isiahfletcher7.substack.com/feed",
+      "limit": 6,
+      "presentation": "list",
+      "fallbackText": "The latest essays are available directly on Substack.",
+      "fallbackUrl": "https://isiahfletcher7.substack.com/",
+      "fallbackLabel": "Visit Substack",
+      "decoration": {
+        "rules": {
+          "top": true,
+          "style": "solid",
+          "weight": "thin",
+          "color": "border",
+          "spacing": "large"
+        }
+      }
+    }
+  ],
+  "introWidth": "content"
+}

@@ -1,0 +1,150 @@
+---
+import TinaMarkdown from "@tinacms/astro/TinaMarkdown.astro";
+import { tinaField } from "@tinacms/astro/tina-field";
+import { sanitizeHref, sanitizeImageSrc } from "@tinacms/astro/sanitize";
+import IcosahedronBackground from "./IcosahedronBackground.astro";
+import PageSection from "./PageSection.astro";
+import type { Page } from "../lib/pages";
+import type { FeedItem } from "../lib/feeds";
+import "../styles/page-builder.css";
+interface Props {
+  data: Page;
+  feeds?: Record<string, FeedItem[]>;
+}
+const { data, feeds = {} } = Astro.props;
+const landing = data.__typename === "PagesLanding";
+const hero = data.__typename === "PagesLanding" ? data.hero : undefined;
+const introduction = data.__typename === "PagesLanding" ? data.hero : data;
+const writing = data.__typename === "PagesWriting" ? data : undefined;
+const introWidth =
+  "introWidth" in data &&
+  ["prose", "content", "wide"].includes(data.introWidth || "")
+    ? data.introWidth
+    : writing
+      ? "prose"
+      : "content";
+const date =
+  writing?.date && Number.isFinite(Date.parse(writing.date))
+    ? new Date(writing.date)
+    : undefined;
+---
+
+<article class:list={["builder-page", { "builder-writing": !!writing }]}>
+  <header
+    class:list={[
+      "builder-intro",
+      !landing && `intro-${introWidth}`,
+      {
+        "builder-hero": landing,
+        "hero-with-image": !!sanitizeImageSrc(hero?.image),
+      },
+    ]}
+  >
+    {hero?.backgroundEffect === "icosahedron" && <IcosahedronBackground />}
+    {
+      sanitizeImageSrc(hero?.image) && (
+        <img
+          class="builder-hero-image"
+          src={sanitizeImageSrc(hero?.image)}
+          alt={hero?.imageAlt || ""}
+          width="666"
+          height="500"
+          fetchpriority="high"
+          data-tina-field={tinaField(hero, "image")}
+        />
+      )
+    }
+    <div class="builder-intro-copy">
+      {
+        introduction?.eyebrow && (
+          <p
+            class="section-eyebrow"
+            data-tina-field={tinaField(introduction, "eyebrow")}
+          >
+            {introduction?.eyebrow}
+          </p>
+        )
+      }
+      <h1 data-tina-field={tinaField(introduction, "heading")}>
+        {introduction?.heading}
+      </h1>
+      {
+        (date || writing?.byline) && (
+          <p class="section-date">
+            {date && (
+              <time
+                datetime={date.toISOString()}
+                data-tina-field={tinaField(writing, "date")}
+              >
+                {date.toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                  timeZone: "UTC",
+                })}
+              </time>
+            )}
+            {date && writing?.byline && " · "}
+            <span data-tina-field={tinaField(writing, "byline")}>
+              {writing?.byline}
+            </span>
+          </p>
+        )
+      }
+      {
+        introduction?.intro && (
+          <p
+            class="builder-lead"
+            data-tina-field={tinaField(introduction, "intro")}
+          >
+            {introduction?.intro}
+          </p>
+        )
+      }
+      {
+        hero?.body && (
+          <div class="section-prose" data-tina-field={tinaField(hero, "body")}>
+            <TinaMarkdown content={hero.body} />
+          </div>
+        )
+      }
+      {
+        hero?.actions?.length && (
+          <div
+            class="builder-actions"
+            data-tina-field={tinaField(hero, "actions")}
+          >
+            {hero.actions.map(
+              (action) =>
+                action && (
+                  <a
+                    class:list={[{ button: action === hero.actions?.[0] }]}
+                    href={sanitizeHref(action.url)}
+                  >
+                    {action.label}
+                  </a>
+                ),
+            )}
+          </div>
+        )
+      }
+    </div>
+  </header>
+  {
+    writing?.body && (
+      <div
+        class="builder-article section-prose"
+        data-tina-field={tinaField(writing, "body")}
+      >
+        <TinaMarkdown content={writing.body} />
+      </div>
+    )
+  }
+  <div data-tina-field={tinaField(data, "sections")}>
+    {
+      data.sections?.map(
+        (section) => section && <PageSection data={section} feeds={feeds} />,
+      )
+    }
+  </div>
+</article>

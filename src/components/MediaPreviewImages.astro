@@ -1,0 +1,29 @@
+<script>
+  import { tinaImageFallback } from "../lib/media-preview";
+
+  const recover = (image: HTMLImageElement) => {
+    const fallback = tinaImageFallback(
+      image.getAttribute("src"),
+      import.meta.env.PUBLIC_TINA_CLIENT_ID,
+      __PUBLIC_IMAGE_PATHS__,
+    );
+    if (!fallback) return;
+    // The local URL is no longer a CDN candidate, so a failed fallback cannot loop.
+    image.removeAttribute("srcset");
+    image.src = fallback;
+  };
+
+  // Capture errors from images inserted by any subsequent Tina island refresh,
+  // including images inside rich text, without replacing the editor's form data.
+  document.addEventListener(
+    "error",
+    (event) => {
+      if (event.target instanceof HTMLImageElement) recover(event.target);
+    },
+    true,
+  );
+  // An initial request may already have failed before this module executes.
+  for (const image of document.images) {
+    if (image.complete && image.naturalWidth === 0) recover(image);
+  }
+</script>
