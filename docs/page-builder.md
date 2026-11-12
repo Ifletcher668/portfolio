@@ -71,6 +71,8 @@ and media paths, walks nested columns, and is safe to rerun.
 
 ## Images in visual previews
 
+For an empty production Media Manager, see [TinaCMS media recovery](tinacms-media.md).
+
 Tina may resolve repository image fields to staging CDN URLs inside the editor.
 If a CDN image fails, the page retries its corresponding public URL only when it
 belongs to this Tina project and is present in the deployed image manifest. This
