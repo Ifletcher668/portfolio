@@ -1,0 +1,19 @@
+---
+import { sanitizeImageSrc } from "@tinacms/astro/sanitize";
+import ImageAnnotation from "./ImageAnnotation.astro";
+interface Props {
+  url?: string;
+  alt?: string;
+  caption?: string;
+}
+const { url, alt, caption } = Astro.props;
+const src = sanitizeImageSrc(url);
+---
+
+{
+  src && (
+    <ImageAnnotation credit={caption}>
+      <img src={src} alt={alt || ""} loading="lazy" />
+    </ImageAnnotation>
+  )
+}

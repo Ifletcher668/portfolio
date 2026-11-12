@@ -76,3 +76,11 @@ If a CDN image fails, the page retries its corresponding public URL only when it
 belongs to this Tina project and is present in the deployed image manifest. This
 also covers dynamically refreshed sections and rich-text images. New uploads stay
 on the CDN; editor values are never rewritten by this display fallback.
+
+### Image annotations
+
+Hero images, text-with-image sections (including columns), and card images have a **Photo credit / image annotation** field in TinaCMS. Enter the photographer, artist, source, or license there. Unsaved edits appear in the visual preview. For an image inserted in a rich-text body, use the image dialog's caption field for its annotation.
+
+On desktop, hovering an image shows the question-mark help cursor and reveals its credit after one second. The separate question-mark button is mobile-only. The desktop tooltip follows the cursor with a small offset and stays within the viewport. On mobile layouts (up to 800px), the question mark stays at the bottom right; tap the image or question mark to toggle the credit. Keyboard users can focus the question mark to read it. Escape, tapping outside, or moving the mouse away dismisses it. Credits are plain text. Images without a credit show “Photo credit not provided.” Existing archive images use the same interaction; embedded third-party players manage their own media.
+
+Annotation colors use the site theme and adapt to surface, light, and tint section backgrounds.

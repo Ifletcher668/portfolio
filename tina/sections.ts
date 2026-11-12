@@ -7,8 +7,17 @@ const select = (name: string, label: string, options: string[]): TinaField => ({
   label,
   options,
 });
+export const imageCreditField: TinaField = {
+  type: "string",
+  name: "imageCredit",
+  label: "Photo credit / image annotation",
+  description:
+    "Photographer, artist, source, or license. Shown after one second of hover, or on tap on mobile.",
+  ui: { component: "textarea" },
+};
 export const imageFields: TinaField[] = [
   { type: "image", name: "image", label: "Image" },
+  imageCreditField,
   {
     type: "string",
     name: "imageAlt",

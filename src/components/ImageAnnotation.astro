@@ -1,0 +1,295 @@
+---
+interface Props {
+  credit?: string | null;
+  field?: string;
+  class?: string;
+}
+const { credit, field, class: className } = Astro.props;
+const id = `image-credit-${crypto.randomUUID()}`;
+---
+
+<image-annotation class:list={["image-annotation", className]}>
+  <slot />
+  <button
+    class="image-annotation-trigger"
+    type="button"
+    aria-label="Show image credit"
+    aria-expanded="false"
+    aria-controls={id}
+    aria-describedby={id}>?</button
+  >
+  <span
+    id={id}
+    class="image-annotation-tooltip"
+    role="tooltip"
+    hidden
+    data-tina-field={field}
+  >
+    {credit?.trim() || "Photo credit not provided."}
+  </span>
+</image-annotation>
+
+<script>
+  class ImageAnnotation extends HTMLElement {
+    connectedCallback() {
+      const button = this.querySelector<HTMLButtonElement>(
+        ".image-annotation-trigger",
+      );
+      const tooltip = this.querySelector<HTMLElement>(
+        ".image-annotation-tooltip",
+      );
+      if (!button || !tooltip) return;
+      const controller = new AbortController();
+      const { signal } = controller;
+      const desktop = window.matchMedia("(min-width: 801px)");
+      let cursor: { x: number; y: number } | undefined;
+      const positionAtCursor = () => {
+        if (!cursor || !desktop.matches || tooltip.hidden) return;
+        tooltip.setAttribute("data-cursor", "");
+        tooltip.setAttribute("popover", "manual");
+        // The top layer escapes transformed cards and clipped hero containers,
+        // while retaining the section's inherited theme and Tina field binding.
+        if (!tooltip.matches(":popover-open")) tooltip.showPopover();
+        const gap = parseFloat(getComputedStyle(tooltip).paddingLeft);
+        const { width, height } = tooltip.getBoundingClientRect();
+        const viewportWidth = document.documentElement.clientWidth;
+        const viewportHeight = document.documentElement.clientHeight;
+        const x =
+          cursor.x + gap + width <= viewportWidth - gap
+            ? cursor.x + gap
+            : cursor.x - width - gap;
+        const y =
+          cursor.y + gap + height <= viewportHeight - gap
+            ? cursor.y + gap
+            : cursor.y - height - gap;
+        tooltip.style.left = `${Math.max(gap, Math.min(x, viewportWidth - width - gap))}px`;
+        tooltip.style.top = `${Math.max(gap, Math.min(y, viewportHeight - height - gap))}px`;
+      };
+      let timer: ReturnType<typeof setTimeout> | undefined;
+      const cancel = () => {
+        clearTimeout(timer);
+      };
+      const show = (open: boolean) => {
+        cancel();
+        if (tooltip.matches(":popover-open")) tooltip.hidePopover();
+        tooltip.removeAttribute("popover");
+        tooltip.removeAttribute("data-cursor");
+        tooltip.style.removeProperty("left");
+        tooltip.style.removeProperty("top");
+        tooltip.hidden = !open;
+        if (open) positionAtCursor();
+        button.setAttribute("aria-expanded", String(open));
+        button.setAttribute(
+          "aria-label",
+          open ? "Hide image credit" : "Show image credit",
+        );
+        this.toggleAttribute("data-open", open);
+      };
+      this.addEventListener(
+        "pointerenter",
+        (event) => {
+          if (event.pointerType !== "mouse") return;
+          cursor = { x: event.clientX, y: event.clientY };
+          cancel();
+          timer = setTimeout(() => show(true), 1000);
+        },
+        { signal },
+      );
+      this.addEventListener(
+        "pointermove",
+        (event) => {
+          if (event.pointerType !== "mouse") return;
+          cursor = { x: event.clientX, y: event.clientY };
+          positionAtCursor();
+        },
+        { signal },
+      );
+      window.addEventListener("resize", () => show(false), { signal });
+      document.addEventListener(
+        "scroll",
+        () => {
+          if (desktop.matches) show(false);
+        },
+        { signal, capture: true, passive: true },
+      );
+      this.addEventListener(
+        "pointerleave",
+        (event) => {
+          if (event.pointerType === "mouse") show(false);
+        },
+        { signal },
+      );
+      button.addEventListener(
+        "focus",
+        () => {
+          if (button.matches(":focus-visible")) {
+            cursor = undefined;
+            show(true);
+          }
+        },
+        { signal },
+      );
+      this.addEventListener(
+        "focusout",
+        (event) => {
+          if (
+            !(event.relatedTarget instanceof Node) ||
+            !this.contains(event.relatedTarget)
+          )
+            show(false);
+        },
+        { signal },
+      );
+      this.addEventListener(
+        "click",
+        (event) => {
+          // Preserve links around rich-text images and Tina's field selection.
+          if (
+            (event.target instanceof Element &&
+              event.target.closest(".image-annotation-trigger") === button) ||
+            (event.target instanceof HTMLImageElement && !this.closest("a"))
+          ) {
+            show(tooltip.hidden);
+          }
+        },
+        { signal },
+      );
+      document.addEventListener(
+        "pointerdown",
+        (event) => {
+          if (event.target instanceof Node && !this.contains(event.target))
+            show(false);
+        },
+        { signal },
+      );
+      document.addEventListener(
+        "keydown",
+        (event) => {
+          if (event.key === "Escape") show(false);
+        },
+        { signal },
+      );
+      this.cleanup = () => {
+        show(false);
+        controller.abort();
+      };
+    }
+    cleanup?: () => void;
+    disconnectedCallback() {
+      this.cleanup?.();
+    }
+  }
+  if (!customElements.get("image-annotation"))
+    customElements.define("image-annotation", ImageAnnotation);
+</script>
+
+<style is:global>
+  .image-annotation {
+    display: inline-block;
+    position: relative;
+    max-width: 100%;
+    min-width: 0;
+    vertical-align: middle;
+  }
+  .builder-hero-media,
+  .section-image-media {
+    display: block;
+    width: 100%;
+  }
+  .image-annotation > img {
+    display: block;
+    max-width: 100%;
+  }
+  .image-annotation-trigger {
+    position: absolute;
+    right: var(--space-2);
+    bottom: var(--space-2);
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 1px solid currentColor;
+    border-radius: var(--radius-md);
+    background: var(--color-bg);
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+    z-index: 2;
+  }
+  .image-annotation-tooltip {
+    display: block;
+    position: absolute;
+    inset: auto;
+    bottom: calc(44px + var(--space-4));
+    right: var(--space-2);
+    left: var(--space-2);
+    padding: var(--space-3);
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+    margin: 0;
+    font-size: var(--font-size-caption);
+    line-height: var(--line-height-body);
+    text-align: left;
+    overflow-wrap: anywhere;
+    max-height: 80%;
+    overflow-y: auto;
+    z-index: 2;
+  }
+  .image-annotation-tooltip[data-cursor] {
+    position: fixed;
+    inset: auto;
+    width: max-content;
+    max-width: min(320px, calc(100vw - 2 * var(--space-3)));
+    max-height: calc(100vh - 2 * var(--space-3));
+    box-sizing: border-box;
+    pointer-events: none;
+  }
+  .image-annotation-tooltip[hidden] {
+    display: none;
+  }
+  /* Match the surrounding Tina section, including light sections and cards. */
+  .background-surface .image-annotation-trigger,
+  .background-surface .image-annotation-tooltip,
+  .section-card .image-annotation-trigger,
+  .section-card .image-annotation-tooltip {
+    background: var(--color-surface);
+    color: var(--color-text);
+  }
+  .background-light .image-annotation-trigger,
+  .background-light .image-annotation-tooltip {
+    background: var(--color-heading);
+    color: var(--color-text-on-light);
+    border-color: var(--color-border-on-light);
+  }
+  .background-tint .image-annotation-trigger,
+  .background-tint .image-annotation-tooltip {
+    background: var(--color-heading);
+    color: var(--color-text-on-light);
+    border-color: var(--color-border-on-light);
+  }
+  @media (min-width: 801px) {
+    .image-annotation,
+    .image-annotation > img {
+      cursor: help;
+    }
+    /* Keep keyboard access without showing a desktop question-mark control. */
+    .image-annotation-trigger {
+      width: 1px;
+      height: 1px;
+      clip-path: inset(50%);
+      overflow: hidden;
+      white-space: nowrap;
+      border: 0;
+    }
+    .image-annotation:has(.image-annotation-trigger:focus-visible) {
+      outline: 2px solid currentColor;
+      outline-offset: 2px;
+    }
+    .image-annotation-tooltip {
+      bottom: var(--space-2);
+    }
+  }
+</style>
