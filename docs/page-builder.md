@@ -68,3 +68,11 @@ reordering, mobile layouts, and theme editing at `/theme-preview`.
 `node scripts/migrations/page-editor-controls.mjs` migrates older page documents
 to Hero-owned copy and independent decoration controls. It preserves existing text
 and media paths, walks nested columns, and is safe to rerun.
+
+## Images in visual previews
+
+Tina may resolve repository image fields to staging CDN URLs inside the editor.
+If a CDN image fails, the page retries its corresponding public URL only when it
+belongs to this Tina project and is present in the deployed image manifest. This
+also covers dynamically refreshed sections and rich-text images. New uploads stay
+on the CDN; editor values are never rewritten by this display fallback.

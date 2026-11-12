@@ -1,4 +1,5 @@
 ---
+import MediaPreviewImages from "../components/MediaPreviewImages.astro";
 import SiteTheme from "../components/SiteTheme.astro";
 import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
@@ -196,6 +197,7 @@ const {
     <main id="main-content"><slot /></main>
     <Footer />
     <PointerInteractions />
+    <MediaPreviewImages />
     <style>
       .skip {
         position: absolute;

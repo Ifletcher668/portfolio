@@ -365,3 +365,42 @@ test("saved local page images exist under the configured public media root", asy
   ).schema;
   assert.equal(schema.config.media.tina.mediaRoot, "");
 });
+
+test("missing Tina CDN images fall back only to known assets from this project", async () => {
+  const { tinaImageFallback } = await import("../src/lib/media-preview.ts");
+  const assets = ["/drummer-bubs-transparent.png", "/images/a photo.png"];
+  const base = "https://assets.tina.io/project-id";
+  for (const url of [
+    `${base}/__staging/codex/page-builder/__file/drummer-bubs-transparent.png`,
+    `${base}/drummer-bubs-transparent.png`,
+  ])
+    assert.equal(
+      tinaImageFallback(url, "project-id", assets),
+      "/drummer-bubs-transparent.png",
+    );
+  assert.equal(
+    tinaImageFallback(
+      `${base}/__staging/branch/__file/images/a%20photo.png`,
+      "project-id",
+      assets,
+    ),
+    "/images/a photo.png",
+  );
+  for (const url of [
+    "/drummer-bubs-transparent.png",
+    `${base}/__staging/branch/__file/new-upload.png`,
+    "https://assets.tina.io/another-project/drummer-bubs-transparent.png",
+    "https://example.com/project-id/drummer-bubs-transparent.png",
+    `${base}/__staging/branch/no-file-segment.png`,
+    `${base}/__staging/branch/__file/%2e%2e%2fdrummer-bubs-transparent.png`,
+  ])
+    assert.equal(tinaImageFallback(url, "project-id", assets), undefined);
+  assert.equal(
+    tinaImageFallback(
+      `${base}/drummer-bubs-transparent.png`,
+      undefined,
+      assets,
+    ),
+    undefined,
+  );
+});
