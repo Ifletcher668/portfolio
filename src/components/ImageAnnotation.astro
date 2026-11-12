@@ -157,12 +157,12 @@ const id = `image-credit-${crypto.randomUUID()}`;
     width: 44px;
     height: 44px;
     padding: 0;
-    border: 1px solid var(--color-caption-text);
+    border: 1px solid currentColor;
     border-radius: var(--radius-md);
-    background: var(--color-caption-overlay);
-    color: var(--color-caption-text);
+    background: var(--color-bg);
+    color: inherit;
     font: inherit;
-    cursor: help;
+    cursor: pointer;
     z-index: 2;
   }
   .image-annotation-tooltip {
@@ -172,8 +172,8 @@ const id = `image-credit-${crypto.randomUUID()}`;
     left: var(--space-2);
     padding: var(--space-3);
     border-radius: var(--radius-md);
-    background: var(--color-caption-overlay);
-    color: var(--color-caption-text);
+    background: var(--color-bg);
+    color: inherit;
     font-size: var(--font-size-caption);
     line-height: var(--line-height-body);
     text-align: left;
@@ -185,17 +185,40 @@ const id = `image-credit-${crypto.randomUUID()}`;
   .image-annotation-tooltip[hidden] {
     display: none;
   }
-  @media (hover: hover) and (pointer: fine) {
-    .image-annotation {
-      cursor: help;
-    }
+  /* Match the surrounding Tina section, including light sections and cards. */
+  .background-surface .image-annotation-trigger,
+  .background-surface .image-annotation-tooltip,
+  .section-card .image-annotation-trigger,
+  .section-card .image-annotation-tooltip {
+    background: var(--color-surface);
+    color: var(--color-text);
+  }
+  .background-light .image-annotation-trigger,
+  .background-light .image-annotation-tooltip {
+    background: var(--color-heading);
+    color: var(--color-text-on-light);
+  }
+  .background-tint .image-annotation-trigger,
+  .background-tint .image-annotation-tooltip {
+    background: var(--color-heading);
+    color: var(--color-text-on-light);
+  }
+  @media (min-width: 801px) {
+    /* Keep keyboard access without showing a desktop question-mark control. */
     .image-annotation-trigger {
-      opacity: 0;
+      width: 1px;
+      height: 1px;
+      clip-path: inset(50%);
+      overflow: hidden;
+      white-space: nowrap;
+      border: 0;
     }
-    .image-annotation:hover > .image-annotation-trigger,
-    .image-annotation:focus-within > .image-annotation-trigger,
-    .image-annotation[data-open] > .image-annotation-trigger {
-      opacity: 1;
+    .image-annotation:has(.image-annotation-trigger:focus-visible) {
+      outline: 2px solid currentColor;
+      outline-offset: 2px;
+    }
+    .image-annotation-tooltip {
+      bottom: var(--space-2);
     }
   }
 </style>

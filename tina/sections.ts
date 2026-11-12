@@ -12,7 +12,7 @@ export const imageCreditField: TinaField = {
   name: "imageCredit",
   label: "Photo credit / image annotation",
   description:
-    "Photographer, artist, source, or license. Shown after one second of hover, or on tap.",
+    "Photographer, artist, source, or license. Shown after one second of hover, or on tap on mobile.",
   ui: { component: "textarea" },
 };
 export const imageFields: TinaField[] = [
