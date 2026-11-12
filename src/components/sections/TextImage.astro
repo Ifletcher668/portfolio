@@ -1,4 +1,6 @@
 ---
+import ImageAnnotation from "../ImageAnnotation.astro";
+import AnnotatedRichTextImage from "../AnnotatedRichTextImage.astro";
 import TinaMarkdown from "@tinacms/astro/TinaMarkdown.astro";
 import { tinaField } from "@tinacms/astro/tina-field";
 import { sanitizeImageSrc } from "@tinacms/astro/sanitize";
@@ -31,20 +33,26 @@ const Heading = data.headingStyle === "card" ? "h3" : "h2";
 >
   {
     image && (
-      <img
-        class:list={[
-          "section-image",
-          {
-            "ratio-square": data.imageRatio === "square",
-            "ratio-landscape":
-              data.imageRatio !== "original" && data.imageRatio !== "square",
-          },
-        ]}
-        src={image}
-        alt={data.imageAlt || ""}
-        loading="lazy"
-        data-tina-field={tinaField(data, "image")}
-      />
+      <ImageAnnotation
+        credit={data?.imageCredit}
+        field={tinaField(data, "imageCredit")}
+        class="section-image-media"
+      >
+        <img
+          class:list={[
+            "section-image",
+            {
+              "ratio-square": data.imageRatio === "square",
+              "ratio-landscape":
+                data.imageRatio !== "original" && data.imageRatio !== "square",
+            },
+          ]}
+          src={image}
+          alt={data.imageAlt || ""}
+          loading="lazy"
+          data-tina-field={tinaField(data, "image")}
+        />
+      </ImageAnnotation>
     )
   }
   <div class="section-image-copy">
@@ -56,7 +64,10 @@ const Heading = data.headingStyle === "card" ? "h3" : "h2";
       )
     }
     <div class="section-prose" data-tina-field={tinaField(data, "body")}>
-      <TinaMarkdown content={data.body} />
+      <TinaMarkdown
+        components={{ img: AnnotatedRichTextImage }}
+        content={data.body}
+      />
     </div>
   </div>
 </div>

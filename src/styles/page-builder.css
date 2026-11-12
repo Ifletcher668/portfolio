@@ -160,7 +160,7 @@
   gap: var(--gap-grid);
   align-items: center;
 }
-.image-right > img {
+.image-right > .section-image-media {
   order: 1;
 }
 .section-image {
@@ -199,7 +199,7 @@
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
 }
-.section-card .section-image {
+.section-card > .section-image-media {
   margin-bottom: var(--gap-prose);
 }
 .section-card-action {
@@ -233,7 +233,7 @@
   .columns-3 {
     grid-template-columns: minmax(0, 1fr);
   }
-  .image-right > img {
+  .image-right > .section-image-media {
     order: 0;
   }
   .builder-hero-image {

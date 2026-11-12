@@ -1,4 +1,6 @@
 ---
+import ImageAnnotation from "../ImageAnnotation.astro";
+import AnnotatedRichTextImage from "../AnnotatedRichTextImage.astro";
 import TinaMarkdown from "@tinacms/astro/TinaMarkdown.astro";
 import { tinaField } from "@tinacms/astro/tina-field";
 import { sanitizeHref, sanitizeImageSrc } from "@tinacms/astro/sanitize";
@@ -33,16 +35,25 @@ const columns = ["1", "2", "3"].includes(data.columns || "")
             <h3 data-tina-field={tinaField(card, "heading")}>{card.heading}</h3>
           )}
           {sanitizeImageSrc(card.image) && (
-            <img
-              class="section-image ratio-landscape"
-              src={sanitizeImageSrc(card.image)}
-              alt={card.imageAlt || ""}
-              loading="lazy"
-              data-tina-field={tinaField(card, "image")}
-            />
+            <ImageAnnotation
+              credit={card?.imageCredit}
+              field={tinaField(card, "imageCredit")}
+              class="section-image-media"
+            >
+              <img
+                class="section-image ratio-landscape"
+                src={sanitizeImageSrc(card.image)}
+                alt={card.imageAlt || ""}
+                loading="lazy"
+                data-tina-field={tinaField(card, "image")}
+              />
+            </ImageAnnotation>
           )}
           <div class="section-prose" data-tina-field={tinaField(card, "body")}>
-            <TinaMarkdown content={card.body} />
+            <TinaMarkdown
+              components={{ img: AnnotatedRichTextImage }}
+              content={card.body}
+            />
           </div>
           {card.linkLabel && card.linkUrl && (
             <a

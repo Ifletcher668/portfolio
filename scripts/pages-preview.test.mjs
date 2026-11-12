@@ -128,6 +128,30 @@ test("unsaved page overlays add, reorder, remove and configure independent secti
       .replace(/&gt;/g, ">")
       .replace(/&amp;/g, "&"),
   );
+  home.data.pages.hero.body = {
+    type: "root",
+    children: [
+      {
+        type: "img",
+        url: "/shelbz-website-project.png",
+        alt: "Rich image",
+        caption: "Rich-text artist credit",
+        children: [{ text: "" }],
+      },
+    ],
+  };
+  home.data.pages.hero.imageCredit = "Hero art by <Example Artist> & Studio";
+  home.data.pages.sections[0].items[0].sections[0].imageCredit =
+    "Nested screenshot credit";
+  home.data.pages.sections.push({
+    __typename: "PagesLandingSectionsCardGrid",
+    cards: [
+      {
+        image: "/shelbz-website-project.png",
+        imageCredit: "Card image credit",
+      },
+    ],
+  });
   home.data.pages.hero.heading = "Unsaved Hero heading";
   home.data.pages.hero.intro = "Unsaved Hero introduction";
   home.data.pages.heading = "Obsolete page heading";
@@ -140,6 +164,15 @@ test("unsaved page overlays add, reorder, remove and configure independent secti
   assert.equal(homeResponse.status, 200);
   const heroHTML = await homeResponse.text();
   assert.ok(heroHTML.includes("Unsaved Hero heading"));
+  assert.ok(
+    heroHTML.includes("Hero art by &lt;Example Artist&gt; &amp; Studio"),
+  );
+  assert.ok(heroHTML.includes("Nested screenshot credit"));
+  assert.ok(heroHTML.includes("Card image credit"));
+  assert.ok(heroHTML.includes("Rich-text artist credit"));
+  assert.ok(heroHTML.includes('aria-label="Show image credit"'));
+  assert.ok(heroHTML.includes('role="tooltip" hidden'));
+  assert.ok(heroHTML.includes("hero.imageCredit"));
   assert.ok(heroHTML.includes("Unsaved Hero introduction"));
   assert.ok(!heroHTML.includes("Obsolete page heading"));
   assert.ok(!heroHTML.includes("Obsolete page introduction"));

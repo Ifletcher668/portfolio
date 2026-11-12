@@ -6,6 +6,7 @@ export type CardData = {
   eyebrow?: string | null;
   heading?: string | null;
   image?: string | null;
+  imageCredit?: string | null;
   imageAlt?: string | null;
   body?: TinaMarkdownContent | null;
   linkLabel?: string | null;

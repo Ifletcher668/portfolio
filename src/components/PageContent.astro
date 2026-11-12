@@ -1,4 +1,6 @@
 ---
+import ImageAnnotation from "./ImageAnnotation.astro";
+import AnnotatedRichTextImage from "./AnnotatedRichTextImage.astro";
 import TinaMarkdown from "@tinacms/astro/TinaMarkdown.astro";
 import { tinaField } from "@tinacms/astro/tina-field";
 import { sanitizeHref, sanitizeImageSrc } from "@tinacms/astro/sanitize";
@@ -43,15 +45,21 @@ const date =
     {hero?.backgroundEffect === "icosahedron" && <IcosahedronBackground />}
     {
       sanitizeImageSrc(hero?.image) && (
-        <img
-          class="builder-hero-image"
-          src={sanitizeImageSrc(hero?.image)}
-          alt={hero?.imageAlt || ""}
-          width="666"
-          height="500"
-          fetchpriority="high"
-          data-tina-field={tinaField(hero, "image")}
-        />
+        <ImageAnnotation
+          credit={hero?.imageCredit}
+          field={tinaField(hero, "imageCredit")}
+          class="builder-hero-media"
+        >
+          <img
+            class="builder-hero-image"
+            src={sanitizeImageSrc(hero?.image)}
+            alt={hero?.imageAlt || ""}
+            width="666"
+            height="500"
+            fetchpriority="high"
+            data-tina-field={tinaField(hero, "image")}
+          />
+        </ImageAnnotation>
       )
     }
     <div class="builder-intro-copy">
@@ -104,7 +112,10 @@ const date =
       {
         hero?.body && (
           <div class="section-prose" data-tina-field={tinaField(hero, "body")}>
-            <TinaMarkdown content={hero.body} />
+            <TinaMarkdown
+              components={{ img: AnnotatedRichTextImage }}
+              content={hero.body}
+            />
           </div>
         )
       }
@@ -136,7 +147,10 @@ const date =
         class="builder-article section-prose"
         data-tina-field={tinaField(writing, "body")}
       >
-        <TinaMarkdown content={writing.body} />
+        <TinaMarkdown
+          components={{ img: AnnotatedRichTextImage }}
+          content={writing.body}
+        />
       </div>
     )
   }

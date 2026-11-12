@@ -1,4 +1,5 @@
 ---
+import AnnotatedRichTextImage from "../AnnotatedRichTextImage.astro";
 import TinaMarkdown from "@tinacms/astro/TinaMarkdown.astro";
 import { tinaField } from "@tinacms/astro/tina-field";
 import { videoEmbed } from "../../lib/video";
@@ -33,5 +34,8 @@ const src = videoEmbed(data.url);
   }
 </figure>
 <div class="section-prose" data-tina-field={tinaField(data, "body")}>
-  <TinaMarkdown content={data.body} />
+  <TinaMarkdown
+    components={{ img: AnnotatedRichTextImage }}
+    content={data.body}
+  />
 </div>

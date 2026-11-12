@@ -1,0 +1,201 @@
+---
+interface Props {
+  credit?: string | null;
+  field?: string;
+  class?: string;
+}
+const { credit, field, class: className } = Astro.props;
+const id = `image-credit-${crypto.randomUUID()}`;
+---
+
+<image-annotation class:list={["image-annotation", className]}>
+  <slot />
+  <button
+    class="image-annotation-trigger"
+    type="button"
+    aria-label="Show image credit"
+    aria-expanded="false"
+    aria-controls={id}
+    aria-describedby={id}>?</button
+  >
+  <span
+    id={id}
+    class="image-annotation-tooltip"
+    role="tooltip"
+    hidden
+    data-tina-field={field}
+  >
+    {credit?.trim() || "Photo credit not provided."}
+  </span>
+</image-annotation>
+
+<script>
+  class ImageAnnotation extends HTMLElement {
+    connectedCallback() {
+      const button = this.querySelector<HTMLButtonElement>(
+        ".image-annotation-trigger",
+      );
+      const tooltip = this.querySelector<HTMLElement>(
+        ".image-annotation-tooltip",
+      );
+      if (!button || !tooltip) return;
+      const controller = new AbortController();
+      const { signal } = controller;
+      let timer: ReturnType<typeof setTimeout> | undefined;
+      const cancel = () => {
+        clearTimeout(timer);
+      };
+      const show = (open: boolean) => {
+        cancel();
+        tooltip.hidden = !open;
+        button.setAttribute("aria-expanded", String(open));
+        button.setAttribute(
+          "aria-label",
+          open ? "Hide image credit" : "Show image credit",
+        );
+        this.toggleAttribute("data-open", open);
+      };
+      this.addEventListener(
+        "pointerenter",
+        (event) => {
+          if (event.pointerType !== "mouse") return;
+          cancel();
+          timer = setTimeout(() => show(true), 1000);
+        },
+        { signal },
+      );
+      this.addEventListener(
+        "pointerleave",
+        (event) => {
+          if (event.pointerType === "mouse") show(false);
+        },
+        { signal },
+      );
+      button.addEventListener(
+        "focus",
+        () => {
+          if (button.matches(":focus-visible")) show(true);
+        },
+        { signal },
+      );
+      this.addEventListener(
+        "focusout",
+        (event) => {
+          if (
+            !(event.relatedTarget instanceof Node) ||
+            !this.contains(event.relatedTarget)
+          )
+            show(false);
+        },
+        { signal },
+      );
+      this.addEventListener(
+        "click",
+        (event) => {
+          // Preserve links around rich-text images and Tina's field selection.
+          if (
+            event.target === button ||
+            (event.target instanceof HTMLImageElement && !this.closest("a"))
+          ) {
+            show(tooltip.hidden);
+          }
+        },
+        { signal },
+      );
+      document.addEventListener(
+        "pointerdown",
+        (event) => {
+          if (event.target instanceof Node && !this.contains(event.target))
+            show(false);
+        },
+        { signal },
+      );
+      document.addEventListener(
+        "keydown",
+        (event) => {
+          if (event.key === "Escape") show(false);
+        },
+        { signal },
+      );
+      this.cleanup = () => {
+        cancel();
+        controller.abort();
+      };
+    }
+    cleanup?: () => void;
+    disconnectedCallback() {
+      this.cleanup?.();
+    }
+  }
+  if (!customElements.get("image-annotation"))
+    customElements.define("image-annotation", ImageAnnotation);
+</script>
+
+<style is:global>
+  .image-annotation {
+    display: inline-block;
+    position: relative;
+    max-width: 100%;
+    min-width: 0;
+    vertical-align: middle;
+  }
+  .builder-hero-media,
+  .section-image-media {
+    display: block;
+    width: 100%;
+  }
+  .image-annotation > img {
+    display: block;
+    max-width: 100%;
+  }
+  .image-annotation-trigger {
+    position: absolute;
+    right: var(--space-2);
+    bottom: var(--space-2);
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 1px solid var(--color-caption-text);
+    border-radius: var(--radius-md);
+    background: var(--color-caption-overlay);
+    color: var(--color-caption-text);
+    font: inherit;
+    cursor: help;
+    z-index: 2;
+  }
+  .image-annotation-tooltip {
+    position: absolute;
+    bottom: calc(44px + var(--space-4));
+    right: var(--space-2);
+    left: var(--space-2);
+    padding: var(--space-3);
+    border-radius: var(--radius-md);
+    background: var(--color-caption-overlay);
+    color: var(--color-caption-text);
+    font-size: var(--font-size-caption);
+    line-height: var(--line-height-body);
+    text-align: left;
+    overflow-wrap: anywhere;
+    max-height: 80%;
+    overflow-y: auto;
+    z-index: 2;
+  }
+  .image-annotation-tooltip[hidden] {
+    display: none;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .image-annotation {
+      cursor: help;
+    }
+    .image-annotation-trigger {
+      opacity: 0;
+    }
+    .image-annotation:hover > .image-annotation-trigger,
+    .image-annotation:focus-within > .image-annotation-trigger,
+    .image-annotation[data-open] > .image-annotation-trigger {
+      opacity: 1;
+    }
+  }
+</style>
