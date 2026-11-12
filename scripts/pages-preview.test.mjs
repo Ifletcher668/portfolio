@@ -171,7 +171,7 @@ test("unsaved page overlays add, reorder, remove and configure independent secti
   assert.ok(heroHTML.includes("Card image credit"));
   assert.ok(heroHTML.includes("Rich-text artist credit"));
   assert.ok(heroHTML.includes('aria-label="Show image credit"'));
-  assert.ok(heroHTML.includes('role="tooltip" hidden'));
+  assert.match(heroHTML, /<span\b[^>]*role="tooltip"[^>]*\bhidden(?:\s|>)/);
   assert.ok(heroHTML.includes("hero.imageCredit"));
   assert.ok(heroHTML.includes("Unsaved Hero introduction"));
   assert.ok(!heroHTML.includes("Obsolete page heading"));
