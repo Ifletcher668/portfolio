@@ -271,6 +271,10 @@ const id = `image-credit-${crypto.randomUUID()}`;
     border-color: var(--color-border-on-light);
   }
   @media (min-width: 801px) {
+    .image-annotation,
+    .image-annotation > img {
+      cursor: help;
+    }
     /* Keep keyboard access without showing a desktop question-mark control. */
     .image-annotation-trigger {
       width: 1px;
