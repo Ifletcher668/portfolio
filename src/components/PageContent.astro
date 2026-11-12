@@ -14,6 +14,7 @@ interface Props {
 const { data, feeds = {} } = Astro.props;
 const landing = data.__typename === "PagesLanding";
 const hero = data.__typename === "PagesLanding" ? data.hero : undefined;
+const introduction = data.__typename === "PagesLanding" ? data.hero : data;
 const writing = data.__typename === "PagesWriting" ? data : undefined;
 const introWidth =
   "introWidth" in data &&
@@ -39,7 +40,7 @@ const date =
       },
     ]}
   >
-    {hero?.treatment === "icosahedron" && <IcosahedronBackground />}
+    {hero?.backgroundEffect === "icosahedron" && <IcosahedronBackground />}
     {
       sanitizeImageSrc(hero?.image) && (
         <img
@@ -55,16 +56,18 @@ const date =
     }
     <div class="builder-intro-copy">
       {
-        data.eyebrow && (
+        introduction?.eyebrow && (
           <p
             class="section-eyebrow"
-            data-tina-field={tinaField(data, "eyebrow")}
+            data-tina-field={tinaField(introduction, "eyebrow")}
           >
-            {data.eyebrow}
+            {introduction?.eyebrow}
           </p>
         )
       }
-      <h1 data-tina-field={tinaField(data, "heading")}>{data.heading}</h1>
+      <h1 data-tina-field={tinaField(introduction, "heading")}>
+        {introduction?.heading}
+      </h1>
       {
         (date || writing?.byline) && (
           <p class="section-date">
@@ -89,16 +92,12 @@ const date =
         )
       }
       {
-        data.intro && (
-          <p class="builder-lead" data-tina-field={tinaField(data, "intro")}>
-            {data.intro}
-          </p>
-        )
-      }
-      {
-        hero?.lead && (
-          <p class="builder-lead" data-tina-field={tinaField(hero, "lead")}>
-            {hero.lead}
+        introduction?.intro && (
+          <p
+            class="builder-lead"
+            data-tina-field={tinaField(introduction, "intro")}
+          >
+            {introduction?.intro}
           </p>
         )
       }

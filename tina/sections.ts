@@ -1,3 +1,4 @@
+import { decorationField } from "./decoration";
 import type { Template, TinaField } from "tinacms";
 
 const select = (name: string, label: string, options: string[]): TinaField => ({
@@ -25,8 +26,8 @@ export const layoutFields: TinaField[] = [
     "medium",
     "large",
   ]),
-  select("alignment", "Alignment", ["left", "center"]),
-  select("background", "Background", ["default", "surface", "light"]),
+  select("alignment", "Text alignment", ["left", "center", "right"]),
+  select("background", "Background", ["default", "surface", "light", "tint"]),
 ];
 export const sectionDefaults = {
   width: "content",
@@ -56,9 +57,8 @@ const common: TinaField[] = [
   },
   { type: "string", name: "eyebrow", label: "Eyebrow" },
   { type: "string", name: "heading", label: "Heading" },
-  select("treatment", "Treatment", ["plain", "panel", "outline"]),
+  decorationField,
   select("headingStyle", "Heading style", ["section", "card"]),
-  { type: "boolean", name: "divider", label: "Top divider" },
   ...layoutFields,
 ];
 const body: TinaField = { type: "rich-text", name: "body", label: "Body" };
@@ -163,7 +163,19 @@ export const sectionTemplates: Template[] = [
     fields: [
       ...common,
       select("columns", "Columns", ["1", "2", "3"]),
-      select("verticalAlignment", "Vertical alignment", ["start", "center"]),
+      select("gap", "Column gap", ["small", "medium", "large"]),
+      {
+        type: "string",
+        name: "verticalAlignment",
+        label: "Vertical alignment",
+        description:
+          "Position columns from top to bottom. Text alignment controls left, center, or right.",
+        options: [
+          { value: "start", label: "Top" },
+          { value: "center", label: "Center" },
+          { value: "end", label: "Bottom" },
+        ],
+      },
       {
         type: "object",
         name: "items",

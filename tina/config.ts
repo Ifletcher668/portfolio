@@ -8,6 +8,6 @@ export default defineConfig({
   clientId: process.env.PUBLIC_TINA_CLIENT_ID,
   token: process.env.TINA_TOKEN,
   build: { outputFolder: "admin", publicFolder: "public" },
-  media: { tina: { publicFolder: "public", mediaRoot: "uploads" } },
+  media: { tina: { publicFolder: "public", mediaRoot: "" } },
   schema: { collections: [configCollection, pagesCollection] },
 });

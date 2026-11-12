@@ -36,14 +36,24 @@
               "eyebrow": "Explore the archive",
               "heading": "Follow a thread.",
               "body": "[Professional history and code ↗](/code)\n\n[Performances and recorded music ↗](/music)\n\n[Essays and poetry ↗](/writing)\n\n[Books, games, and older poems ↗](/hobbies)",
-              "treatment": "panel",
               "background": "surface",
-              "headingStyle": "card"
+              "headingStyle": "card",
+              "decoration": {
+                "padding": "medium"
+              }
             }
           ]
         }
       ],
-      "divider": true
+      "decoration": {
+        "rules": {
+          "top": true,
+          "style": "solid",
+          "weight": "thin",
+          "color": "border",
+          "spacing": "large"
+        }
+      }
     },
     {
       "_template": "richText",
@@ -54,7 +64,15 @@
       "background": "default",
       "heading": "A place to return to.",
       "body": "This website collects things I've worked on, played, written, and thought about. There's room for new work whenever it comes.",
-      "divider": true
+      "decoration": {
+        "rules": {
+          "top": true,
+          "style": "solid",
+          "weight": "thin",
+          "color": "border",
+          "spacing": "large"
+        }
+      }
     }
   ],
   "introWidth": "content"

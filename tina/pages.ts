@@ -4,7 +4,9 @@ const metadata: TinaField[] = [
   {
     type: "string",
     name: "title",
-    label: "Page title",
+    label: "SEO title",
+    description:
+      "Browser tab and search result title. Visible page headings are edited below.",
     required: true,
     isTitle: true,
   },
@@ -17,6 +19,8 @@ const metadata: TinaField[] = [
     description:
       "Drafts stay out of the public site. Edit in this form; visual editing is available after publishing and deploying.",
   },
+];
+const introduction: TinaField[] = [
   { type: "string", name: "eyebrow", label: "Eyebrow" },
   { type: "string", name: "heading", label: "Heading", required: true },
   {
@@ -49,15 +53,23 @@ const templates: Template[] = [
         type: "object",
         name: "hero",
         label: "Hero",
+        required: true,
         fields: [
+          { type: "string", name: "eyebrow", label: "Eyebrow" },
+          { type: "string", name: "heading", label: "Heading", required: true },
+          {
+            type: "string",
+            name: "intro",
+            label: "Introduction",
+            ui: { component: "textarea" },
+          },
           ...imageFields,
           {
             type: "string",
-            name: "treatment",
-            label: "Background treatment",
+            name: "backgroundEffect",
+            label: "Background effect",
             options: ["plain", "icosahedron"],
           },
-          { type: "string", name: "lead", label: "Lead" },
           { type: "rich-text", name: "body", label: "Body" },
           {
             type: "object",
@@ -77,13 +89,14 @@ const templates: Template[] = [
   {
     name: "interior",
     label: "Interior",
-    fields: [...metadata, introWidth, sections],
+    fields: [...metadata, ...introduction, introWidth, sections],
   },
   {
     name: "writing",
     label: "Writing",
     fields: [
       ...metadata,
+      ...introduction,
       introWidth,
       { type: "datetime", name: "date", label: "Date" },
       { type: "string", name: "byline", label: "Byline" },

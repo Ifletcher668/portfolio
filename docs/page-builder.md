@@ -27,12 +27,16 @@ and stack on narrow screens; each column accepts any non-container section.
 Every section supports theme-based width, top/bottom spacing,
 alignment, and background choices. Text/image sections offer image position and
 ratio, including an image above the copy; cards offer one to three columns.
-Plain, panel, and outline treatments and optional top dividers preserve editorial
-hierarchy without prescribing content. Narrow screens stack columns. Meaningful
+Borders and embellishments are independent controls: inner padding, corner radius,
+shadow, selected border edges, line style/weight/theme color, an optional accent
+edge, and horizontal rules before or after content. Text alignment supports left,
+center, and right. Column vertical alignment is Top, Center, or Bottom, with an
+independent gap control. Narrow screens stack columns. Meaningful
 images need alternative text; decorative images can leave it empty.
 
-Landing's hero has editable image, lead, rich text, and actions. Its optional
-icosahedron background is a presentation treatment, not required content. Writing
+Landing's Hero owns its eyebrow, heading, introduction, image, rich text, and actions.
+SEO metadata stays at page level; Landing has no second set of introductory fields. Its optional
+icosahedron background is an optional effect, not required content. Writing
 has a readable article body before its supporting sections. Its introduction width
 can be selected independently, including a full content-width introduction for an
 editorial index. Neither template
@@ -58,3 +62,9 @@ saved-content build, and page/preview/theme regressions. `npm run test:pages` ru
 the page checks against an existing build; `npm run test:preview` also needs the
 local Tina GraphQL server. Browser review should cover unsaved edits, section
 reordering, mobile layouts, and theme editing at `/theme-preview`.
+
+## Migrating older content
+
+`node scripts/migrations/page-editor-controls.mjs` migrates older page documents
+to Hero-owned copy and independent decoration controls. It preserves existing text
+and media paths, walks nested columns, and is safe to rerun.

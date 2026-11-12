@@ -41,6 +41,24 @@ test("unsaved page overlays add, reorder, remove and configure independent secti
   data.pages.heading = "Unsaved page heading";
   data.pages.sections.reverse();
   data.pages.sections[0].background = "light";
+  data.pages.sections[0].alignment = "right";
+  data.pages.sections[0].decoration = {
+    border: {
+      edges: ["right"],
+      style: "dashed",
+      weight: "medium",
+      color: "accent",
+    },
+    rules: {
+      top: true,
+      bottom: true,
+      style: "dotted",
+      weight: "thin",
+      color: "muted",
+      spacing: "small",
+    },
+  };
+  data.pages.sections[1].verticalAlignment = "end";
   data.pages.sections[0].width = "arbitrary-css-is-not-allowed";
   data.pages.sections.push({
     __typename: "PagesInteriorSectionsRichText",
@@ -73,6 +91,12 @@ test("unsaved page overlays add, reorder, remove and configure independent secti
   assert.ok(html.includes("A newly added section"));
   assert.ok(html.includes("New editable content"));
   assert.ok(html.includes("background-light"));
+  assert.ok(html.includes("align-right"));
+  assert.ok(html.includes("columns-bottom"));
+  assert.ok(
+    html.includes("border-right:2px dashed var(--color-accent-on-light)"),
+  );
+  assert.ok((html.match(/class="section-rule"/g) || []).length >= 2);
   assert.ok(html.includes("width-content"));
   assert.ok(!html.includes("arbitrary-css-is-not-allowed"));
   data.pages.sections[1].items[0].sections[0].heading =
@@ -85,6 +109,41 @@ test("unsaved page overlays add, reorder, remove and configure independent secti
   assert.ok(!removed.includes("Many interests, one life."));
   assert.ok(!removed.includes("A place to return to."));
   assert.ok(removed.includes("New editable content"));
+  const homeEndpoint =
+    "http://127.0.0.1:4335/tina-island/page?relativePath=home.json";
+  const homePrime = await fetch(homeEndpoint, {
+    method: "POST",
+    headers: { ...headers, "X-Tina-Prime": "1" },
+    body: "{}",
+  });
+  const homeRaw = (await homePrime.text()).match(
+    /data-tina-form="([^"]+)"/,
+  )?.[1];
+  assert.ok(homeRaw);
+  const home = JSON.parse(
+    homeRaw
+      .replace(/&quot;/g, '"')
+      .replace(/&#39;/g, "'")
+      .replace(/&lt;/g, "<")
+      .replace(/&gt;/g, ">")
+      .replace(/&amp;/g, "&"),
+  );
+  home.data.pages.hero.heading = "Unsaved Hero heading";
+  home.data.pages.hero.intro = "Unsaved Hero introduction";
+  home.data.pages.heading = "Obsolete page heading";
+  home.data.pages.intro = "Obsolete page introduction";
+  const homeResponse = await fetch(homeEndpoint, {
+    method: "POST",
+    headers,
+    body: JSON.stringify({ [home.id]: home.data }),
+  });
+  assert.equal(homeResponse.status, 200);
+  const heroHTML = await homeResponse.text();
+  assert.ok(heroHTML.includes("Unsaved Hero heading"));
+  assert.ok(heroHTML.includes("Unsaved Hero introduction"));
+  assert.ok(!heroHTML.includes("Obsolete page heading"));
+  assert.ok(!heroHTML.includes("Obsolete page introduction"));
+  assert.equal((heroHTML.match(/<h1\b/g) || []).length, 1);
   for (const path of ["../config/site-theme.json", "missing.json"]) {
     const response = await fetch(
       `http://127.0.0.1:4335/tina-island/page?relativePath=${encodeURIComponent(path)}`,

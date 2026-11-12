@@ -36,14 +36,24 @@
               "eyebrow": "Closer to home",
               "heading": "Poetry and other writing",
               "body": "Some of my poems are collected on the site's earlier Hobbies page. They're part of this archive too.\n\n[Read selected poems ↗](/hobbies)",
-              "treatment": "panel",
               "background": "surface",
-              "headingStyle": "card"
+              "headingStyle": "card",
+              "decoration": {
+                "padding": "medium"
+              }
             }
           ]
         }
       ],
-      "divider": true
+      "decoration": {
+        "rules": {
+          "top": true,
+          "style": "solid",
+          "weight": "thin",
+          "color": "border",
+          "spacing": "large"
+        }
+      }
     },
     {
       "_template": "feed",
@@ -60,7 +70,15 @@
       "fallbackText": "The latest essays are available directly on Substack.",
       "fallbackUrl": "https://isiahfletcher7.substack.com/",
       "fallbackLabel": "Visit Substack",
-      "divider": true
+      "decoration": {
+        "rules": {
+          "top": true,
+          "style": "solid",
+          "weight": "thin",
+          "color": "border",
+          "spacing": "large"
+        }
+      }
     }
   ],
   "introWidth": "content"

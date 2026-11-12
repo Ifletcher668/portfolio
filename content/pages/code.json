@@ -36,14 +36,24 @@
               "eyebrow": "Technical interests",
               "heading": "Making useful things.",
               "body": "Accessible interfaces, understandable code, maintainable systems, and the small details that make software easier to use.\n\nSome of my code is available on [GitHub ↗](https://github.com/Ifletcher668).",
-              "treatment": "panel",
               "background": "surface",
-              "headingStyle": "card"
+              "headingStyle": "card",
+              "decoration": {
+                "padding": "medium"
+              }
             }
           ]
         }
       ],
-      "divider": true
+      "decoration": {
+        "rules": {
+          "top": true,
+          "style": "solid",
+          "weight": "thin",
+          "color": "border",
+          "spacing": "large"
+        }
+      }
     },
     {
       "_template": "textImage",
@@ -59,7 +69,15 @@
       "body": "A website project from my earlier work, kept here as part of the archive.",
       "imageSide": "left",
       "imageRatio": "landscape",
-      "divider": true
+      "decoration": {
+        "rules": {
+          "top": true,
+          "style": "solid",
+          "weight": "thin",
+          "color": "border",
+          "spacing": "large"
+        }
+      }
     }
   ],
   "introWidth": "content"

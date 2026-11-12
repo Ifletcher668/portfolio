@@ -6,8 +6,9 @@ import type { FeedItem } from "../../lib/feeds";
 interface Props {
   data: SectionData;
   feeds?: Record<string, FeedItem[]>;
+  onLight?: boolean;
 }
-const { data, feeds = {} } = Astro.props;
+const { data, feeds = {}, onLight = false } = Astro.props;
 const columns = ["1", "2", "3"].includes(data.columns || "")
   ? data.columns
   : "2";
@@ -17,7 +18,11 @@ const columns = ["1", "2", "3"].includes(data.columns || "")
   class:list={[
     "section-columns",
     `columns-${columns}`,
-    { "columns-centered": data.verticalAlignment === "center" },
+    `column-gap-${["small", "medium", "large"].includes(data.gap || "") ? data.gap : "medium"}`,
+    {
+      "columns-centered": data.verticalAlignment === "center",
+      "columns-bottom": data.verticalAlignment === "end",
+    },
   ]}
   data-tina-field={tinaField(data, "items")}
 >
@@ -32,7 +37,12 @@ const columns = ["1", "2", "3"].includes(data.columns || "")
             {item.sections?.map(
               (section) =>
                 section && (
-                  <PageSection data={section} feeds={feeds} contained />
+                  <PageSection
+                    data={section}
+                    feeds={feeds}
+                    onLight={onLight}
+                    contained
+                  />
                 ),
             )}
           </div>

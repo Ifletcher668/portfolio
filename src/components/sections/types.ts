@@ -1,3 +1,4 @@
+import type { Decoration } from "../../lib/section-decoration";
 import type { TinaMarkdownContent } from "tinacms/dist/rich-text";
 /** Shared section contract used by schema-backed renderers. */
 export type CardData = {
@@ -11,10 +12,10 @@ export type CardData = {
   linkUrl?: string | null;
 };
 export type SectionData = CardData & {
-  treatment?: string | null;
+  decoration?: Decoration | null;
   headingStyle?: string | null;
-  divider?: boolean | null;
   verticalAlignment?: string | null;
+  gap?: string | null;
   items?:
     | ({
         __typename?: string;

@@ -205,7 +205,163 @@ test("migration preserves paired media, split editorial content and open-text in
     assert.equal(page.introWidth, "content");
     const first = page.sections[0];
     assert.equal(first._template, "columns");
-    assert.notEqual(first.items[0].sections[0].treatment, "panel");
-    assert.equal(first.items[1].sections[0].treatment, "panel");
+    assert.notEqual(first.items[0].sections[0].decoration?.padding, "medium");
+    assert.equal(first.items[1].sections[0].decoration?.padding, "medium");
   }
+});
+
+test("Landing owns visible introductory content exclusively through Hero", async () => {
+  const schema = JSON.parse(
+    await readFile("tina/tina-lock.json", "utf8"),
+  ).schema;
+  const templates = schema.collections.find(
+    (item) => item.name === "pages",
+  ).templates;
+  const landing = templates.find((item) => item.name === "landing");
+  for (const key of ["eyebrow", "heading", "intro"])
+    assert.ok(!landing.fields.some((field) => field.name === key));
+  const hero = landing.fields.find((field) => field.name === "hero");
+  for (const key of ["eyebrow", "heading", "intro", "body"])
+    assert.ok(hero.fields.some((field) => field.name === key));
+  assert.ok(!hero.fields.some((field) => field.name === "lead"));
+  for (const template of templates.filter((item) => item.name !== "landing"))
+    assert.ok(template.fields.some((field) => field.name === "heading"));
+});
+
+test("editor exposes independent embellishments and both alignment axes", async () => {
+  const schema = JSON.parse(
+    await readFile("tina/tina-lock.json", "utf8"),
+  ).schema;
+  const sections = schema.collections
+    .find((item) => item.name === "pages")
+    .templates[0].fields.find((field) => field.name === "sections").templates;
+  for (const section of sections) {
+    assert.ok(
+      !section.fields.some((field) =>
+        ["treatment", "divider"].includes(field.name),
+      ),
+    );
+    assert.deepEqual(
+      section.fields.find((field) => field.name === "alignment").options,
+      ["left", "center", "right"],
+    );
+    const decoration = section.fields.find(
+      (field) => field.name === "decoration",
+    );
+    for (const key of ["padding", "radius", "shadow", "border", "rules"])
+      assert.ok(decoration.fields.some((field) => field.name === key));
+  }
+  const vertical = sections
+    .find((item) => item.name === "columns")
+    .fields.find((field) => field.name === "verticalAlignment");
+  assert.deepEqual(vertical.options, [
+    { value: "start", label: "Top" },
+    { value: "center", label: "Center" },
+    { value: "end", label: "Bottom" },
+  ]);
+});
+
+test("border and rule CSS accepts theme-based options and rejects arbitrary CSS", async () => {
+  const { decorationStyle, ruleStyle } =
+    await import("../src/lib/section-decoration.ts");
+  const decoration = {
+    padding: "small",
+    radius: "large",
+    shadow: "soft",
+    border: {
+      edges: ["top", "right"],
+      style: "dashed",
+      weight: "medium",
+      color: "accent",
+      accentEdge: "left",
+      accentWeight: "thick",
+      accentColor: "strong",
+    },
+  };
+  const css = decorationStyle(decoration, true);
+  assert.ok(css.includes("border-top:2px dashed var(--color-accent-on-light)"));
+  assert.ok(css.includes("border-left:3px dashed var(--color-rule-on-light)"));
+  assert.ok(css.includes("padding:var(--space-5)"));
+  assert.ok(!css.includes("border-bottom"));
+  const bad = decorationStyle({
+    padding: "999px; color:red",
+    border: {
+      edges: ["top;color:red"],
+      style: "url(evil)",
+      weight: "500px",
+      color: "red; color:red",
+      accentEdge: "left; color:red",
+    },
+  });
+  assert.ok(!bad.includes("red"));
+  assert.ok(!bad.includes("evil"));
+  assert.ok(!bad.includes("999"));
+  assert.ok(
+    ruleStyle(
+      { style: "dotted", weight: "thick", color: "link", spacing: "large" },
+      "bottom",
+    ).includes("margin:var(--gap-section) 0 0"),
+  );
+});
+
+test("content migration preserves saved copy and is safe to rerun", async () => {
+  const { migratePage } = await import("./migrations/page-editor-controls.mjs");
+  const old = {
+    _template: "landing",
+    title: "SEO title",
+    eyebrow: "Greeting",
+    heading: "A hero heading",
+    intro: "",
+    hero: { lead: "A lead", body: "Saved editor copy", treatment: "plain" },
+    sections: [
+      {
+        _template: "columns",
+        divider: true,
+        items: [
+          {
+            sections: [
+              {
+                _template: "richText",
+                treatment: "outline",
+                body: "Nested saved copy",
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  };
+  const migrated = migratePage(structuredClone(old));
+  assert.equal(migrated.hero.heading, "A hero heading");
+  assert.equal(migrated.hero.intro, "A lead");
+  assert.equal(migrated.hero.body, "Saved editor copy");
+  assert.equal(migrated.sections[0].decoration.rules.top, true);
+  assert.deepEqual(
+    migrated.sections[0].items[0].sections[0].decoration.border.edges,
+    ["top", "right", "bottom", "left"],
+  );
+  assert.equal(
+    migrated.sections[0].items[0].sections[0].body,
+    "Nested saved copy",
+  );
+  assert.deepEqual(migratePage(structuredClone(migrated)), migrated);
+});
+
+test("saved local page images exist under the configured public media root", async () => {
+  const { access } = await import("node:fs/promises");
+  const inspect = async (value) => {
+    if (!value || typeof value !== "object") return;
+    if (typeof value.image === "string" && value.image.startsWith("/"))
+      await access(`public${value.image}`);
+    for (const child of Object.values(value)) {
+      if (Array.isArray(child)) for (const item of child) await inspect(item);
+      else await inspect(child);
+    }
+  };
+  for (const file of await readdir("content/pages"))
+    await inspect(JSON.parse(await readFile(`content/pages/${file}`, "utf8")));
+  const schema = JSON.parse(
+    await readFile("tina/tina-lock.json", "utf8"),
+  ).schema;
+  assert.equal(schema.config.media.tina.mediaRoot, "");
 });

@@ -192,15 +192,12 @@
 .section-card {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: stretch;
   min-width: 0;
   background: var(--color-surface);
   padding: var(--card-padding);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
-}
-.align-center .section-card {
-  align-items: center;
 }
 .section-card .section-image {
   margin-bottom: var(--gap-prose);
@@ -251,7 +248,6 @@
 }
 .columns-centered {
   align-items: center;
-  gap: var(--gap-section);
 }
 .section-column {
   min-width: 0;
@@ -264,24 +260,6 @@
 }
 .contained-section > .builder-section-inner {
   width: 100%;
-}
-.treatment-panel,
-.treatment-outline {
-  padding: var(--card-padding);
-}
-.treatment-outline {
-  border: 1px solid var(--color-border);
-  border-left: 3px solid var(--color-border-strong);
-  border-radius: var(--radius-md);
-}
-.background-light .treatment-outline {
-  border-color: var(--color-border-on-light);
-  border-left-color: var(--color-rule-on-light);
-  background: var(--color-tint-on-light);
-}
-.section-divider > .builder-section-inner {
-  border-top: 1px solid var(--color-border);
-  padding-top: var(--gap-section);
 }
 .section-split.image-above,
 .section-split.no-image {
@@ -336,21 +314,50 @@
 .builder-intro:not(.builder-hero) h1 {
   margin-bottom: var(--space-5);
 }
-.treatment-panel,
-.section-card,
-.treatment-outline {
+/* Embellishment geometry is validated against tokens at the render boundary. */
+.section-rule {
+  width: 100%;
+  height: 0;
+}
+.align-right {
+  text-align: right;
+}
+.columns-bottom {
+  align-items: end;
+}
+.background-tint {
+  background: var(--color-tint-on-light);
+}
+.background-surface {
+  color: var(--color-text);
+}
+.background-surface h2,
+.background-surface h3 {
+  color: var(--color-heading);
+}
+.section-card {
   transition:
     transform 0.35s ease,
     box-shadow 0.35s ease,
     border-color 0.35s ease;
 }
 @media (hover: hover) and (pointer: fine) {
-  .treatment-panel:hover,
   .section-card:hover {
     transform: translateY(-5px);
     box-shadow: var(--shadow-card-hover);
   }
-  .treatment-outline:hover {
-    box-shadow: var(--shadow-post-hover);
-  }
+}
+
+.column-gap-small {
+  gap: var(--space-5);
+}
+.column-gap-medium {
+  gap: var(--gap-grid);
+}
+.column-gap-large {
+  gap: var(--gap-section);
+}
+
+.align-left {
+  text-align: left;
 }
