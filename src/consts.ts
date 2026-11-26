@@ -35,7 +35,24 @@ export const THREE_JS_JOURNEY_LINKS_ARRAY = Object.values(
   THREE_JS_JOURNEY_LINKS
 );
 
-export const PROJECT_LINKS = {
+type ProjectLink = PageLink & {
+  imgSrc: string;
+  imgAlt?: string;
+  imageSize?: { width: number; height: number };
+  imageCredit?: string;
+  description?: string;
+};
+
+export const PROJECT_LINKS: Record<string, ProjectLink> = {
+  rhythmDesk: {
+    title: "Rhythm Desk",
+    href: "https://rhythm-desk.netlify.app/",
+    imgSrc: "/rhythm-desk.jpg",
+    imgAlt: "Rhythm Desk showing a five-against-four polyrhythm with two colored paths on a circular timing grid",
+    imageSize: { width: 1265, height: 712 },
+    imageCredit: "Screenshot of Rhythm Desk",
+    description: "I built Rhythm Desk to practice polyrhythms and unusual subdivisions. It combines a precise metronome with editable notation and a live rhythm visualizer.",
+  },
   threeJsJourney: {
     title: "Three.js Journey",
     href: "/projects/three-js-journey",

@@ -6,7 +6,7 @@ import { PROJECT_LINKS_ARRAY } from "../../consts";
 
 <Layout
   title="Projects"
-  description="View web development projects by Isiah Fletcher including Three.js experiments, Shelbz Citrine portfolio, and React applications. Showcasing frontend development skills and creative coding."
+  description="Explore software projects by Isiah Fletcher, including Rhythm Desk, Three.js experiments, and the Shelbz Citrine portfolio."
 >
   <ul class="simple-list">
     {
@@ -17,18 +17,20 @@ import { PROJECT_LINKS_ARRAY } from "../../consts";
             <h5>
               <a
                 target={isExternalLink ? "_blank" : "_self"}
+                rel={isExternalLink ? "noopener" : undefined}
                 href={project.href}
               >
                 <span class="letter">{index + 1}.</span>
                 {project.title}
               </a>
             </h5>
+            {project.description && <p>{project.description}</p>}
             <Image
-              width={666}
-              height={510}
+              width={project.imageSize?.width ?? 666}
+              height={project.imageSize?.height ?? 510}
               src={project.imgSrc}
-              alt=""
-              credit="Photo by Isiah Fletcher"
+              alt={project.imgAlt ?? ""}
+              credit={project.imageCredit ?? "Photo by Isiah Fletcher"}
             />
           </li>
         );
@@ -37,8 +39,6 @@ import { PROJECT_LINKS_ARRAY } from "../../consts";
   </ul>
 </Layout>
 <style>
-  .project-link {
-  }
   .project-link a {
     text-decoration: none;
   }
